@@ -454,30 +454,6 @@
                 </div>
             </div>
         </div>
-        <h4 class="card-header bg-info text-white">Jalur Pendaftaran</h4>
-        <div class="card mb-0">
-            <div class="card-body">
-                {{--Jalur Pendaftaran--}}
-                @if($jalur)
-                    <div class="alert alert-danger mb-1" role="alert">
-                        Dengan mengubah <strong>Jalur Pendaftaran</strong> secara otomatis menghapus semua <strong>Berkas
-                            Khusus</strong>!
-                    </div>
-                @endif
-                <select class="form-control jalur @error('jalur') is-invalid @enderror" id="jalur" name="jalur">
-                    <option></option>
-                    @foreach ($jalur as $data)
-                        <option
-                            value="{{ $data->id }}" @selected($data->id == $datas->id_jalur)>{{ $data->nama_jalur }}</option>
-                    @endforeach
-                </select>
-                @error('jalur')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-        </div>
         <div class="card-footer bg-white">
             <button type="submit" class="btn btn-soft-info my-2"><i class="mdi mdi-content-save-cog-outline"></i>
                 Simpan Data

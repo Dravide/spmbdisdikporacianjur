@@ -117,10 +117,10 @@
             $(document).ready(function () {
 
                 mapboxgl.accessToken =
-                    "pk.eyJ1IjoicHBkYnNtcGRpc2Rpa3BvcmFjaWFuanVyIiwiYSI6ImNsdDVlYml1cDBkNDgybW8waHI1OGhwa2IifQ.whC4Fw1qIp4n4_5NR1rWGQ";
+                    "pk.eyJ1IjoicHBkYnNtcGRpc2Rpa2NpYW5qdXIiLCJhIjoiY204ZnNrbHNoMGczdDJqcHhucTdjZmNtZyJ9.Ary-pbzrfR8kLH-A13ZWLw";
                 var map = new mapboxgl.Map({
                     container: "map",
-                    style: "mapbox://styles/ppdbsmpdisdikporacianjur/clwqfi7hu011w01pn8dj96c3d",
+                    style: "mapbox://styles/ppdbsmpdisdikcianjur/cm8fsoaka00ev01r0dfdrho3d",
                     center: [{{ $data->koordinat->longitude }}, {{ $data->koordinat->latitude }}],
                     zoom: 17,
                 });

@@ -2,9 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8"/>
-    <title>{{ $title }} - Penerimaan Peserta Didik Baru Dinas Pendididkan Pemuda dan Olahraga Kab. Cianjur Tahun
-        Pelajaran
-        2024/2025</title>
+    <title>{{ $title }} - {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="_token" content="{{ csrf_token() }}">
@@ -108,8 +106,8 @@
                     @else
                     <x-Pendaftaran.selamat-datang2/>
                     @endif
-                
-                
+
+
                 @else
                     <!-- start page title -->
                     <div class="row">
@@ -164,7 +162,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="text-sm-end d-none d-sm-block">
-                        <strong>Build Dev-V.7.6-SIMANJUR 2024</strong> - Dinas Pendidikan Pemuda dan Olahraga Kab.
+                        <strong>Build Dev-V.{{ config('app.version') }}-SPMB 2025</strong> - Dinas Pendidikan Pemuda dan Olahraga Kab.
                         Cianjur
                     </div>
                 </div>

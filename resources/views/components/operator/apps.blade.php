@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8"/>
-    <title>PPDB DISDIKPORA Cianjur Tahun 2024</title>
+    <title>{{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="token" content="{{ csrf_token() }}">
     <meta content="Penerimaan Peserta Didik Baru Dinas Pendidikan Pemuda dan Olahraga Kab. Cianjur Tahun 2023"

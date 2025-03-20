@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Nara;
+namespace App\Http\Controllers\nara;
 
 use App\Http\Controllers\Controller;
 use App\Models\SekolahAsal;

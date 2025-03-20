@@ -784,13 +784,13 @@
     <div class="card bg-soft-light mt-3">
         <div class="card-body text-center py-2">
             <div class="text-center mb-2"><img src="assets/images/logopemda.png" height="60" alt="logoppdb"/></div>
-            <b>PEMERINTAH KABUPATEN CIANJUR</b><br>DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA<br><b>TAHUN 2024</b>
+            <b>PEMERINTAH KABUPATEN CIANJUR</b><br>DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA<br><b>TAHUN 2025</b>
         </div>
     </div>
 
     <div class="card bg-soft-info mb-0">
         <div class="card-body text-center py-2">
-            <b>SURAT PERNYATAAN KEBENARAN DOKUMEN PERSYARATAN <br>PPDB TINGKAT SMP</b><br/>
+            <b>SURAT PERNYATAAN KEBENARAN DOKUMEN PERSYARATAN <br>SISTEM PENERIMAAN MURID BARU TINGKAT SMP</b><br/>
             DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA KABUPATEN CIANJUR<br/>
             TAHUN PELAJARAN 2024/2025
         </div>
@@ -889,7 +889,7 @@
                 <tbody>
                 <tr class="small">
                     <td width="400px"></td>
-                    <td>Cianjur, {{ Carbon::now()->format('d') }} Juni 2024
+                    <td>Cianjur, {{ Carbon::now()->format('d') }} Juni 2025
                         <br>
                         <br>
                         <br>

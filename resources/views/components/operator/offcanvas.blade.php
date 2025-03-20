@@ -147,7 +147,7 @@
 <script>
     WebViewer({
         path: '/assets/libs/pdfjsexpress',
-        licenseKey: 'Psn9n4HD1XeCQB8ygtq4',
+        licenseKey: '6d7646SuhMqJVyD70UzH',
         initialDoc: '{{ Storage::url($isiData->data_berkas) }}',
     }, document.getElementById('viewer'))
         .then(instance => {

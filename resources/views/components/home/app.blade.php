@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
     <!-- title -->
     <title>{{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,23 +24,12 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-
     <!-- third party plugins -->
     <link rel="stylesheet" href="{{ asset('assets-fe/css/vendor.min.css') }}" type="text/css"/>
     <!-- theme css -->
     <link rel="stylesheet" href="{{ asset('assets-fe/css/theme.min.css') }}" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('assets-fe/css/app.css') }}" type="text/css"/>
-    <style>
-    .ml-25 {
-        margin-left: 25%;
-    }
-    @media screen and (max-width: 600px) {
-      .ml-small-10 {
-        margin-left: 10%;
-      }
 
-    }
-</style>
     @stack('css')
 </head>
 
@@ -51,8 +39,9 @@
         <nav class="navbar navbar-expand-lg topnav-menu navbar-light zindex-10">
             <div class="container">
                 <a class="navbar-brand logo" href="/">
-                    <img src="{{asset('')}}/assets-fe/images/logo.png" height="50" class="align-top logo-dark" alt=""/>
-                    <img src="{{asset('')}}/assets-fe/images/logo-light.png" height="60" class="align-top logo-light" alt=""/>
+                    <img src="{{asset('assets-fe/images/logo.png')}}" height="50" class="align-top logo-dark" alt=""/>
+                    <img src="{{asset('assets-fe/images/logo-light.png')}}" height="60" class="align-top logo-light"
+                         alt=""/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#topnav-menu-content"
@@ -71,7 +60,8 @@
                             <a class="nav-link" href="{{ route('myhome') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('datasekolah.*') ? 'active' : '' }}" href="{{ route('datasekolah') }}">Daftar Sekolah</a>
+                            <a class="nav-link {{ request()->routeIs('datasekolah.*') ? 'active' : '' }}"
+                               href="{{ route('datasekolah') }}">Daftar Sekolah</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('unduh') }}">Unduh</a>
@@ -101,7 +91,8 @@
                         <h1 class="hero-title mt-0">PPDB SMP DISIKPORA Cianjur 2024</h1>
                     </div>
                     <div class="col-lg-5">
-                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda dan
+                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda
+                            dan
                             Olahraga Kabupaten Cianjur Tahun 2024 </p>
                     </div>
                 </div>
@@ -119,30 +110,38 @@
                                                     <div class="col">
                                                         <div class="row g-2 align-items-end">
 
-                                                            <form method="post" action="{{ route('indexHasil') }}" style="display:contents">
+                                                            <form method="post" action="{{ route('indexHasil') }}"
+                                                                  style="display:contents">
                                                                 @csrf
                                                                 <div class="col-sm-auto">
-                                                                <label class=""
-                                                                       for="username">No. Pendaftaran</label>
-                                                                <div class="form-control-with-hint me-sm-2">
-                                                                    <input type="text" id="username" class="form-control" placeholder="PPDBXXXXX28937" name="username" required>
-                                                                    <span
-                                                                        class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    <label class=""
+                                                                           for="username">No. Pendaftaran</label>
+                                                                    <div class="form-control-with-hint me-sm-2">
+                                                                        <input type="text" id="username"
+                                                                               class="form-control"
+                                                                               placeholder="PPDBXXXXX28937"
+                                                                               name="username" required>
+                                                                        <span
+                                                                            class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <label for="example-datetime-local-input" class="">Tanggal Lahir</label>
-                                                                <div class="col-md-10">
-                                                                    <input class="form-control" type="date" placeholder="Tanggal Lahir" id="example-datetime-local-input" name="tglLahir" required>
+                                                                <div class="col-sm-auto">
+                                                                    <label for="example-datetime-local-input" class="">Tanggal
+                                                                        Lahir</label>
+                                                                    <div class="col-md-10">
+                                                                        <input class="form-control" type="date"
+                                                                               placeholder="Tanggal Lahir"
+                                                                               id="example-datetime-local-input"
+                                                                               name="tglLahir" required>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <button type="submit" id="" class="btn btn-orange my-1 my-sm-0">
-                                                                    Cek Kelulusan
-                                                                </button>
-                                                            </div>
+                                                                <div class="col-sm-auto">
+                                                                    <button type="submit" id=""
+                                                                            class="btn btn-orange my-1 my-sm-0">
+                                                                        Cek Kelulusan
+                                                                    </button>
+                                                                </div>
                                                             </form>
-
 
 
                                                         </div>
@@ -221,7 +220,8 @@
                         <h1 class="hero-title mt-0">PPDB SMP DISIKPORA Cianjur 2024</h1>
                     </div>
                     <div class="col-lg-5">
-                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda dan
+                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda
+                            dan
                             Olahraga Kabupaten Cianjur Tahun 2024 </p>
                     </div>
                 </div>
@@ -239,30 +239,38 @@
                                                     <div class="col">
                                                         <div class="row g-2 align-items-end">
 
-                                                            <form method="post" action="{{ route('indexHasil') }}" style="display:contents">
+                                                            <form method="post" action="{{ route('indexHasil') }}"
+                                                                  style="display:contents">
                                                                 @csrf
                                                                 <div class="col-sm-auto">
-                                                                <label class=""
-                                                                       for="username">No. Pendaftaran</label>
-                                                                <div class="form-control-with-hint me-sm-2">
-                                                                    <input type="text" id="username" class="form-control" placeholder="PPDBXXXXX28937" name="username" required>
-                                                                    <span
-                                                                        class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    <label class=""
+                                                                           for="username">No. Pendaftaran</label>
+                                                                    <div class="form-control-with-hint me-sm-2">
+                                                                        <input type="text" id="username"
+                                                                               class="form-control"
+                                                                               placeholder="PPDBXXXXX28937"
+                                                                               name="username" required>
+                                                                        <span
+                                                                            class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <label for="example-datetime-local-input" class="">Tanggal Lahir</label>
-                                                                <div class="col-md-10">
-                                                                    <input class="form-control" type="date" placeholder="Tanggal Lahir" id="example-datetime-local-input" name="tglLahir" required>
+                                                                <div class="col-sm-auto">
+                                                                    <label for="example-datetime-local-input" class="">Tanggal
+                                                                        Lahir</label>
+                                                                    <div class="col-md-10">
+                                                                        <input class="form-control" type="date"
+                                                                               placeholder="Tanggal Lahir"
+                                                                               id="example-datetime-local-input"
+                                                                               name="tglLahir" required>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <button type="submit" id="" class="btn btn-orange my-1 my-sm-0">
-                                                                    Cek Kelulusan
-                                                                </button>
-                                                            </div>
+                                                                <div class="col-sm-auto">
+                                                                    <button type="submit" id=""
+                                                                            class="btn btn-orange my-1 my-sm-0">
+                                                                        Cek Kelulusan
+                                                                    </button>
+                                                                </div>
                                                             </form>
-
 
 
                                                         </div>
@@ -333,7 +341,7 @@
                 </svg>
             </div>
         </section>
-        @elseif(request()->routeIs('cek2'))
+    @elseif(request()->routeIs('cek2'))
         <section class="hero-2">
             <div class="container py-3 py-sm-6">
                 <div class="row align-items-center">
@@ -341,7 +349,8 @@
                         <h1 class="hero-title mt-0">PPDB SMP DISIKPORA Cianjur 2024</h1>
                     </div>
                     <div class="col-lg-5">
-                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda dan
+                        <p class="fs-17 ps-0 ps-sm-4">Penerimaan Peserta Didik Baru Tingkat SMP Dinas Pendidikan Pemuda
+                            dan
                             Olahraga Kabupaten Cianjur Tahun 2024 </p>
                     </div>
                 </div>
@@ -359,30 +368,38 @@
                                                     <div class="col">
                                                         <div class="row g-2 align-items-end">
 
-                                                            <form method="post" action="{{ route('indexHasil2') }}" style="display:contents">
+                                                            <form method="post" action="{{ route('indexHasil2') }}"
+                                                                  style="display:contents">
                                                                 @csrf
                                                                 <div class="col-sm-auto">
-                                                                <label class=""
-                                                                       for="username">No. Pendaftaran</label>
-                                                                <div class="form-control-with-hint me-sm-2">
-                                                                    <input type="text" id="username" class="form-control" placeholder="PPDBXXXXX28937" name="username" required>
-                                                                    <span
-                                                                        class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    <label class=""
+                                                                           for="username">No. Pendaftaran</label>
+                                                                    <div class="form-control-with-hint me-sm-2">
+                                                                        <input type="text" id="username"
+                                                                               class="form-control"
+                                                                               placeholder="PPDBXXXXX28937"
+                                                                               name="username" required>
+                                                                        <span
+                                                                            class="form-control-feedback uil uil-location-pin-alt fs-18"></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <label for="example-datetime-local-input" class="">Tanggal Lahir</label>
-                                                                <div class="col-md-10">
-                                                                    <input class="form-control" type="date" placeholder="Tanggal Lahir" id="example-datetime-local-input" name="tglLahir" required>
+                                                                <div class="col-sm-auto">
+                                                                    <label for="example-datetime-local-input" class="">Tanggal
+                                                                        Lahir</label>
+                                                                    <div class="col-md-10">
+                                                                        <input class="form-control" type="date"
+                                                                               placeholder="Tanggal Lahir"
+                                                                               id="example-datetime-local-input"
+                                                                               name="tglLahir" required>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-auto">
-                                                                <button type="submit" id="" class="btn btn-orange my-1 my-sm-0">
-                                                                    Cek Kelulusan
-                                                                </button>
-                                                            </div>
+                                                                <div class="col-sm-auto">
+                                                                    <button type="submit" id=""
+                                                                            class="btn btn-orange my-1 my-sm-0">
+                                                                        Cek Kelulusan
+                                                                    </button>
+                                                                </div>
                                                             </form>
-
 
 
                                                         </div>

@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8"/>
-    <title>Pendaftaran - {{ config('app.name') }}</title>
+    <title>Registrasi Akun - {{ config('app.name') }}</title>
 {{--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_token" content="{{ csrf_token() }}">
@@ -34,7 +34,7 @@
 
 </head>
 
-<body data-topbar="dark">
+<body class="bg-soft-secondary bg-opacity-25">
 <div class="account-pages my-5 pt-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -133,12 +133,12 @@
                     </div>
                 </div>
                 <div class="mt-2 text-center">
-                    <p class="text-grey-50">Sudah Memiliki Akun ? <a href="{{ route('login') }}"
-                                                                     class="fw-medium text-info"> Login </a>
+                    <p class="text-grey-50 fs-5 ">Sudah Memiliki Akun ? <a href="{{ route('login') }}"
+                                                                     class="fw-medium text-dark fw-bold"> Login Akun </a>
                     </p>
                     <p class="text-grey-50">©
                         <script>document.write(new Date().getFullYear())</script>
-                        DISDIKPORA Kab. Cianjur
+                        Dinas Pendidikan Pemuda dan Olahraga Kab. Cianjur
                     </p>
                 </div>
             </div>

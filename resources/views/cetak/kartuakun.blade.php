@@ -761,9 +761,9 @@
 
 <div class="card bg-soft-success mt-3">
     <div class="card-body text-center py-2">
-        <strong>KARTU AKUN</strong> <br>PPDB SMP DISDIKPORA Kab. Cianjur <br>Tahun
+        <strong>KARTU AKUN</strong> <br>SPMB SMP DISDIKPORA Kab. Cianjur <br>Tahun
         Pelajaran
-        2024/2025
+        2025/2026
     </div>
 </div>
 <div class="card mt-0">
@@ -793,8 +793,7 @@
     </div>
 
 </div>
-<p class="text-center my-2 small">Kartu Akun PPDB merupakan solusi praktis yang bisa dimanfaatkan oleh Calon Peserta
-    Didik Baru (CPDB) dalam situasi ketika mereka mengalami lupa password saat mengakses sistem pendaftaran.
+<p class="text-center my-2 small">Kartu Akun SPMB merupakan solusi praktis yang bisa dimanfaatkan oleh Calon Murid Baru (CMB) dalam situasi ketika mereka mengalami lupa password saat mengakses sistem pendaftaran.
 </p>
 <div class="card bg-soft-danger mt-3">
     <div class="card-body text-center py-2">

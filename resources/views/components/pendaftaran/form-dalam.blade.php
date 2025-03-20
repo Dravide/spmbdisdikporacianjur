@@ -34,7 +34,7 @@
 <form action="{{ route('Pendaftaran.dalamkab') }}" method="post">
     @csrf
     <div class="card">
-        <h4 class="card-header bg-info text-white">Data Diri</h4>
+        <h4 class="card-header bg-dark text-white">Data Diri</h4>
         <div class="card-body">
 
             <div class="row">
@@ -60,13 +60,13 @@
                                    value="L"
                                    @if(Auth::user()->dataPendaftar->dapodik->jenis_kelamin == "L") checked
                                    @endif disabled>
-                            <label class="btn btn-outline-info" for="btnradioMale"><i class="mdi mdi-human-male"></i>
+                            <label class="btn btn-outline-dark" for="btnradioMale"><i class="mdi mdi-human-male"></i>
                                 Laki-laki</label>
                             <input type="radio" class="btn-check" name="data[jenis_kelamin]" id="btnradioFemale"
                                    value="P"
                                    @if(Auth::user()->dataPendaftar->dapodik->jenis_kelamin == "P") checked
                                    @endif disabled>
-                            <label class="btn btn-outline-info" for="btnradioFemale"><i
+                            <label class="btn btn-outline-dark" for="btnradioFemale"><i
                                     class="mdi mdi-human-female"></i>
                                 Perempuan</label>
                         </div>
@@ -334,7 +334,7 @@
             </div>
 
         </div>
-        <h4 class="card-header bg-info text-white">Data Sekolah Asal</h4>
+        <h4 class="card-header bg-dark text-white">Data Sekolah Asal</h4>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
@@ -359,7 +359,7 @@
                 </div>
             </div>
         </div>
-        <h4 class="card-header bg-info text-white">Titik Koordinat Rumah Siswa</h4>
+        <h4 class="card-header bg-dark text-white">Titik Koordinat Rumah Siswa</h4>
         <div class="card mb-0">
             <div id="map" style="width:auto; height: 450px;"></div>
             <div class="card-body">
@@ -393,30 +393,6 @@
                 </div>
             </div>
         </div>
-        <h4 class="card-header bg-info text-white">Jalur Pendaftaran</h4>
-        <div class="card mb-0">
-            <div class="card-body">
-                {{--Jalur Pendaftaran--}}
-                @if($jalur)
-                    <div class="alert alert-danger mb-1" role="alert">
-                        Dengan mengubah <strong>Jalur Pendaftaran</strong> secara otomatis menghapus semua <strong>Berkas
-                            Khusus</strong>!
-                    </div>
-                @endif
-                <label for="jalur"></label><select class="form-control jalur" id="jalur" name="jalur" required>
-                    <option></option>
-                    @foreach ($jalur as $data)
-                        <option
-                            value="{{ $data->id }}" @selected($data->id == $datas->id_jalur)>{{ $data->nama_jalur }}</option>
-                    @endforeach
-                </select>
-                @error('jalur')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-        </div>
         <div class="card-footer bg-white">
             <button type="submit" class="btn btn-soft-info my-2"><i class="mdi mdi-content-save-cog-outline"></i>
                 Simpan Data
@@ -439,6 +415,7 @@
     <script
         src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
     <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $(".npsn").select2({

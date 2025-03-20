@@ -23,8 +23,9 @@ use App\Http\Controllers\nara\HomeController;
 use App\Http\Controllers\nara\JalurController;
 use App\Http\Controllers\nara\PengaturanController;
 use App\Http\Controllers\nara\SekolahController;
+use App\Http\Controllers\Nara\SekolahDasar;
 
-Route::group(['domain' => 'nara'. env('SESSION_DOMAIN') . '', 'middleware' => ['auth', 'CekRole:nara']], function () {
+Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:nara']], function () {
     Route::get('/', fn() => redirect()->route('nara.home'));
     Route::get('home', HomeController::class)->name('nara.home');
     Route::get('berita', [BeritaController::class, 'berita'])->name('nara.berita');
@@ -38,7 +39,7 @@ Route::group(['domain' => 'nara'. env('SESSION_DOMAIN') . '', 'middleware' => ['
     Route::post('datapendaftar/jenis', [DataPendaftarController::class, 'jenis'])->name('jenispendaftaran');
     Route::resource('datapendaftar', DataPendaftarController::class);
     Route::resource('pengaturan', PengaturanController::class);
-    Route::resource('sekolahdasar', \App\Http\Controllers\Nara\SekolahDasar::class);
+    Route::resource('sekolahdasar', SekolahDasar::class);
 
     Route::post('upload', [SekolahController::class, 'upload'])->name('sekolah.upload');
     Route::delete('delete', [SekolahController::class, 'tmpDelete'])->name('sekolah.delete');

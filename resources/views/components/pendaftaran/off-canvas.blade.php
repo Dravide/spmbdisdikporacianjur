@@ -6,7 +6,7 @@
 <script>
     WebViewer({
         path: '/assets/libs/pdfjsexpress', // path to the PDF.js Express'lib' folder on your server
-        licenseKey: 'Psn9n4HD1XeCQB8ygtq4',
+        licenseKey: '6d7646SuhMqJVyD70UzH',
         initialDoc: '{{ Storage::url($data->data_berkas) }}',
         // initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
     }, document.getElementById('viewer'))

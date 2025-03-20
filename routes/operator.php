@@ -19,9 +19,13 @@
 use App\Http\Controllers\operator\BerandaController;
 use App\Http\Controllers\operator\DataPendaftar;
 use App\Http\Controllers\operator\exporExcelController as unduhExcelController;
+use App\Http\Controllers\operator\HasilController;
+use App\Http\Controllers\operator\PemetaanDomisiliController;
+use App\Http\Controllers\operator\PengumumanController;
+use App\Http\Controllers\operator\RekapVervalController;
 use App\Http\Controllers\operator\Verval;
 
-Route::group(['domain' => 'operator' . env('SESSION_DOMAIN') . '', 'middleware' => ['auth', 'CekRole:operator']], function () {
+Route::group(['domain' => 'app' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:operator']], function () {
     Route::get('/', function () {
         return redirect()->route('operator.home');
     });
@@ -59,22 +63,22 @@ Route::group(['domain' => 'operator' . env('SESSION_DOMAIN') . '', 'middleware' 
     Route::put('verval', [Verval::class, 'update'])->name('operator.verval.update');
     Route::get('verval', [Verval::class, 'getBerkas'])->name('operator.verval.getBerkas');
     Route::post('whatsapp', [Verval::class, 'whatsapp'])->name('operator.verval.whatsapp');
-    Route::post('verval/reset', [\App\Http\Controllers\operator\Verval::class, 'reset'])->name('operator.verval.reset');
-    Route::get('rekapverval', [\App\Http\Controllers\operator\RekapVervalController::class, 'index'])->name('operator.rekapverval');
+    Route::post('verval/reset', [Verval::class, 'reset'])->name('operator.verval.reset');
+    Route::get('rekapverval', [RekapVervalController::class, 'index'])->name('operator.rekapverval');
 
-    Route::get('pengumuman', [\App\Http\Controllers\operator\PengumumanController::class, 'index'])->name('operator.pengumuman');
-    Route::post('post-pengumuman', [\App\Http\Controllers\operator\PengumumanController::class, 'post'])->name('operator.pengumumanPost');
-    Route::post('post-reset-pengumuman', [\App\Http\Controllers\operator\PengumumanController::class, 'postResetPengumuman'])->name('operator.postResetPengumuman');
+    Route::get('pengumuman', [PengumumanController::class, 'index'])->name('operator.pengumuman');
+    Route::post('post-pengumuman', [PengumumanController::class, 'post'])->name('operator.pengumumanPost');
+    Route::post('post-reset-pengumuman', [PengumumanController::class, 'postResetPengumuman'])->name('operator.postResetPengumuman');
 
-    Route::get('operator/previewkelulusan', [\App\Http\Controllers\operator\PengumumanController::class, 'preview'])->name('operator.preview');
+    Route::get('operator/previewkelulusan', [PengumumanController::class, 'preview'])->name('operator.preview');
 
-    Route::get('preview', [\App\Http\Controllers\operator\exporExcelController::class, 'preview']);
+    Route::get('preview', [unduhExcelController::class, 'preview']);
 
-    Route::get('hasil', [\App\Http\Controllers\operator\HasilController::class,'index'])->name('operator.hasil');
-    Route::post('hasil', [\App\Http\Controllers\operator\HasilController::class,'import'])->name('operator.hasil.import');
-    Route::delete('hasil', [\App\Http\Controllers\operator\HasilController::class,'reset'])->name('operator.hasil.reset');
+    Route::get('hasil', [HasilController::class, 'index'])->name('operator.hasil');
+    Route::post('hasil', [HasilController::class, 'import'])->name('operator.hasil.import');
+    Route::delete('hasil', [HasilController::class, 'reset'])->name('operator.hasil.reset');
 
     //Pemetaan Domisili
-    Route::get('pemetaandomisili', [\App\Http\Controllers\operator\PemetaanDomisiliController::class, 'index'])->name('operator.pemetaandomisili');
+    Route::get('pemetaandomisili', [PemetaanDomisiliController::class, 'index'])->name('operator.pemetaandomisili');
 });
 # END OPERATOR PPDB SMP DISDIKPORA CIANJUR

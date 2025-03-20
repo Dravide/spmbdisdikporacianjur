@@ -48,35 +48,12 @@ class DataPesertaController extends Controller
             'lon' => 'required',
             'npsn' => 'required',
             'nama_asal_sekolah' => 'required',
-            'jalur' => 'required'
         ]);
 
         $asal_sekolah = SekolahAsal::updateOrCreate(['npsn' => $request->npsn], ['npsn' => $request->npsn, 'nama' => $request->nama_asal_sekolah]);
-        if (isset(\Auth::user()->dataPendaftar->jalur->id) && \Auth::user()->dataPendaftar->jalur->id != $request->jalur) {
-            $jalurObject = Jalur::find(\Auth::user()->dataPendaftar->jalur->id);
-            if ($jalurObject) {
-                $elementsToRemove = ["1", "2", "3", "4"];
-                $filteredBerkas = array_values(array_diff($jalurObject->berkas, $elementsToRemove));
-                if (is_array($filteredBerkas)) {
-                    foreach ($filteredBerkas as $berkasId) {
-                        // Assuming you have a model named Berkas which has the file information
-                        $berkas = \App\Models\Verval::where('id_pendaftar', \Auth::user()->username)->where('id_berkas', $berkasId)->where('deleted_at', null)->first();
-                        if ($berkas) {
-                            $berkas->delete();
-                            $berkas->status = NULL;
-                            $berkas->save();
-                            // Delete the file from storage, assuming the file path is stored in 'path' attribute
-                            Storage::delete('public/' . $berkas->data_berkas);
-                            // Delete the record from the database
-                            $berkas->delete();
-                        }
-                    }
-                }
-            }
-        }
+
         DataPendaftar::updateOrCreate(['nisn' => $request->nisn], [
             'id_users' => auth()->user()->id,
-            'id_jalur' => $request->jalur,
             'id_sekolah_asals' => $asal_sekolah->id,
             'whatsapp' => $request->whatsapp
         ]);
@@ -118,37 +95,8 @@ class DataPesertaController extends Controller
             'npsn' => 'required',
             'lat' => 'required',
             'lon' => 'required',
-            'jalur' => 'required'
         ]);
-        if (isset(\Auth::user()->dataPendaftar->jalur->id) && \Auth::user()->dataPendaftar->jalur->id != $request->jalur) {
-            // Assuming you have a way to retrieve the 'jalur' object with 'berkas' attribute
-            $jalurObject = Jalur::find(\Auth::user()->dataPendaftar->jalur->id);
-            if ($jalurObject) {
-                // Decode the JSON array of IDs
-                $berkasIds = $jalurObject->berkas;
-                // Elemen yang ingin dihapus
-                $elementsToRemove = ["1", "2", "3", "4"];
-
-                $filteredBerkas = array_values(array_diff($jalurObject->berkas, $elementsToRemove));
-                if (is_array($filteredBerkas)) {
-                    foreach ($filteredBerkas as $berkasId) {
-                        // Assuming you have a model named Berkas which has the file information
-                        $berkas = \App\Models\Verval::where('id_pendaftar', \Auth::user()->username)->where('id_berkas', $berkasId)->where('deleted_at', null)->first();
-                        if ($berkas) {
-                            $berkas->delete();
-                            $berkas->status = NULL;
-                            $berkas->save();
-                            // Delete the file from storage, assuming the file path is stored in 'path' attribute
-                            Storage::delete('public/' . $berkas->data_berkas);
-                            // Delete the record from the database
-                            $berkas->delete();
-                        }
-                    }
-                }
-            }
-        }
         $data = DataPendaftar::where('id_users', auth()->user()->id)->first();
-        $data->id_jalur = $request->jalur;
         $data->id_sekolah_asals = $request->npsn;
         $data->whatsapp = $request->whatsapp;
         $data->save();

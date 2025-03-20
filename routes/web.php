@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\home\HomeController;
 use App\Http\Controllers\hasil\HasilController;
+use App\Http\Controllers\home\HomeController;
+use App\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 //    return redirect()->route('maintenance');
 //});
 
-Route::group(['domain' => 'auth0' . env('SESSION_DOMAIN') . '', 'middleware' => ['redirect']], function () {
+Route::group(['domain' => 'auth' . config('app.session_domain'), 'middleware' => ['redirect']], function () {
     Route::get('/', function () {
         return redirect()->route('login');
     });
@@ -43,19 +44,21 @@ Route::group(['domain' => 'auth0' . env('SESSION_DOMAIN') . '', 'middleware' => 
 });
 Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redirect']], function () {
 //    Route::get('/home2', [HomeController::class, 'index'])->name('myhome2');
-    Route::get('/', [HomeController::class, 'index2'])->name('myhome');
-    Route::get('/cek', [HomeController::class, 'index2'])->name('cek');
-    Route::get('/cek2', [HomeController::class, 'index3'])->name('cek2');
+    Route::get('/', Home::class)->name('myhome');
+    Route::get('/cek', Home::class)->name('cek');
+    Route::get('/cek2', Home::class)->name('cek2');
     Route::get('datasekolah', [HomeController::class, 'datasekolah'])->name('datasekolah');
     Route::get('datasekolah/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolah');
     // Route::get('datasekolahh/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolahh');
     Route::get('unduh', [HomeController::class, 'unduh'])->name('unduh');
     Route::get('d/{kode}', [HomeController::class, 'validasi'])->name('validasiQR');
     Route::post('getRekapSekolah', [HomeController::class, 'getRekapSekolah'])->name("getRekapSekolah");
+    Route::post('hasil', [HasilController::class, 'index'])->name('indexHasil');
+    Route::post('hasil2', [HasilController::class, 'index2'])->name('indexHasil2');
 });
-Route::group(['domain' => 'hasil' . env('SESSION_DOMAIN') . '', 'middleware' => ['redirect']], function () {
+Route::group(['domain' => 'hasil' . config('app.session_domain'), 'middleware' => ['redirect']], function () {
 //    Route::get('/', [HasilController::class, 'index'])->name('indexHasil');
-    Route::match(['GET', 'POST'], '/', [HasilController::class, 'index'])->name('indexHasil');
+//    Route::match(['GET', 'POST'], '/', [HasilController::class, 'index'])->name('indexHasil');
     // Route::post('/cekHasil', [HasilController::class, 'index2'])->name('indexHasil2');
     Route::post('lulus', [HasilController::class, 'unduhKelulusan'])->name('unduhKelulusan');
 
