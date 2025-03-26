@@ -5,7 +5,7 @@
 
     <meta charset="utf-8"/>
     <title>Registrasi Akun - {{ config('app.name') }}</title>
-{{--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
+    {{--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_token" content="{{ csrf_token() }}">
     <meta content="Penerimaan Peserta Didik Baru Dinas Pendidikan Pemuda dan Olahraga Kab. Cianjur Tahun 2023"
@@ -19,8 +19,6 @@
     <link rel="mask-icon" href="{{ asset('assets/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
-
 
 
     <!-- Bootstrap Css -->
@@ -56,7 +54,8 @@
                                 @csrf
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="username"><i class="mdi mdi-code-string"></i> USERNAME / NO. PENDAFTARAN </label>
+                                        <label class="form-label" for="username"><i class="mdi mdi-code-string"></i>
+                                            USERNAME / NO. PENDAFTARAN </label>
                                         <input type="text"
                                                class="form-control form-control-lg @error('username') is-invalid @enderror"
                                                id="username"
@@ -81,7 +80,8 @@
                                     {{--                                        @enderror--}}
                                     {{--                                    </div>--}}
                                     <div class="mb-4">
-                                        <label class="form-label" for="userpassword"><i class="mdi mdi-form-textbox-password"></i> PASSWORD <span
+                                        <label class="form-label" for="userpassword"><i
+                                                class="mdi mdi-form-textbox-password"></i> PASSWORD <span
                                                 class="text-danger">*</span></label>
                                         <input type="password"
                                                class="form-control form-control-lg @error('password') is-invalid @enderror"
@@ -95,7 +95,8 @@
                                         @enderror
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label" for="confirm_userpassword"><i class="mdi mdi-ticket-confirmation-outline"></i> KONFIRMASI
+                                        <label class="form-label" for="confirm_userpassword"><i
+                                                class="mdi mdi-ticket-confirmation-outline"></i> KONFIRMASI
                                             PASSWORD <span
                                                 class="text-danger">*</span></label>
                                         <input type="password"
@@ -110,9 +111,8 @@
                                         @enderror
                                     </div>
                                     <div class="mb-4 align-content-center">
-                                        <div class="g-recaptcha "
-                                             data-sitekey="{!!  config('services.recaptcha.sitekey') !!}"></div>
-                                        @error('g-recaptcha-response')
+                                        <div id="captcha" class="mt-4" wire:ignore></div>
+                                        @error('captcha')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -134,10 +134,11 @@
                 </div>
                 <div class="mt-2 text-center">
                     <p class="text-grey-50 fs-5 ">Sudah Memiliki Akun ? <a href="{{ route('login') }}"
-                                                                     class="fw-medium text-dark fw-bold"> Login Akun </a>
+                                                                           class="fw-medium text-dark fw-bold"> Login
+                            Akun </a>
                     </p>
                     <p class="text-grey-50">©
-                        <script>document.write(new Date().getFullYear())</script>
+                        2025
                         Dinas Pendidikan Pemuda dan Olahraga Kab. Cianjur
                     </p>
                 </div>

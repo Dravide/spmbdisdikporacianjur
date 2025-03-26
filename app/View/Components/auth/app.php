@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View\Components\Operator;
+namespace App\View\Components\auth;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Apps extends Component
+class app extends Component
 {
-    public $title;
     /**
      * Create a new component instance.
      */
-    public function __construct($title)
+    public function __construct()
     {
-        $this->title = $title;
+        //
     }
 
     /**
@@ -22,6 +21,6 @@ class Apps extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.operator.apps');
+        return view('components.auth.app');
     }
 }

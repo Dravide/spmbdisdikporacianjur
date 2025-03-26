@@ -20,6 +20,7 @@ use App\Http\Controllers\operator\BerandaController;
 use App\Http\Controllers\operator\DataPendaftar;
 use App\Http\Controllers\operator\exporExcelController as unduhExcelController;
 use App\Http\Controllers\operator\HasilController;
+use App\Http\Controllers\operator\Maps;
 use App\Http\Controllers\operator\PemetaanDomisiliController;
 use App\Http\Controllers\operator\PengumumanController;
 use App\Http\Controllers\operator\RekapVervalController;
@@ -80,5 +81,6 @@ Route::group(['domain' => 'app' . config('app.session_domain'), 'middleware' => 
 
     //Pemetaan Domisili
     Route::get('pemetaandomisili', [PemetaanDomisiliController::class, 'index'])->name('operator.pemetaandomisili');
+    Route::get('maps', [Maps::class, 'index'])->name('operator.maps');
 });
 # END OPERATOR PPDB SMP DISDIKPORA CIANJUR

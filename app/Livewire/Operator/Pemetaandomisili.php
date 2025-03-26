@@ -28,6 +28,11 @@ class Pemetaandomisili extends Component
     public $selectedDesaName = '';
 
     public $pemetaanDomisili = [];
+    
+    // Variables for edit and delete functionality
+    public $isEditing = false;
+    public $editId = null;
+    public $deleteId = null;
 
     public function mount()
     {
@@ -93,9 +98,108 @@ class Pemetaandomisili extends Component
         $this->selectedDesaName = $value;
     }
 
-    public function render()
+    public function edit($id)
     {
-        return view('livewire.operator.pemetaandomisili');
+        $this->isEditing = true;
+        $this->editId = $id;
+        
+        $pemetaan = \App\Models\PemetaanDomisili::find($id);
+        if ($pemetaan) {
+            $this->rt = $pemetaan->rt;
+            $this->rw = $pemetaan->rw;
+            
+            // Store the kelurahan value for later use
+            $kelurahanValue = $pemetaan->kelurahan;
+            
+            // Find kecamatan code based on name
+            $kecamatan = collect($this->listKecamatan)->firstWhere('name', $pemetaan->kecamatan);
+            if ($kecamatan) {
+                // Set kecamatan first
+                $this->selectedKecamatanCode = $kecamatan['code'];
+                $this->kecamatan = $pemetaan->kecamatan;
+                
+                // Get desa data
+                $this->getDesa($kecamatan['code']);
+                
+                // Check if the kelurahan exists in the list
+                $desaExists = collect($this->listDesa)->contains('name', $kelurahanValue);
+                
+                if ($desaExists) {
+                    // If it exists in the API response, set it normally
+                    $this->desa = $kelurahanValue;
+                } else {
+                    // If it doesn't exist in the API response, we need to add it to the list
+                    $this->listDesa[] = ['name' => $kelurahanValue];
+                    $this->desa = $kelurahanValue;
+                }
+            }
+        }
+    }
+    
+    // Add this new method to force set the desa value
+    public function setDesaValue($value)
+    {
+        $this->desa = $value;
+        $this->selectedDesaName = $value;
+    }
+    
+    public function cancelEdit()
+    {
+        $this->resetForm();
+    }
+    
+    public function update()
+    {
+        $this->validate();
+        
+        try {
+            $pemetaan = \App\Models\PemetaanDomisili::find($this->editId);
+            if ($pemetaan) {
+                $pemetaan->update([
+                    'kecamatan' => $this->kecamatan,
+                    'kelurahan' => $this->desa,
+                    'rt' => $this->rt,
+                    'rw' => $this->rw
+                ]);
+                
+                session()->flash('success', 'Data berhasil diperbarui');
+                $this->resetForm();
+                $this->refreshData();
+            }
+        } catch (Exception $e) {
+            session()->flash('error', 'Gagal memperbarui data: ' . $e->getMessage());
+        }
+    }
+    
+
+    
+    // Add a new listener method for when delete is confirmed
+    #[\Livewire\Attributes\On('deleteConfirmed')]
+    public function deleteConfirmed($data)
+    {
+        try {
+            $pemetaan = \App\Models\PemetaanDomisili::find($data['id']);
+            if ($pemetaan) {
+                $pemetaan->delete();
+                session()->flash('success', 'Data berhasil dihapus');
+                $this->refreshData();
+            }
+        } catch (Exception $e) {
+            session()->flash('error', 'Gagal menghapus data: ' . $e->getMessage());
+        }
+    }
+    
+    // You can remove the original delete method if you're not using it anymore
+    
+    private function resetForm()
+    {
+        $this->isEditing = false;
+        $this->editId = null;
+        $this->reset(['rt', 'rw']);
+        $this->selectedKecamatanCode = '';
+        $this->desa = '';
+        $this->kecamatan = '';
+        $this->listDesa = [];
     }
 
     public function save()
@@ -114,16 +218,45 @@ class Pemetaandomisili extends Component
             session()->flash('success', 'Data berhasil disimpan');
 
             // Reset form setelah berhasil disimpan
-            $this->reset(['rt', 'rw']);
-            $this->selectedKecamatanCode = '';
-            $this->desa = '';
-            $this->kecamatan = '';
-            $this->listDesa = [];
+            $this->resetForm();
 
             // Refresh data setelah penyimpanan
             $this->refreshData();
         } catch (Exception $e) {
             session()->flash('error', 'Gagal menyimpan data: ' . $e->getMessage());
+        }
+    }
+    
+    // Remove this dispatch from render method as it's not needed with SweetAlert2
+    public function render()
+    {
+        // Remove this line:
+        // $this->dispatch('registerDeleteModalEvents');
+        
+        return view('livewire.operator.pemetaandomisili');
+    }
+    
+    public function confirmDelete($id)
+    {
+        // Store the ID to be deleted
+        $this->deleteId = $id;
+        
+        // Dispatch the event for SweetAlert2
+        $this->dispatch('showDeleteConfirmation');
+    }
+    
+    // Add a direct delete method that will be called from the frontend
+    public function delete()
+    {
+        try {
+            $pemetaan = \App\Models\PemetaanDomisili::find($this->deleteId);
+            if ($pemetaan) {
+                $pemetaan->delete();
+                session()->flash('success', 'Data berhasil dihapus');
+                $this->refreshData();
+            }
+        } catch (Exception $e) {
+            session()->flash('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
     }
 }

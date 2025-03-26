@@ -1,5 +1,6 @@
-<x-operator.apps>
-    <div class="card">
+<x-operator.apps title="Rekap Verval">
+    <livewire:operator.rekap-verval id="{{ Auth::user()->sekolah->id }}"/>
+    {{-- <div class="card">
         <div class="card-header">Manage Users</div>
         <div class="card-body">
             {{ $dataTable->table() }}
@@ -23,7 +24,7 @@
         <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <!-- Buttons examples -->
         {{--        <script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>--}}
-        <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
 
         <!-- Responsive examples -->
         <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -49,6 +50,6 @@
                 })
             </script>
         @endif
-    @endpush
+    @endpush --}} 
 
 </x-operator.apps>

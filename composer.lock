@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28bdb2af0091271daf9b26753d339f80",
+    "content-hash": "e3f8e6e273af397bfc7e707d4424361f",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -10498,9 +10498,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "league/geotools": 0
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

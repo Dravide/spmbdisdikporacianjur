@@ -1,5 +1,6 @@
-<x-operator.apps>
-    <div class="card">
+<x-operator.apps :title="$jalur->nama_jalur">
+    <livewire:operator.verval :id="Auth::user()->sekolah->id" :jalur="$jalur->id"/>
+    {{-- <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
                 <div class="flex-grow-1">
@@ -38,7 +39,7 @@
         <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <!-- Buttons examples -->
         {{--        <script src="{{ asset('assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>--}}
-        <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
 
         <!-- Responsive examples -->
         <script src="{{ asset('assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -65,5 +66,5 @@
                 })
             </script>
         @endif
-    @endpush
+    @endpush  --}}
 </x-operator.apps>

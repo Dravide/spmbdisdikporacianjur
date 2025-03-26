@@ -1,9 +1,10 @@
 <x-operator.apps>
     <div class="card">
-        <div class="card-header">Data Pendaftar PPDB SMP DISDIKPORA Cianjur Tahun 2024
-            Ke {{ Auth::user()->sekolah->nama_sekolah }}</div>
+        <h4 class="card-header bg-dark text-white">Data Pendaftar SPMB SMP DISDIKPORA Cianjur Tahun 2025
+            Ke {{ Auth::user()->sekolah->nama_sekolah }}</h4>
         <div class="card-body">
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
                     <th>#</th>

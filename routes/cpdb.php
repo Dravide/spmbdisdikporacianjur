@@ -9,26 +9,28 @@ use App\Http\Controllers\Pendaftaran\BerandaController;
 use App\Http\Controllers\Pendaftaran\BerkasKhususController;
 use App\Http\Controllers\Pendaftaran\BerkasUmumController;
 use App\Http\Controllers\Pendaftaran\DataPesertaController;
-use App\Http\Controllers\Pendaftaran\JalurPendaftaranController;
 use App\Http\Controllers\Pendaftaran\SekolahTujuanController;
 
 Route::group(['domain' => 'murid' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:cpdb']], function () {
 
-    // Beranda
-    Route::get('/', fn() => redirect()->route('pendaftaran.beranda'))->name('pendaftaran');
-    Route::get('beranda', [BerandaController::class, 'index'])->name('pendaftaran.beranda');
-    Route::get('beranda2', [BerandaController::class, 'index2'])->name('pendaftaran.beranda2');
-    Route::post('beranda2-post', [BerandaController::class, 'index2Post'])->name('pendaftaran.beranda2post');
-    Route::get('swalError', [BerandaController::class, 'swalError'])->name('pendaftaran.swal');
+    Route::get('/', fn() => redirect()->route('pendaftaran.beranda')); // Beranda
+    Route::get('beranda', [BerandaController::class, 'index'])->name('pendaftaran.beranda'); // Beranda
+    Route::get('beranda2', [BerandaController::class, 'index2'])->name('pendaftaran.beranda2'); // Beranda
+    Route::post('beranda2-post', [BerandaController::class, 'index2Post'])->name('pendaftaran.beranda2post'); // Beranda
+    Route::get('swalError', [BerandaController::class, 'swalError'])->name('pendaftaran.swal'); // Beranda
 
-    // Jalur Pendaftaran
-    Route::get('jalur-pendaftaran', [JalurPendaftaranController::class, 'index'])->name('pendaftaran.jalur');
-    Route::post('jalur-pendaftaran', [JalurPendaftaranController::class, 'store'])->name('pendaftaran.jalur.store');
+    Route::post('cutoff', [BerandaController::class, 'cutoff'])->name('pendaftaran.cutoff');
+    Route::get('cetak/kartu-akun', [BerandaController::class, 'cetak_akun'])->name('cpdb.cetak_akun');
+    Route::get('cetak/paktaintegritas', [BerandaController::class, 'integritas'])->name('cpdb.integritas');
+    Route::get('cetak/buktipendaftaran', [BerandaController::class, 'buktipendaftaran'])->name('cpdb.buktipendaftaran');
+    Route::post('jenis', [BerandaController::class, 'jenis'])->name('pendaftaran.jenis');
+    Route::post('konfirmasi', [BerandaController::class, 'konfirmasi'])->name('pendaftaran.konfirmasi');
+
 
     // Data Peserta
-    Route::get('data-peserta', [DataPesertaController::class, 'index'])->name('pendaftaran.datapeserta');
-    Route::post('dataluarkab', [DataPesertaController::class, 'storeLuarKab'])->name('pendaftaran.luarkab');
-    Route::post('datadalamkab', [DataPesertaController::class, 'storeDalamKab'])->name('pendaftaran.dalamkab');
+    Route::get('data-peserta', [DataPesertaController::class, 'index'])->name('Pendaftaran.datapeserta');
+    Route::post('dataluarkab', [DataPesertaController::class, 'storeLuarKab'])->name('Pendaftaran.luarkab');
+    Route::post('datadalamkab', [DataPesertaController::class, 'storeDalamKab'])->name('Pendaftaran.dalamkab');
     Route::post('cekNISN', [DataPesertaController::class, 'cekNISN'])->name('cekNISN');
 
     // Berkas UMUM
@@ -40,12 +42,16 @@ Route::group(['domain' => 'murid' . config('app.session_domain'), 'middleware' =
     Route::post('updatedata', [BerkasUmumController::class, 'updateData'])->name('updatedata');
 
     // Berkas KHUSUS
-    Route::get('berkaskhusus', [BerkasKhususController::class, 'index'])->name('pendaftaran.berkaskhusus');
+    Route::get('berkaskhusus', [BerkasKhususController::class, 'index'])->name('Pendaftaran.berkaskhusus');
 
     // Sekolah Tujuan
     Route::get('sekolah-tujuan', [SekolahTujuanController::class, 'index'])->name('sekolah-tujuan.index');
     Route::get('getDataSekolah', [SekolahTujuanController::class, 'getDataSekolah'])->name('sekolah-tujuan.getDataSekolah');
     Route::put('sekolah-tujuan', [SekolahTujuanController::class, 'update'])->name('sekolah-tujuan.update');
     Route::get('getDataSekolahById', [SekolahTujuanController::class, 'getDataSekolahById'])->name('sekolah-tujuan.getDataSekolahById');
+
+    Route::get('jenis', function () {
+        return view('Pendaftaran.jenis');
+    })->name('jenis');
 });
 # END Pendaftaran PPDB SMP DISDIKPORA CIANJUR

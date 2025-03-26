@@ -27,6 +27,12 @@
                         <span>Pemetaan Domisili</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('operator.maps') }}" class="waves-effect">
+                        <i class="mdi mdi-map-marker-path"></i>
+                        <span>Maps</span>
+                    </a>
+                </li>
                 <li class="menu-title">Verval</li>
                 <li class="">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

@@ -1,3 +1,3 @@
 <x-operator.apps title="Pemetaan Domisili">
-    <livewire:operator.pemetaandomisili/>
+    <livewire:operator.maps/>
 </x-operator.apps>
