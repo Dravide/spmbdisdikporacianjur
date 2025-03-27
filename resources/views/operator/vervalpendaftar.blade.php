@@ -1,5 +1,5 @@
 @php use Carbon\Carbon; @endphp
-<x-operator.apps>
+<x-operator.apps title="Verval">
     <div class="card">
         <h4 class="card-header bg-light"><a href="{{ route('operator.verval', $data->id_jalur) }}"
                                             class="btn btn-soft-info btn-sm waves-effect waves-light"><i
@@ -35,7 +35,7 @@
                                     Dusun {{ $data->dapodik->dusun }}
                                 </dd>
                                 <dt class="col-sm-3"><i class=""></i> Jarak </dt>
-                                <dd class="col-sm-9">: <span class="badge bg-info">{{ $out }} M</span></dd>
+                                <dd class="col-sm-9">: <span class="badge bg-info">{{ $distance['meters'] }} M</span></dd>
                                 <hr class="my-2">
                                 <dt class="col-sm-3"> Whatsapp </dt>
                                 <dd class="col-sm-9">: {{ $data->whatsapp }} </dd>
@@ -120,7 +120,7 @@
                     "pk.eyJ1IjoicHBkYnNtcGRpc2Rpa2NpYW5qdXIiLCJhIjoiY204ZnNrbHNoMGczdDJqcHhucTdjZmNtZyJ9.Ary-pbzrfR8kLH-A13ZWLw";
                 var map = new mapboxgl.Map({
                     container: "map",
-                    style: "mapbox://styles/ppdbsmpdisdikcianjur/cm8fsoaka00ev01r0dfdrho3d",
+                    style: "mapbox://styles/mapbox/streets-v12",
                     center: [{{ $data->koordinat->longitude }}, {{ $data->koordinat->latitude }}],
                     zoom: 17,
                 });

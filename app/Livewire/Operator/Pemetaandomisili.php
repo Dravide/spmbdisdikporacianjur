@@ -3,7 +3,6 @@
 namespace App\Livewire\Operator;
 
 use Exception;
-use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -45,15 +44,14 @@ class Pemetaandomisili extends Component
 
     public function getKecamatan()
     {
-        try {
-            $response = Http::get('https://wilayah.id/api/districts/32.03.json');
-
-            if ($response->successful()) {
-                $this->listKecamatan = $response->json()['data'];
-            }
-        } catch (Exception $e) {
-            session()->flash('error', 'Gagal mengambil data kecamatan: ' . $e->getMessage());
-        }
+        // Mengambil data kecamatan dari database lokal
+        $kecamatans = \App\Models\Kecamatan::all();
+        $this->listKecamatan = $kecamatans->map(function($kecamatan) {
+            return [
+                'code' => $kecamatan->code,
+                'name' => $kecamatan->name
+            ];
+        })->toArray();
     }
 
     public function refreshData()
@@ -65,6 +63,9 @@ class Pemetaandomisili extends Component
     public function updatedSelectedKecamatanCode($value)
     {
         $this->listDesa = [];
+        
+        // Simpan nilai desa saat ini jika dalam mode edit
+        $currentDesa = $this->isEditing ? $this->desa : '';
         $this->desa = '';
 
         if (!empty($value)) {
@@ -77,25 +78,49 @@ class Pemetaandomisili extends Component
 
             // Mengambil data desa berdasarkan kode kecamatan
             $this->getDesa($value);
+            
+            // Jika dalam mode edit dan nilai desa sebelumnya ada, coba pertahankan
+            if ($this->isEditing && !empty($currentDesa)) {
+                // Cek apakah desa ada dalam list baru
+                $desaExists = collect($this->listDesa)->contains('name', $currentDesa);
+                
+                if (!$desaExists) {
+                    // Jika tidak ada, tambahkan ke list
+                    array_unshift($this->listDesa, ['code' => 'custom-'.time(), 'name' => $currentDesa]);
+                }
+                
+                // Kembalikan nilai desa
+                $this->desa = $currentDesa;
+                $this->selectedDesaName = $currentDesa;
+            }
         }
     }
 
     public function getDesa($kecamatanCode)
     {
-        try {
-            $response = Http::get("https://wilayah.id/api/villages/{$kecamatanCode}.json");
-
-            if ($response->successful()) {
-                $this->listDesa = $response->json()['data'];
-            }
-        } catch (Exception $e) {
-            session()->flash('error', 'Gagal mengambil data desa: ' . $e->getMessage());
+        // Mengambil data desa dari database lokal
+        $desas = \App\Models\Desa::where('kecamatan_code', $kecamatanCode)->get();
+        $this->listDesa = $desas->map(function($desa) {
+            return [
+                'code' => $desa->code,
+                'name' => $desa->name
+            ];
+        })->toArray();
+        
+        // Jika tidak ada data desa di database, tambahkan opsi untuk input manual
+        if (count($this->listDesa) == 0) {
+            $this->listDesa[] = ['code' => 'manual', 'name' => '-- Input Manual --'];
         }
     }
 
     public function updatedDesa($value)
     {
         $this->selectedDesaName = $value;
+        
+        // Jika user memilih input manual, tampilkan input field untuk nama desa
+        if ($value === '-- Input Manual --') {
+            $this->dispatch('showManualDesaInput');
+        }
     }
 
     public function edit($id)
@@ -118,21 +143,31 @@ class Pemetaandomisili extends Component
                 $this->selectedKecamatanCode = $kecamatan['code'];
                 $this->kecamatan = $pemetaan->kecamatan;
                 
-                // Get desa data
+                // Get desa data - this will populate listDesa
                 $this->getDesa($kecamatan['code']);
                 
                 // Check if the kelurahan exists in the list
                 $desaExists = collect($this->listDesa)->contains('name', $kelurahanValue);
                 
                 if ($desaExists) {
-                    // If it exists in the API response, set it normally
+                    // If it exists in the list, set it normally
                     $this->desa = $kelurahanValue;
                 } else {
-                    // If it doesn't exist in the API response, we need to add it to the list
-                    $this->listDesa[] = ['name' => $kelurahanValue];
+                    // If it doesn't exist in the list, we need to add it to the list
+                    // Add the custom desa to the beginning of the array for better visibility
+                    array_unshift($this->listDesa, ['code' => 'custom-'.time(), 'name' => $kelurahanValue]);
                     $this->desa = $kelurahanValue;
                 }
+                
+                // Force update the selectedDesaName
+                $this->selectedDesaName = $kelurahanValue;
+                
+                // Dispatch an event to ensure the UI updates correctly
+                $this->dispatch('desaSelected', ['value' => $kelurahanValue]);
             }
+            
+            // Show the modal
+            $this->dispatch('showFormModal');
         }
     }
     
@@ -199,6 +234,8 @@ class Pemetaandomisili extends Component
         $this->selectedKecamatanCode = '';
         $this->desa = '';
         $this->kecamatan = '';
+        $this->selectedDesaName = '';
+        $this->selectedKecamatanName = '';
         $this->listDesa = [];
     }
 
@@ -246,6 +283,7 @@ class Pemetaandomisili extends Component
     }
     
     // Add a direct delete method that will be called from the frontend
+    #[\Livewire\Attributes\On('delete')]
     public function delete()
     {
         try {

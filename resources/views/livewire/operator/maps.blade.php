@@ -12,7 +12,7 @@
                 </div>
                 <div id="search-results" class="list-group mt-2" style="max-height: 200px; overflow-y: auto; display: none;"></div>
             </div>
-            <div id="map" style="width: 100%; height: 800px;"></div>
+            <div id="map" style="width: 100%; height: 600px;"></div>
         </div>
     </div>
 

@@ -5,7 +5,7 @@
           type="text/css">
 @endpush
 
-<x-operator.apps>
+<x-operator.apps title="Pengaturan">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

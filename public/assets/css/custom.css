@@ -1,0 +1,39 @@
+.jalur-card .avatar-sm {
+    width: 40px;
+    height: 42px;
+}
+
+.jalur-card .avatar-title {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.jalur-card .card-body {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.jalur-card .card {
+    border-radius: 16px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.jalur-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.jalur-card .display-4 {
+    font-size: 3rem !important;
+    font-weight: 300 !important;
+}
+
+.jalur-card .bg-soft-warning {
+    background-color: rgba(255, 193, 7, 0.2) !important;
+}
+
+.jalur-card .text-warning {
+    color: #FFC107 !important;
+}

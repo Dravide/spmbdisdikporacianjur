@@ -14,11 +14,11 @@ class Verval extends Component
     protected $paginationTheme = 'bootstrap';
     
     public $id;
+    public $jalur;
     public $search = '';
     public $filterSekolah = '';
     public $sekolahList = [];
     public $showSearchModal = false;
-    public $jalur;
     
     public $searchFields = [
         'username' => false,
@@ -28,9 +28,17 @@ class Verval extends Component
         'jalur' => false
     ];
 
-    public $filterJalur = '';
-    public $jalurList = [];
+    // Remove these lines
+    // public $filterJalur = '';
+    // public $jalurList = [];
+    public $filterStatus = '';
 
+    // Add status update methods
+    public function updatedFilterStatus()
+    {
+        $this->resetPage();
+    }
+    
     public function updatedFilterSekolah()
     {
         $this->resetPage();
@@ -65,6 +73,11 @@ class Verval extends Component
     {
         $this->resetPage();
     }
+
+    public function resetAllFilters()
+    {
+        $this->reset(['search', 'filterSekolah', 'filterStatus', 'searchFields']);
+    }
     
     public function resetSearch()
     {
@@ -88,25 +101,62 @@ class Verval extends Component
             ->get()
             ->pluck('asal_sekolah');
             
-        $this->jalurList = \App\Models\Jalur::orderBy('nama_jalur')->get();
+        // Remove this line
+        // $this->jalurList = \App\Models\Jalur::orderBy('nama_jalur')->get();
+    }
+
+    public function getStatusCounts()
+    {
+        return [
+            'total' => ModelsDataPendaftar::where('id_sekolah', $this->id)
+                ->where('id_jalur', $this->jalur)
+                ->count(),
+            'belum_verifikasi' => ModelsDataPendaftar::where('id_sekolah', $this->id)
+                ->where('id_jalur', $this->jalur)
+                ->where('verval', '0')
+                ->count(),
+            'perbaikan' => ModelsDataPendaftar::where('id_sekolah', $this->id)
+                ->where('id_jalur', $this->jalur)
+                ->where('verval', '2')
+                ->count(),
+            'selesai' => ModelsDataPendaftar::where('id_sekolah', $this->id)
+                ->where('id_jalur', $this->jalur)
+                ->where('verval', '1')
+                ->count(),
+        ];
     }
 
     public function render()
     {
         $query = ModelsDataPendaftar::with(['users', 'dapodik', 'asal_sekolah', 'jalur'])
             ->where('id_sekolah', $this->id)
-            ->where('id_jalur', $this->jalur)
-            ->where('verval', '!=', '1'); 
-            // Add this line
-
-            // Add this line to check the generated SQL query
-                
+            ->where('id_jalur', $this->jalur);
+            
         if (!empty($this->filterSekolah)) {
             $query->whereHas('asal_sekolah', function($q) {
                 $q->where('id', $this->filterSekolah);
             });
         }
-        
+
+        // Remove this block
+        // if (!empty($this->filterJalur)) {
+        //     $query->where('id_jalur', $this->filterJalur);
+        // }
+
+        // Add filter for status
+        if (!empty($this->filterStatus)) {
+            switch ($this->filterStatus) {
+                case 'belum_verifikasi':
+                    $query->where('verval', '0');
+                    break;
+                case 'perbaikan':
+                    $query->where('verval', '2');
+                    break;
+                case 'selesai':
+                    $query->where('verval', '1');
+                    break;
+            }
+        }
         
         if (!empty($this->search)) {
             $query->where(function($q) {
@@ -139,7 +189,19 @@ class Verval extends Component
         $datapendaftar = $query->paginate(25);
         
         return view('livewire.operator.verval', [
-            'datapendaftar' => $datapendaftar
+            'datapendaftar' => $datapendaftar,
+            'statusCounts' => $this->getStatusCounts() // Add this line
         ]);
+    }
+
+    public function getStatusHtml($pendaftar)
+    {
+        if ($pendaftar->verval == '0') {
+            return '<i class="mdi mdi-checkbox-blank-circle text-warning me-1"></i> Belum Verifikasi';
+        } elseif ($pendaftar->verval == '2') {
+            return '<i class="mdi mdi-checkbox-blank-circle text-danger me-1"></i> Perbaikan';
+        } else {
+            return '<i class="mdi mdi-check-decagram-outline text-success me-1"></i> Selesai';
+        }
     }
 }

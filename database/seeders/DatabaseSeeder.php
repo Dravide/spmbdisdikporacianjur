@@ -20,5 +20,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('d312r4'),
             'role' => 'nara'
         ]);
+        
+        $this->call([
+            CianjurWilayahSeeder::class,
+        ]);
     }
 }

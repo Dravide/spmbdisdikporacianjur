@@ -69,8 +69,7 @@ class Datapendaftar extends Component
             'username' => false,
             'nisn' => false,
             'nama' => true,
-            'asal_sekolah' => false,
-            'jalur' => false
+        
         ];
         $this->resetPage();
     }
