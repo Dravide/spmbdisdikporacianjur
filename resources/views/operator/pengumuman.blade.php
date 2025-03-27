@@ -1,4 +1,4 @@
-<x-operator.apps>
+<x-operator.apps title="Pengumuman">
     <form method="POST" action="{{route('operator.pengumumanPost')}}">
         @csrf
 

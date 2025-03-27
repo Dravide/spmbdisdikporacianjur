@@ -414,7 +414,9 @@ select:disabled {
 [type=reset],
 [type=submit],
 button {
-    -webkit-appearance: button
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button
 }
 
 [type=button]:not(:disabled),
@@ -475,7 +477,9 @@ legend+* {
 
 [type=search] {
     outline-offset: -2px;
-    -webkit-appearance: textfield
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield
 }
 
 ::-webkit-search-decoration {
@@ -2851,7 +2855,9 @@ textarea.form-control-lg {
     -moz-appearance: none;
     appearance: none;
     -webkit-print-color-adjust: exact;
-    color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     -webkit-transition: background-color .15s ease-in-out, background-position .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     transition: background-color .15s ease-in-out, background-position .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
     transition: background-color .15s ease-in-out, background-position .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -4874,7 +4880,7 @@ fieldset:disabled .btn {
 
 .nav-link:focus,
 .nav-link:hover {
-    color: #07695a;
+    color: #505d69;
     text-decoration: none
 }
 
@@ -4930,7 +4936,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #0bb197
+    background-color: #505d69
 }
 
 .nav-fill .nav-item,

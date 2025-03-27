@@ -436,22 +436,24 @@ body[data-layout="horizontal"] .footer {
     opacity: 0.5;
 }
 .mm-active {
-    color: #279dbb !important;
-}
+    color: #505d69 !important;
+
 .mm-active > a {
-    color: #279dbb !important;
+    color: #505d69 !important;
 }
 .mm-active > a i {
-    color: #279dbb !important;
+    color: #505d69 !important;
 }
 .mm-active > i {
-    color: #279dbb !important;
+    color: #505d69 !important;
 }
 .mm-active .active {
-    color: #279dbb !important;
+    color: #505d69 !important;
+    background-color: #d9ddde;
 }
 .mm-active .active i {
-    color: #279dbb !important;
+    color: #505d69 !important;
+}
 }
 @media (max-width: 992px) {
     .vertical-menu {
@@ -1083,6 +1085,7 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-mask-image: -webkit-radial-gradient(circle, #fff 100%, #000 100%);
+    mask-image: radial-gradient(circle, #fff 100%, #000 100%);
 }
 .waves-button,
 .waves-button-input,
@@ -1131,6 +1134,7 @@ body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
 }
 .waves-float {
     -webkit-mask-image: none;
+    mask-image: none;
     -webkit-box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
     box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
     -webkit-transition: all 0.3s;

@@ -12,7 +12,7 @@ class Pengaturan extends Component
 
     public $data;
     public $activeTab = 'identitas';
-    
+
     // Identitas Sekolah properties
     public $nama_sekolah;
     public $npsn;
@@ -24,7 +24,7 @@ class Pengaturan extends Component
     public $alamat;
     public $pengumuman;
     public $linkPengumuman;
-    
+
     // Password properties
     public $password;
     public $confirm_password;

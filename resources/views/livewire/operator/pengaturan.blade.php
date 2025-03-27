@@ -37,9 +37,9 @@
 
                             <h5 class="mb-3">Identitas Sekolah</h5>
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                {{-- <div class="col-md-12 mb-3">
                                     <div id="maps" class="" style="width:auto; height: 450px;"></div>
-                                </div>
+                                </div> --}}
 
                                 <form wire:submit.prevent="saveIdentitas">
                                     <div class="row">
@@ -87,7 +87,7 @@
                                             </div>
                                         </div>
                                         <div class="d-block mt-3">
-                                            <button type="submit" class="btn btn-primary d-block w-100">Simpan!</button>
+                                            <button type="submit" class="btn btn-dark d-block w-100">Simpan</button>
                                         </div>
                                     </div>
                                 </form>

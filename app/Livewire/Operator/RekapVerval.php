@@ -68,8 +68,6 @@ class RekapVerval extends Component
             'username' => false,
             'nisn' => false,
             'nama' => true,
-            'asal_sekolah' => false,
-            'jalur' => false
         ];
         $this->resetPage();
     }
@@ -80,6 +78,11 @@ class RekapVerval extends Component
     public function updatedFilterJalur()
     {
         $this->resetPage();
+    }
+    
+    public function resetAllFilters()
+    {
+        $this->reset(['search', 'filterSekolah', 'filterJalur', 'searchFields']);
     }
 
     public function mount()
