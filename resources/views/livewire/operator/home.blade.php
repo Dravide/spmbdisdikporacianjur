@@ -79,7 +79,7 @@
                         @foreach($jalurData as $jalur)
                         <div class="col">
                             <div class="card border rounded-4 bg-white shadow-sm h-100 jalur-card">
-                                <div class="card-body p-4">
+                                <div class="card-body py-2 px-4">
                                     <div class="d-flex justify-content-end mb-2">
                                         <div class="avatar-sm">
                                             <div class="avatar-title bg-white">
