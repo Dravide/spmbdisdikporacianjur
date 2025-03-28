@@ -5,6 +5,7 @@ use App\Http\Controllers\hasil\HasilController;
 use App\Http\Controllers\home\HomeController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
+use App\Livewire\Home\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +47,8 @@ Route::group(['domain' => 'auth' . config('app.session_domain'), 'middleware' =>
 });
 Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redirect']], function () {
 //    Route::get('/home2', [HomeController::class, 'index'])->name('myhome2');
-    Route::get('/', [HomeController::class, 'index'])->name('myhome');
+    // Route::get('/', [HomeController::class, 'index'])->name('myhome');
+    Route::get('/',Index::class)->name('myhome');
     Route::get('/cek', [HomeController::class, 'cek'])->name('cek');
     Route::get('/cek2', [HomeController::class, 'cek2'])->name('cek2');
     Route::get('datasekolah', [HomeController::class, 'datasekolah'])->name('datasekolah');

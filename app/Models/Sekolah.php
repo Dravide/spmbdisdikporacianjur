@@ -14,4 +14,11 @@ class Sekolah extends Model
     {
         return $this->hasOne(User::class, 'username', 'npsn');
     }
+
+    public function datapendaftar()
+    {
+        return $this->hasMany(DataPendaftar::class, 'id_sekolah', 'id');
+    }
+
+
 }

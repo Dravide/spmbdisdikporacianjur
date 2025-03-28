@@ -1,8 +1,8 @@
 <x-home.app>
 
     <!-- about start -->
-    <section class="py-lg-1 py-1 mt-xl-7 mt-0 coworking-1">
-        <div class="container">
+    {{-- <section class="py-lg-1 py-1 mt-xl-7 mt-0 coworking-1">
+        <div class="container"> --}}
 {{--                    <div class="row align-items-center">--}}
 {{--                        <div class="col">--}}
 {{--                            <div class="text-center">--}}
@@ -42,7 +42,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
-            <div class="row mt-5 align-items-center">
+            {{-- <div class="row mt-5 align-items-center">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body bg-soft-info rounded-2" data-aos="fade-up">
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 {{--    <!-- features start -->--}}
 {{--    <section class="my-lg-5 py-5 py-sm-7 bg-gradient5 position-relative" data-aos="fade-up">--}}
 {{--        <div class="divider top d-none d-sm-block"></div>--}}
