@@ -39,7 +39,9 @@
 
 .horizontal-menu .nav-link:hover,
 .horizontal-menu .nav-link.active {
-    color: #fff;
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px
 }
 
 @media (max-width: 991px) {
@@ -79,7 +81,7 @@
 <body data-topbar="light" data-layout="horizontal">
     <header id="page-topbar">
         <div class="navbar-header">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="d-flex align-items-center justify-content-between">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
@@ -106,7 +108,7 @@
                     <div class="horizontal-menu d-none d-lg-block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('myhome') }}">Beranda</a>
+                                <a class="nav-link active" href="{{ route('myhome') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Informasi</a>
@@ -135,8 +137,8 @@
                             @auth
                                 <a href="{{ route('dashboard') }}" class="btn btn-sm btn-dark">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-dark me-2">Login</a>
-                                <a href="{{ route('register') }}" class="btn btn-sm btn-dark">Daftar</a>
+                                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-dark me-2">Login Akun</a>
+                                <a href="{{ route('register') }}" class="btn btn-sm btn-dark">Registrasi Akun</a>
                             @endauth
                         </div>
                     </div>
