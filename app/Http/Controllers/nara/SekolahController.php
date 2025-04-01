@@ -53,9 +53,11 @@ class SekolahController extends Controller
 
         if ($request->folder) {
             $tmp_file = TemporaryFile::where('folder', $request->folder)->first();
-            $extension = pathinfo(storage_path('public/berkas/tmp/' . $request->folder . '/' . $tmp_file->filename), PATHINFO_EXTENSION);
-            $filename = Str::random(7) . '_' . Auth::user()->username . '.' . $extension;
+            // Check if $tmp_file exists before accessing its properties
             if ($tmp_file) {
+                $extension = pathinfo(storage_path('public/berkas/tmp/' . $request->folder . '/' . $tmp_file->filename), PATHINFO_EXTENSION);
+                $filename = Str::random(7) . '_' . Auth::user()->username . '.' . $extension;
+                
                 Storage::copy('public/berkas/tmp/' . $request->folder . '/' . $tmp_file->filename, 'public/logosekolah/' . $request->npsn . '/' . $filename);
                 $data = Sekolah::whereNpsn($request->npsn)->first();
                 $data->update([
@@ -74,6 +76,8 @@ class SekolahController extends Controller
                 TemporaryFile::where('folder', $request->folder)->delete();
                 Storage::deleteDirectory('public/berkas/tmp/' . $request->folder);
                 return back()->with('sukses', 'Berkas berhasil disimpan!');
+            } else {
+                return redirect()->route('sekolah.index')->with('error', 'File tidak ditemukan!');
             }
         } else {
             $data = Sekolah::whereNpsn($request->npsn)->first();

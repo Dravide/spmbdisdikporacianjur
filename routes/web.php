@@ -6,6 +6,7 @@ use App\Http\Controllers\home\HomeController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Home\Index;
+use App\Livewire\Live\Statistics;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,4 +75,9 @@ Route::group(['domain' => 'hasil' . config('app.session_domain'), 'middleware' =
 
 });
 Route::get('logout', [LoginController::class, 'logout'])->name('logout')->middleware(['auth']);
+
+// Add this new route group for the live statistics subdomain
+Route::group(['domain' => 'live'.config('app.session_domain'), 'middleware' => ['redirect']], function () {
+    Route::get('/{ulid}', Statistics::class)->name('live.statistics');
+});
 

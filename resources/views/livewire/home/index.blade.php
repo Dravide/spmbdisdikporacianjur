@@ -163,7 +163,8 @@
             </div>
         </div>
 
-    
+        
+
 <!-- Sekolah Terdaftar -->
 <div class="mb-5">
     <h4 class="section-title">Sekolah Terdaftar</h4>
@@ -249,7 +250,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5 class="mb-3">Tentang PPDB Online</h5>
+                        <img src="{{  asset('assets/images/home/logodisdikporacianjur.png') }}" class="img-fluid mb-3" width="150" alt="PPDB Online">
+                        <h5 class="mb-3">DISDIKPORA KABUPATEN CIANJUR</h5>
                         <p>Sistem Penerimaan Peserta Didik Baru (PPDB) Online adalah sebuah sistem yang dirancang untuk melakukan otomasi seleksi penerimaan peserta didik baru, mulai dari proses pendaftaran, seleksi hingga pengumuman hasil seleksi.</p>
                         <p>Penggunaan PPDB Online bertujuan untuk meningkatkan transparansi, efektivitas, efisiensi, dan akuntabilitas dalam pelaksanaan penerimaan peserta didik baru.</p>
                     </div>
