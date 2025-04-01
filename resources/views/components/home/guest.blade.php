@@ -61,7 +61,7 @@
 
 .school-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    
 }
 
 .avatar-lg {
@@ -108,19 +108,20 @@
                     <div class="horizontal-menu d-none d-lg-block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('myhome') }}">Beranda</a>
+                                <a class="nav-link {{ request()->routeIs('myhome') ? 'active' : '' }}" href="{{ route('myhome') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Informasi</a>
+                                <a class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}" href="{{ route('news') }}">Berita</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Jadwal</a>
+                                <a class="nav-link {{ request()->routeIs('schedule') ? 'active' : '' }}" href="{{ route('schedule') }}">Jadwal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Sekolah</a>
+                                <a class="nav-link {{ request()->routeIs('data.pendaftar') ? 'active' : '' }}" href="{{ route('data.pendaftar') }}">Data Pendaftar</a>
                             </li>
+            
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Bantuan</a>
+                                <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">Download</a>
                             </li>
                         </ul>
                     </div>
@@ -134,12 +135,11 @@
                         </div>
 
                         <div class="auth-buttons">
-                            @auth
-                                <a href="{{ route('dashboard') }}" class="btn btn-sm btn-dark">Dashboard</a>
-                            @else
+                    
+                         
                                 <a href="{{ route('login') }}" class="btn btn-sm btn-outline-dark me-2">Login Akun</a>
                                 <a href="{{ route('register') }}" class="btn btn-sm btn-dark">Registrasi Akun</a>
-                            @endauth
+                      
                         </div>
                     </div>
                 </div>
@@ -176,10 +176,7 @@
     <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
-    <!-- pace js -->
-    <script src="{{ asset('assets/libs/pace-js/pace.min.js') }}"></script>
-    
+
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
     @livewireScripts

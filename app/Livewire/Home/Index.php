@@ -42,10 +42,11 @@ class Index extends Component
             ->where('status_online', 'online')
             ->get();
         
-        // Ambil data jalur pendaftaran
+        // Ambil data jalur pendaftaran dengan jumlah pendaftar
         $this->jalurPendaftaran = Jalur::select('jalurs.id', 'jalurs.nama_jalur', 'jalurs.svg', DB::raw('COUNT(data_pendaftars.id) as jumlah_pendaftar'))
             ->leftJoin('data_pendaftars', 'jalurs.id', '=', 'data_pendaftars.id_jalur')
             ->groupBy('jalurs.id', 'jalurs.nama_jalur', 'jalurs.svg')
+            ->orderBy('jumlah_pendaftar', 'desc')
             ->get();
         
         // Ambil data pendaftar per hari untuk 14 hari terakhir

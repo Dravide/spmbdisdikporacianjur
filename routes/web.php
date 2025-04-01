@@ -59,6 +59,12 @@ Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redir
     Route::post('getRekapSekolah', [HomeController::class, 'getRekapSekolah'])->name("getRekapSekolah");
     Route::post('hasil', [HasilController::class, 'index'])->name('indexHasil');
     Route::post('hasil2', [HasilController::class, 'index2'])->name('indexHasil2');
+    Route::get('/download', App\Livewire\Home\Download::class)->name('download');
+    // Add these routes with your other web routes
+    Route::get('/berita', \App\Livewire\Home\News::class)->name('news');
+    Route::get('/berita/{id}', \App\Livewire\Home\NewsDetail::class)->name('news.detail');
+    Route::get('/jadwal', \App\Livewire\Home\Schedule::class)->name('schedule');
+    Route::get('/data-pendaftar', \App\Livewire\Home\DataPendaftarAll::class)->name('data.pendaftar');
 });
 Route::group(['domain' => 'hasil' . config('app.session_domain'), 'middleware' => ['redirect']], function () {
 //    Route::get('/', [HasilController::class, 'index'])->name('indexHasil');
@@ -68,3 +74,4 @@ Route::group(['domain' => 'hasil' . config('app.session_domain'), 'middleware' =
 
 });
 Route::get('logout', [LoginController::class, 'logout'])->name('logout')->middleware(['auth']);
+

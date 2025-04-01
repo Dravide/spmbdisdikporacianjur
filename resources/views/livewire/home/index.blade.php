@@ -47,6 +47,59 @@
     </div>
 
     <div class="container py-4">
+        <!-- Stats Section -->
+        <div class="mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stats-section py-1">
+                        <div class="row g-0">
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="stats-icon mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="mdi mdi-account-group font-size-24"></i>
+                                    </div>
+                                    <div class="stats-number fw-bold text-primary display-5">{{ number_format($totalPendaftar) }}</div>
+                                    <div class="stats-title text-uppercase fw-semibold">Total Pendaftar</div>
+                                    <div class="stats-progress mt-2">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center border-start border-end border-light">
+                                    <div class="stats-icon mb-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="mdi mdi-school font-size-24"></i>
+                                    </div>
+                                    <div class="stats-number fw-bold text-success display-5">{{ number_format($totalSekolah) }}</div>
+                                    <div class="stats-title text-uppercase fw-semibold">Sekolah Terdaftar</div>
+                                    <div class="stats-progress mt-2">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="stats-icon mb-3 bg-info text-white rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="mdi mdi-routes font-size-24"></i>
+                                    </div>
+                                    <div class="stats-number fw-bold text-info display-5">{{ number_format($totalJalur) }}</div>
+                                    <div class="stats-title text-uppercase fw-semibold">Jalur Pendaftaran</div>
+                                    <div class="stats-progress mt-2">
+                                        <div class="progress" style="height: 4px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- News Section -->
         <div class="row mb-1">
             <div class="col-lg-8">
@@ -110,106 +163,7 @@
             </div>
         </div>
 
-        <!-- Stats Section -->
-        <div class="mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="stats-section py-1">
-                        <div class="row g-0">
-                            <div class="col-md-4 mb-4 mb-md-0">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="stats-icon mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-account-group font-size-24"></i>
-                                    </div>
-                                    <div class="stats-number fw-bold text-primary display-5">{{ number_format($totalPendaftar) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Total Pendaftar</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4 mb-md-0">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center border-start border-end border-light">
-                                    <div class="stats-icon mb-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-school font-size-24"></i>
-                                    </div>
-                                    <div class="stats-number fw-bold text-success display-5">{{ number_format($totalSekolah) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Sekolah Terdaftar</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="stats-icon mb-3 bg-info text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-routes font-size-24"></i>
-                                    </div>
-                                    <div class="stats-number fw-bold text-info display-5">{{ number_format($totalJalur) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Jalur Pendaftaran</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="gallery-section mb-5">
-            <h4 class="gallery-title">Galeri Kegiatan</h4>
-            <div class="row">
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Sekolah" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Siswa" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Kelas" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Perpustakaan" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Kelulusan" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Guru" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Pendidikan" alt="Gallery Image">
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="gallery-item">
-                        <img src="https://placehold.co/300x200?text=Kampus" alt="Gallery Image">
-                    </div>
-                </div>
-            </div>
-        </div>
+    
 <!-- Sekolah Terdaftar -->
 <div class="mb-5">
     <h4 class="section-title">Sekolah Terdaftar</h4>
@@ -244,32 +198,76 @@
         @endforeach
     </div>
 </div>
-        <!-- Info Section -->
-        <div class="row mb-5">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="mb-3">Tentang PPDB Online</h5>
-                                <p>Sistem Penerimaan Peserta Didik Baru (PPDB) Online adalah sebuah sistem yang dirancang untuk melakukan otomasi seleksi penerimaan peserta didik baru, mulai dari proses pendaftaran, seleksi hingga pengumuman hasil seleksi.</p>
-                                <p>Penggunaan PPDB Online bertujuan untuk meningkatkan transparansi, efektivitas, efisiensi, dan akuntabilitas dalam pelaksanaan penerimaan peserta didik baru.</p>
+
+<!-- Jalur Pendaftaran -->
+<div class="mb-5">
+    <h4 class="section-title">Jalur Pendaftaran</h4>
+    <div class="row">
+        @foreach($jalurPendaftaran as $jalur)
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-shrink-0">
+                            <div class="pathway-icon rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background-color: #f0f8ff;">
+                                @if($jalur->svg)
+                                    <img src="{{ $jalur->svg }}" alt="{{ $jalur->nama_jalur }}" class="img-fluid" style="width: 30px; height: 30px;">
+                                @else
+                                    <i class="mdi mdi-routes text-primary font-size-24"></i>
+                                @endif
                             </div>
-                            <div class="col-md-6">
-                                <h5 class="mb-3">Alur Pendaftaran</h5>
-                                <ol>
-                                    <li>Buat akun di website PPDB Online</li>
-                                    <li>Lengkapi data diri dan unggah dokumen</li>
-                                    <li>Pilih sekolah tujuan</li>
-                                    <li>Cetak bukti pendaftaran</li>
-                                    <li>Tunggu pengumuman hasil seleksi</li>
-                                    <li>Lakukan daftar ulang jika diterima</li>
-                                </ol>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="mb-1 fw-bold">{{ $jalur->nama_jalur }}</h5>
+                            <div class="d-flex align-items-center">
+                                <i class="mdi mdi-account-group text-primary me-1"></i>
+                                <span class="text-muted">{{ number_format($jalur->jumlah_pendaftar) }} Pendaftar</span>
                             </div>
                         </div>
                     </div>
+                    <div class="progress" style="height: 5px;">
+                        @php
+                            $percentage = $totalPendaftar > 0 ? ($jalur->jumlah_pendaftar / $totalPendaftar) * 100 : 0;
+                        @endphp
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $percentage }}%;" aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <small class="text-muted">{{ number_format($percentage, 1) }}% dari total pendaftar</small>
+                        <small class="text-muted">{{ number_format($jalur->jumlah_pendaftar) }} / {{ number_format($totalPendaftar) }}</small>
+                    </div>
                 </div>
             </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+<!-- Info Section -->
+<div class="row mb-5">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Tentang PPDB Online</h5>
+                        <p>Sistem Penerimaan Peserta Didik Baru (PPDB) Online adalah sebuah sistem yang dirancang untuk melakukan otomasi seleksi penerimaan peserta didik baru, mulai dari proses pendaftaran, seleksi hingga pengumuman hasil seleksi.</p>
+                        <p>Penggunaan PPDB Online bertujuan untuk meningkatkan transparansi, efektivitas, efisiensi, dan akuntabilitas dalam pelaksanaan penerimaan peserta didik baru.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Alur Pendaftaran</h5>
+                        <ol>
+                            <li>Buat akun di website PPDB Online</li>
+                            <li>Lengkapi data diri dan unggah dokumen</li>
+                            <li>Pilih sekolah tujuan</li>
+                            <li>Cetak bukti pendaftaran</li>
+                            <li>Tunggu pengumuman hasil seleksi</li>
+                            <li>Lakukan daftar ulang jika diterima</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             <div class="col-lg-4">
                 <div class="card bg-dark text-white">
                     <div class="card-body">
