@@ -25,6 +25,7 @@ use App\Http\Controllers\nara\PengaturanController;
 use App\Http\Controllers\nara\SekolahController;
 use App\Http\Controllers\Nara\SekolahDasar;
 use App\Livewire\Nara\BeritaManager;
+use App\Livewire\Nara\ScheduleManager;
 
 Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:nara']], function () {
     Route::get('/', fn() => redirect()->route('nara.home'));
@@ -34,6 +35,9 @@ Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' =>
     
     // New Livewire Berita Manager route
     Route::get('berita-manager', BeritaManager::class)->name('nara.berita-manager');
+    
+    // New Livewire Schedule Manager route
+    Route::get('schedule-manager', ScheduleManager::class)->name('nara.schedule-manager');
     
     Route::resource('jalur', JalurController::class);
     Route::resource('sekolah', SekolahController::class);

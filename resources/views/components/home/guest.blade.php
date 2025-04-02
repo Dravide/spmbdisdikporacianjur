@@ -5,13 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SPMB Disdikpora Cianjur') }}</title>
+    <title>{{ config('app.name', 'SPMB SMP DISDIKPORA Cianjur 2025') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="apple-touch-icon" sizes="57x57" href="{{  asset('assets/favicon/apple-icon-57x57.png') }}">
+<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/favicon/apple-icon-60x60.png') }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/favicon/apple-icon-72x72.png') }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/favicon/apple-icon-76x76.png') }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/favicon/apple-icon-114x114.png') }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/favicon/apple-icon-120x120.png') }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/favicon/apple-icon-144x144.png') }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/favicon/apple-icon-152x152.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-icon-180x180.png') }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/favicon/android-icon-192x192.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
+<link rel="manifest" href="{{ asset('assets/favicon/manifest.json') }}">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
+<meta name="theme-color" content="#ffffff">
     <!-- Bootstrap Css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
@@ -44,6 +60,20 @@
     
     .logo img {
         height: 40px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    
+    /* Ensure logo is visible on all screen sizes */
+    @media (max-width: 991px) {
+        .logo img {
+            height: 36px; /* Slightly smaller on mobile */
+        }
+        
+        .navbar-brand-box {
+            padding: 0;
+            margin: 0;
+        }
     }
     
     .horizontal-menu {
@@ -98,9 +128,42 @@
         margin-right: 10px;
     }
 
+    /* Mobile menu styles */
+    .navbar-toggler {
+        border: none;
+        background: transparent;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        color: #333;
+        cursor: pointer;
+    }
+    
+    #mobileNavbar {
+        border-top: 1px solid #eee;
+    }
+    
+    #mobileNavbar .nav-link {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f5f5f5;
+        font-weight: 500;
+    }
+    
+    #mobileNavbar .nav-link.active {
+        color: #4285F4;
+    }
+
     @media (max-width: 991px) {
         .horizontal-menu {
             display: none;
+        }
+        
+        .navbar-header {
+            padding: 0.75rem 0;
+        }
+        
+        /* Ensure logo is visible on mobile */
+        .navbar-brand-box {
+            margin-right: auto;
         }
     }
     .stats-icon {
@@ -137,18 +200,23 @@
         <div class="navbar-header">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between">
-                    <!-- LOGO -->
+                    <!-- Left side with toggle and logo -->
                     <div class="d-flex align-items-center">
-                        <div class="navbar-brand-box me-4">
+                        <!-- Mobile menu toggle button (moved to left) -->
+                        <button class="navbar-toggler d-lg-none me-2" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                        
+                        <!-- LOGO (always visible) -->
+                        <div class="navbar-brand-box">
                             <a href="{{ route('myhome') }}" class="logo">
-                                <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logoppdb.png') }}" alt="logo" height="40">
-                                </span>
+                                <img src="{{ asset('assets/images/logoppdb.png') }}" alt="PPDB Logo" height="40">
                             </a>
                         </div>
 
                         <!-- Horizontal Menu -->
-                        <div class="horizontal-menu d-none d-lg-block">
+                        <div class="horizontal-menu d-none d-lg-block ms-3">
+                            <!-- Menu items remain the same -->
                             <ul class="nav">
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('myhome') ? 'active' : '' }}" href="{{ route('myhome') }}">Beranda</a>
@@ -169,12 +237,36 @@
                         </div>
                     </div>
 
+                    <!-- Right side with login button -->
                     <div class="d-flex align-items-center">
                         <div class="auth-buttons">
-                            <a href="{{ route('login') }}" class="btn btn-outline-dark me-2">Login Akun</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-dark">Login Akun</a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="collapse navbar-collapse" id="mobileNavbar">
+            <div class="container">
+                <ul class="navbar-nav d-lg-none py-2">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('myhome') ? 'active' : '' }}" href="{{ route('myhome') }}">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}" href="{{ route('news') }}">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('schedule') ? 'active' : '' }}" href="{{ route('schedule') }}">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('data.pendaftar') ? 'active' : '' }}" href="{{ route('data.pendaftar') }}">Data Pendaftar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">Download</a>
+                    </li>
+                </ul>
             </div>
         </div>
         
@@ -183,7 +275,7 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <i class="mdi mdi-information-outline"></i>
-                    <span>SPMB Disdikpora Cianjur dalam proses perilisan terbatas. Kami sedang mengumpulkan umpan balik untuk memberikan kualitas terbaik saat dirilis resmi.</span>
+                    <span>SPMB SMP DISDIKPORA Cianjur dalam proses perilisan terbatas. Kami sedang mengumpulkan umpan balik untuk memberikan kualitas terbaik saat dirilis resmi.</span>
                 </div>
             </div>
         </div>

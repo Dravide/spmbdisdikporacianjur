@@ -18,8 +18,10 @@
                 <div class="card border-0 shadow-sm mb-3">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="avatar-md bg-soft-primary rounded">
-                                <i class="mdi mdi-account-group text-primary font-size-24 avatar-title"></i>
+                            <div class="avatar-md">
+                                <span class="avatar-title bg-dark rounded text-white">
+                                    <i class="mdi mdi-account-group font-size-24"></i>
+                                </span>
                             </div>
                             <div class="ms-3">
                                 <h5 class="mb-0">{{ number_format($totalPendaftar) }}</h5>
@@ -33,9 +35,12 @@
                 <div class="card border-0 shadow-sm mb-3">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="avatar-md bg-soft-success rounded">
-                                <i class="mdi mdi-school text-success font-size-24 avatar-title"></i>
+                            <div class="avatar-md">
+                                <span class="avatar-title bg-dark rounded text-white">
+                                    <i class="mdi mdi-school font-size-24"></i>
+                                </span>
                             </div>
+                    
                             <div class="ms-3">
                                 <h5 class="mb-0">{{ number_format($totalSekolah) }}</h5>
                                 <p class="text-muted mb-0">Sekolah Terdaftar</p>
@@ -48,8 +53,10 @@
                 <div class="card border-0 shadow-sm mb-3">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <div class="avatar-md bg-soft-info rounded">
-                                <i class="mdi mdi-flag text-info font-size-24 avatar-title"></i>
+                            <div class="avatar-md">
+                                <span class="avatar-title bg-dark rounded text-white">
+                                    <i class="mdi mdi-flag font-size-24"></i>
+                                </span>
                             </div>
                             <div class="ms-3">
                                 <h5 class="mb-0">{{ number_format($totalJalur) }}</h5>

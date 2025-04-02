@@ -62,10 +62,18 @@
                         <span>Data Pendaftar</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="waves-effect">
-                        <i class="mdi mdi-ticket-account"></i>
-                        <span>Ticket</span>
+                <li class="{{ request()->routeIs(['nara.schedule-manager']) ? 'mm-active':'' }}">
+                    <a href="{{ route('nara.schedule-manager') }}"
+                       class="waves-effect">
+                        <i class="mdi mdi-calendar-clock"></i>
+                        <span>Jadwal</span>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs(['nara.berita-manager']) ? 'mm-active':'' }}">
+                    <a href="{{ route('nara.berita-manager') }}"
+                       class="waves-effect">
+                        <i class="mdi mdi-newspaper"></i>
+                        <span>Berita</span>
                     </a>
                 </li>
                 <li>

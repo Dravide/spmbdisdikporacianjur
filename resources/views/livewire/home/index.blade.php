@@ -54,7 +54,7 @@
                     <div class="stats-section-new">
                         <div class="row g-0">
                             <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column justify-content-center">
-                                <h2 class="mb-2 fw-bold">SPMB Disdikpora Cianjur</h2>
+                                <h2 class="mb-2 fw-bold">SPMB SMP DISDIKPORA Cianjur</h2>
                                 <p class="mb-4 stats-description">
                                     SPMB dibuat dan dikembangkan khusus untuk seluruh calon siswa di Kabupaten Cianjur, mulai dari pendaftaran hingga pengumuman. Karena SPMB percaya bahwa setiap calon siswa berhak mendapatkan kemudahan dalam mendaftar untuk mendapatkan pelayanan terbaik.
                                 </p>
@@ -152,8 +152,8 @@
             <div class="card school-card h-100 overflow-hidden border-0 shadow-sm">
                 <div class="row g-0 h-100">
                     <div class="col-5 bg-white text-dark p-3 d-flex flex-column justify-content-center align-items-center border-end">
-                        @if($sekolah->logo)
-                            <img src="https://placehold.co/120x60?text={{ substr($sekolah->nama_sekolah, 0, 1) }}" alt="{{ $sekolah->nama_sekolah }}" class="img-fluid mb-2" style="height: 60px;">
+                        @if($sekolah->img)
+                            <img src="{{ asset('storage/'.$sekolah->img)  }}" alt="{{ $sekolah->nama_sekolah }}" class="img-fluid mb-2" style="height: 60px;">
                         @else
                         <img src="https://placehold.co/120x120?text={{ substr($sekolah->nama_sekolah, 0, 1) }}" alt="{{ $sekolah->nama_sekolah }}" class="img-fluid mb-2" style="height: 60px;">
                        

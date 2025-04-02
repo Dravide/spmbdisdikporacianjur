@@ -58,8 +58,8 @@
             <div class="col-lg-4">
                 <!-- Related News -->
                 <div class="card border-0 shadow-sm mb-4">
-                    <div class="card-header bg-dark text-white">
-                        <h5 class="mb-0">Berita Terkait</h5>
+                    <div class="card-header bg-dark ">
+                        <h5 class="mb-0 text-white">Berita Terkait</h5>
                     </div>
                     <div class="card-body">
                         @if($relatedNews->count() > 0)
@@ -67,7 +67,7 @@
                                 <div class="d-flex mb-3 pb-3 {{ !$loop->last ? 'border-bottom' : '' }}">
                                     <div class="flex-shrink-0">
                                         @if($related->gambar)
-                                            <img src="{{ $related->gambar }}" class="rounded" alt="{{ $related->judul }}" width="80" height="60" style="object-fit: cover;">
+                                            <img src="{{ asset('storage/'.$related->gambar) }}" class="rounded" alt="{{ $related->judul }}" width="80" height="60" style="object-fit: cover;">
                                         @else
                                             <img src="https://placehold.co/80x60?text=PPDB" class="rounded" alt="{{ $related->judul }}">
                                         @endif
@@ -87,7 +87,7 @@
                 <!-- Categories -->
                 <div class="card border-0 shadow-sm mb-4">
                     <div class="card-header bg-dark text-white">
-                        <h5 class="mb-0">Kategori</h5>
+                        <h5 class="mb-0 text-white">Kategori</h5>
                     </div>
                     <div class="card-body">
                         <div class="list-group list-group-flush">
