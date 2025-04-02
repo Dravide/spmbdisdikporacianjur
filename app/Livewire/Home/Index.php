@@ -5,6 +5,7 @@ namespace App\Livewire\Home;
 use App\Models\DataPendaftar;
 use App\Models\Sekolah;
 use App\Models\Jalur;
+use App\Models\Berita; // Add this import
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
@@ -19,6 +20,7 @@ class Index extends Component
     public $sekolahTerdaftar;
     public $jalurPendaftaran;
     public $chartData;
+    public $berita; // Add this property
     
     public function mount()
     {
@@ -47,6 +49,12 @@ class Index extends Component
             ->leftJoin('data_pendaftars', 'jalurs.id', '=', 'data_pendaftars.id_jalur')
             ->groupBy('jalurs.id', 'jalurs.nama_jalur', 'jalurs.svg')
             ->orderBy('jumlah_pendaftar', 'desc')
+            ->get();
+        
+        // Ambil data berita terbaru
+        $this->berita = Berita::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->take(3)
             ->get();
         
         // Ambil data pendaftar per hari untuk 14 hari terakhir

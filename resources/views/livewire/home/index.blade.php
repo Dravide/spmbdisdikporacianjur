@@ -115,36 +115,27 @@
             <div class="col-lg-12">
                 <h4 class="section-title">Berita SPMB</h4>
                 <div class="row">
+                    @forelse($berita as $item)
                     <div class="col-md-4 mb-4">
-                        <div class="card news-card">
-                            <img src="https://placehold.co/600x400?text=Berita+PPDB" class="card-img-top" alt="News Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Pembukaan Pendaftaran PPDB Online Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }}</h5>
-                                <p class="card-text text-muted">Disdikpora Cianjur membuka pendaftaran penerimaan peserta didik baru secara online mulai tanggal 1 Juni {{ date('Y') }}.</p>
-                                <a href="#" class="btn btn-sm btn-dark">Selengkapnya</a>
+                        <div class="card news-card h-100">
+                            <img src="{{ $item->gambar ? asset('storage/'.$item->gambar) : 'https://placehold.co/600x400?text=Berita+PPDB' }}" class="card-img-top" alt="{{ $item->judul }}">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ $item->judul }}</h5>
+                                <p class="card-text text-muted">{{ Str::limit($item->ringkasan ?? strip_tags($item->konten), 100) }}</p>
+                                <div class="mt-auto">
+                                    <small class="text-muted d-block mb-2">{{ $item->created_at->format('d M Y') }}</small>
+                                    <a href="{{ route('news.detail', $item->id) }}" class="btn btn-sm btn-dark">Selengkapnya</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card news-card">
-                            <img src="https://placehold.co/600x400?text=Sosialisasi+PPDB" class="card-img-top" alt="News Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Sosialisasi PPDB Online Kepada Kepala Sekolah Se-Kabupaten Cianjur</h5>
-                                <p class="card-text text-muted">Disdikpora mengadakan sosialisasi sistem PPDB online kepada seluruh kepala sekolah di Kabupaten Cianjur.</p>
-                                <a href="#" class="btn btn-sm btn-dark">Selengkapnya</a>
-                            </div>
+                    @empty
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            Belum ada berita terbaru.
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card news-card">
-                            <img src="https://placehold.co/600x400?text=Sosialisasi+PPDB" class="card-img-top" alt="News Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Sosialisasi PPDB Online Kepada Kepala Sekolah Se-Kabupaten Cianjur</h5>
-                                <p class="card-text text-muted">Disdikpora mengadakan sosialisasi sistem PPDB online kepada seluruh kepala sekolah di Kabupaten Cianjur.</p>
-                                <a href="#" class="btn btn-sm btn-dark">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
     
