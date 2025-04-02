@@ -26,6 +26,10 @@
     <!-- App Css-->
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
     @stack('css')
+    @stack('styles')
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     {{--    @vite('resources/js/app.js') --}}
 </head>
@@ -87,5 +91,10 @@
 
 <!-- init js -->
 <script src="{{asset('assets/js/pages/form-editor.init.js')}}"></script>
+
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+@stack('scripts')
 </body>
 </html>

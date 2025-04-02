@@ -24,12 +24,17 @@ use App\Http\Controllers\nara\JalurController;
 use App\Http\Controllers\nara\PengaturanController;
 use App\Http\Controllers\nara\SekolahController;
 use App\Http\Controllers\Nara\SekolahDasar;
+use App\Livewire\Nara\BeritaManager;
 
 Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:nara']], function () {
     Route::get('/', fn() => redirect()->route('nara.home'));
     Route::get('home', HomeController::class)->name('nara.home');
     Route::get('berita', [BeritaController::class, 'berita'])->name('nara.berita');
     Route::get('add-berita', [BeritaController::class, 'add_berita'])->name('nara.add-berita');
+    
+    // New Livewire Berita Manager route
+    Route::get('berita-manager', BeritaManager::class)->name('nara.berita-manager');
+    
     Route::resource('jalur', JalurController::class);
     Route::resource('sekolah', SekolahController::class);
     Route::resource('berkas', BerkasController::class);

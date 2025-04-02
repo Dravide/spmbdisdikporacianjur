@@ -1,6 +1,6 @@
 <div>
     <!-- Hero Section -->
-    <div class="container">
+    <div class="container py-4">
         <div class="hero-section">
             <div class="row g-0">
         
@@ -47,65 +47,75 @@
     </div>
 
     <div class="container py-4">
-        <!-- Stats Section -->
-        <div class="mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="stats-section py-1">
+        <!-- Stats Section - Updated with blue background and modern design -->
+        <div class="mb-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="stats-section-new">
                         <div class="row g-0">
-                            <div class="col-md-4 mb-4 mb-md-0">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="stats-icon mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-account-group font-size-24"></i>
-                                    </div>
-                                    <div class="stats-number fw-bold text-primary display-5">{{ number_format($totalPendaftar) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Total Pendaftar</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="col-lg-6 p-4 p-lg-5 d-flex flex-column justify-content-center">
+                                <h2 class="mb-2 fw-bold">SPMB Disdikpora Cianjur</h2>
+                                <p class="mb-4 stats-description">
+                                    SPMB dibuat dan dikembangkan khusus untuk seluruh calon siswa di Kabupaten Cianjur, mulai dari pendaftaran hingga pengumuman. Karena SPMB percaya bahwa setiap calon siswa berhak mendapatkan kemudahan dalam mendaftar untuk mendapatkan pelayanan terbaik.
+                                </p>
+                                
+                                <div class="stats-highlights">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3 mb-md-0">
+                                            <div class="stat-highlight">
+                                                <div class="stat-number">{{ number_format($totalSekolah) }}</div>
+                                                <div class="stat-label">Sekolah Terdaftar</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3 mb-md-0">
+                                            <div class="stat-highlight">
+                                                <div class="stat-number">{{ number_format($totalJalur) }}</div>
+                                                <div class="stat-label">Jalur Pendaftaran</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="stat-highlight">
+                                                <div class="stat-number">{{ date('Y') }}</div>
+                                                <div class="stat-label">Tahun Ajaran</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-4 mb-md-0">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center border-start border-end border-light">
-                                    <div class="stats-icon mb-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-school font-size-24"></i>
+                            
+                            <div class="col-lg-6 bg-primary text-white p-4 p-lg-5 d-flex flex-column justify-content-center">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="stats-big-icon me-3">
+                                        <i class="mdi mdi-account-group"></i>
                                     </div>
-                                    <div class="stats-number fw-bold text-success display-5">{{ number_format($totalSekolah) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Sekolah Terdaftar</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                    <div>
+                                        <h2 class="mb-0 fw-bold text-white">{{ number_format($totalPendaftar) }}</h2>
+                                        <p class="mb-0 text-white-50">Total Pendaftar Saat Ini</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stats-card text-center p-4 h-100 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="stats-icon mb-3 bg-info text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="mdi mdi-routes font-size-24"></i>
-                                    </div>
-                                    <div class="stats-number fw-bold text-info display-5">{{ number_format($totalJalur) }}</div>
-                                    <div class="stats-title text-uppercase fw-semibold">Jalur Pendaftaran</div>
-                                    <div class="stats-progress mt-2">
-                                        <div class="progress" style="height: 4px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
+                                
+                                <div class="progress mb-4" style="height: 8px;">
+                                    <div class="progress-bar bg-white" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
+                                
+                                <p class="mb-4">
+                                    *Data PPDB per {{ now()->format('d/m/Y') }}
+                                </p>
+                                
+                                <a href="{{ route('data.pendaftar') }}" class="btn btn-light">Lihat Data Pendaftar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- News Section -->
         <div class="row mb-1">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <h4 class="section-title">Berita SPMB</h4>
                 <div class="row">
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card news-card">
                             <img src="https://placehold.co/600x400?text=Berita+PPDB" class="card-img-top" alt="News Image">
                             <div class="card-body">
@@ -115,7 +125,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card news-card">
+                            <img src="https://placehold.co/600x400?text=Sosialisasi+PPDB" class="card-img-top" alt="News Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Sosialisasi PPDB Online Kepada Kepala Sekolah Se-Kabupaten Cianjur</h5>
+                                <p class="card-text text-muted">Disdikpora mengadakan sosialisasi sistem PPDB online kepada seluruh kepala sekolah di Kabupaten Cianjur.</p>
+                                <a href="#" class="btn btn-sm btn-dark">Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
                         <div class="card news-card">
                             <img src="https://placehold.co/600x400?text=Sosialisasi+PPDB" class="card-img-top" alt="News Image">
                             <div class="card-body">
@@ -127,40 +147,7 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="col-lg-4">
-                <h4 class="section-title">Informasi Terbaru</h4>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">Jadwal PPDB Tahun {{ date('Y') }}</h6>
-                            <small class="text-muted">3 hari lalu</small>
-                        </div>
-                        <p class="mb-1 text-muted small">Informasi lengkap tentang jadwal pelaksanaan PPDB Online</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">Persyaratan Pendaftaran</h6>
-                            <small class="text-muted">5 hari lalu</small>
-                        </div>
-                        <p class="mb-1 text-muted small">Dokumen dan persyaratan yang harus disiapkan untuk pendaftaran</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">Jalur Pendaftaran PPDB</h6>
-                            <small class="text-muted">1 minggu lalu</small>
-                        </div>
-                        <p class="mb-1 text-muted small">Informasi tentang jalur pendaftaran yang tersedia</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-1">Panduan Pendaftaran Online</h6>
-                            <small class="text-muted">2 minggu lalu</small>
-                        </div>
-                        <p class="mb-1 text-muted small">Cara melakukan pendaftaran secara online</p>
-                    </a>
-                </div>
-            </div>
+    
         </div>
 
         
@@ -201,7 +188,7 @@
 </div>
 
 <!-- Jalur Pendaftaran -->
-<div class="mb-5">
+<div class="mb-1">
     <h4 class="section-title">Jalur Pendaftaran</h4>
     <div class="row">
         @foreach($jalurPendaftaran as $jalur)
@@ -244,50 +231,7 @@
 </div>
 
 <!-- Info Section -->
-<div class="row mb-5">
-    <div class="col-lg-8">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img src="{{  asset('assets/images/home/logodisdikporacianjur.png') }}" class="img-fluid mb-3" width="150" alt="PPDB Online">
-                        <h5 class="mb-3">DISDIKPORA KABUPATEN CIANJUR</h5>
-                        <p>Sistem Penerimaan Peserta Didik Baru (PPDB) Online adalah sebuah sistem yang dirancang untuk melakukan otomasi seleksi penerimaan peserta didik baru, mulai dari proses pendaftaran, seleksi hingga pengumuman hasil seleksi.</p>
-                        <p>Penggunaan PPDB Online bertujuan untuk meningkatkan transparansi, efektivitas, efisiensi, dan akuntabilitas dalam pelaksanaan penerimaan peserta didik baru.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="mb-3">Alur Pendaftaran</h5>
-                        <ol>
-                            <li>Buat akun di website PPDB Online</li>
-                            <li>Lengkapi data diri dan unggah dokumen</li>
-                            <li>Pilih sekolah tujuan</li>
-                            <li>Cetak bukti pendaftaran</li>
-                            <li>Tunggu pengumuman hasil seleksi</li>
-                            <li>Lakukan daftar ulang jika diterima</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-            <div class="col-lg-4">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h5 class="card-title text-white">Pusat Bantuan</h5>
-                        <p>Jika Anda mengalami kesulitan dalam proses pendaftaran, silakan hubungi pusat bantuan kami.</p>
-                        <div class="mb-3">
-                            <i class="mdi mdi-phone me-2"></i> (0263) 123456
-                        </div>
-                        <div class="mb-3">
-                            <i class="mdi mdi-email-outline me-2"></i> ppdb@disdikporacijr.go.id
-                        </div>
-                        <div>
-                            <i class="mdi mdi-whatsapp me-2"></i> 0812-3456-7890
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         
     </div>
@@ -605,6 +549,85 @@
         
         .slide-out {
             transform: translateX(-100%);
+        }
+    </style>
+    @endpush
+
+    @push('styles')
+    <style>
+        /* New Stats Section Styles */
+        .stats-section-new {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .stats-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            max-width: 90%;
+        }
+        
+        .stats-highlights {
+            margin-top: 10px;
+        }
+        
+        .stat-highlight {
+            padding: 10px 0;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stats-big-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .bg-primary {
+            background: linear-gradient(135deg, #4285F4 0%, #3367d6 100%) !important;
+        }
+        
+        .progress {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-light {
+            font-weight: 500;
+            padding: 8px 20px;
+            transition: all 0.3s;
+        }
+        
+        .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 991px) {
+            .stats-section-new .row > div:first-child {
+                order: 2;
+            }
+            .stats-section-new .row > div:last-child {
+                order: 1;
+                margin-bottom: 1rem;
+            }
         }
     </style>
     @endpush

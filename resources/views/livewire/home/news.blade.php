@@ -38,7 +38,7 @@
                 @foreach($berita as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 news-card shadow-sm">
-                        <img src="{{ $item->gambar ?? 'https://placehold.co/600x400?text=Berita+PPDB' }}" class="card-img-top" alt="{{ $item->judul }}">
+                        <img src="{{ $item->gambar ? asset('storage/'.$item->gambar) : 'https://placehold.co/600x400?text=Berita+PPDB' }}" class="card-img-top" alt="{{ $item->judul }}">
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="badge bg-primary">{{ $item->kategori }}</span>

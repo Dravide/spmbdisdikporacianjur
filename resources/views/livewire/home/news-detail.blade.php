@@ -22,7 +22,7 @@
                         <h1 class="mb-3">{{ $berita->judul }}</h1>
                         
                         @if($berita->gambar)
-                            <img src="{{ $berita->gambar }}" class="img-fluid rounded mb-4" alt="{{ $berita->judul }}">
+                            <img src="{{ asset('storage/'.$berita->gambar) }}" class="img-fluid rounded mb-4" alt="{{ $berita->judul }}">
                         @else
                             <img src="https://placehold.co/800x400?text=Berita+PPDB" class="img-fluid rounded mb-4" alt="{{ $berita->judul }}">
                         @endif
