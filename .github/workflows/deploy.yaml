@@ -21,7 +21,7 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     
     - name: Generate key
       run: php artisan key:generate
@@ -51,10 +51,10 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: '8.1'S
     
     - name: Install Dependencies
-      run: composer install --no-dev --optimize-autoloader
+      run: composer update --no-dev --optimize-autoloader
     
     - name: Compile assets
       run: |
