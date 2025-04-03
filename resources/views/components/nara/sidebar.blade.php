@@ -76,6 +76,13 @@
                         <span>Berita</span>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs(['nara.document-manager']) ? 'mm-active':'' }}">
+                    <a href="{{ route('nara.document-manager') }}"
+                       class="waves-effect">
+                        <i class="mdi mdi-text-box-outline"></i>
+                        <span>Dokumen</span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('log-viewer.index') }}" class="waves-effect" target="_blank">
                         <i class="mdi mdi-console-network"></i>

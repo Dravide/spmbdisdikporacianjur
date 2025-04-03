@@ -68,6 +68,11 @@
                         <h5 class="mb-0 text-white">Daftar Berkas</h5>
                     </div>
                     <div class="card-body p-4">
+                        @if(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="table-light">
@@ -97,9 +102,9 @@
                                             <td>{{ $document['description'] }}</td>
                                             <td>{{ $document['file_size'] }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-sm rounded-pill">
+                                                <button wire:click="downloadDocument({{ $document['id'] }})" class="btn btn-primary btn-sm rounded-pill">
                                                     <i class="mdi mdi-download me-1"></i> Unduh
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
