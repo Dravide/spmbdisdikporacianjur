@@ -66,6 +66,7 @@ Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redir
     Route::get('/berita/{id}', \App\Livewire\Home\NewsDetail::class)->name('news.detail');
     Route::get('/jadwal', \App\Livewire\Home\Schedule::class)->name('schedule');
     Route::get('/data-pendaftar', \App\Livewire\Home\DataPendaftarAll::class)->name('data.pendaftar');
+    Route::get('/alur-pendaftaran', App\Livewire\Home\AlurPendaftaran::class)->name('alur.pendaftaran');
 });
 Route::group(['domain' => 'hasil' . config('app.session_domain'), 'middleware' => ['redirect']], function () {
 //    Route::get('/', [HasilController::class, 'index'])->name('indexHasil');

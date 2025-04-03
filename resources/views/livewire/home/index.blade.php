@@ -2,46 +2,36 @@
     <!-- Hero Section -->
     <div class="container py-4">
         <div class="hero-section">
-            <div class="row g-0">
-        
-                <div class="col-lg-12">
-                    <div class="accordion">
-                        <ul>
-                            <li tabindex="1" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Gentur_Lamp_Monument_2022.jpg/800px-Gentur_Lamp_Monument_2022.jpg')">
-                                <div>
-                                    <a href="javascript:void(0)">
-                                        <h2 class="text-white">Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }}</h2>
-                                        <p>Pendaftaran untuk tahun ajaran baru telah dibuka</p>
-                                    </a>
-                                </div>
-                            </li>
-                            <li tabindex="2" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Situs_Megalitikum_Gunung_Padang_Cianjur.jpg/1024px-Situs_Megalitikum_Gunung_Padang_Cianjur.jpg')">
-                                <div>
-                                    <a href="javascript:void(0)">
-                                        <h2 class="text-white">Pendaftaran Online</h2>
-                                        <p>Daftar secara online dari mana saja dan kapan saja</p>
-                                    </a>
-                                </div>
-                            </li>
-                            <li tabindex="3" style="background-image: url('https://romansabandung.com/wp-content/uploads/2024/07/Esra-Sianipar-768x576.jpg')">
-                                <div>
-                                    <a href="javascript:void(0)">
-                                        <h2 class="text-white">Seleksi Transparan</h2>
-                                        <p>Proses seleksi yang adil dan transparan</p>
-                                    </a>
-                                </div>
-                            </li>
-                            <li tabindex="4" style="background-image: url('http://student-activity.binus.ac.id/swanarapala/wp-content/uploads/sites/50/2023/05/Snapinsta.app_343292190_6347301991980589_1958777148025966584_n_1080.jpg')">
-                                <div>
-                                    <a href="javascript:void(0)">
-                                        <h2 class="text-white">Info & Bantuan</h2>
-                                        <p>Dapatkan informasi dan bantuan seputar PPDB</p>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="hero-content">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="hero-icon me-2">
+                                <i class="mdi mdi-shield-account text-primary" style="font-size: 28px;"></i>
+                            </div>
+                            <h1 class="mb-0 fw-bold">Selamat Datang</h1>
+                        </div>
+                        <h2 class="text-primary fw-bold mb-3">SPMB SMP DISDIKPORA</h2>
+                        <h3 class="mb-4">Kabupaten Cianjur Tahun 2025</h3>
+                        
+                        <p class="mb-4">Masukkan email Anda untuk lebih dulu mencoba aplikasi SPMB.</p>
+                        
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control form-control-lg" placeholder="Tulis Email Anda" aria-label="Email">
+                            <button class="btn btn-primary btn-lg" type="button">Dapatkan Informasi</button>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="col-lg-6">
+                    <div class="hero-images position-relative d-flex justify-content-center align-items-center">
+                        <img src="{{  asset('images/_image.svg') }}" 
+                             alt="Digital Identity" 
+                             class="img-fluid hero-main-image" 
+                             style="max-width: 100%; height: 300px;">
+                    </div>
+                </div>
+            
             </div>
         </div>
     </div>
@@ -393,10 +383,6 @@
             width: 10%;
         }
 
-        .accordion ul li:focus {
-            outline: none;
-        }
-
         .accordion ul:hover li:hover,
         .accordion ul li:focus,
         .accordion ul:focus-within li:focus {
@@ -621,4 +607,85 @@
             }
         }
     </style>
+    @endpush
+
+    @push('styles')
+    @push('styles')
+        <style>
+            /* Hero Section Styles */
+            .hero-section {
+                padding: 2rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+                color: #333;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+                color: #4285F4;
+            }
+            
+            .hero-content h3 {
+                font-size: 1.8rem;
+                color: #333;
+                font-weight: 500;
+            }
+            
+            .hero-image-card {
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                height: 120px;
+                width: 120px;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-image-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            
+            .form-control-lg {
+                border-radius: 8px 0 0 8px;
+                border: 1px solid #ddd;
+                padding: 0.75rem 1.25rem;
+            }
+            
+            .btn-primary {
+                background: linear-gradient(135deg, #4285F4 0%, #3367d6 100%);
+                border: none;
+                border-radius: 0 8px 8px 0;
+                padding: 0.75rem 1.5rem;
+                font-weight: 500;
+            }
+            
+            .btn-primary:hover {
+                background: linear-gradient(135deg, #3367d6 0%, #2a56b5 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            @media (max-width: 991px) {
+                .hero-content h1 {
+                    font-size: 1.8rem;
+                }
+                
+                .hero-content h2 {
+                    font-size: 2rem;
+                }
+                
+                .hero-content h3 {
+                    font-size: 1.5rem;
+                }
+                
+                .hero-image-card {
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+        </style>
+        @endpush
     @endpush
