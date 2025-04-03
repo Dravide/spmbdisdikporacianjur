@@ -27,8 +27,14 @@ class Download extends Component
     {
         $document = Document::findOrFail($id);
         
-        if (Storage::exists($document->file_path)) {
-            return Storage::download($document->file_path, $document->file_name);
+        // Check if file exists in public storage
+        if (file_exists(public_path('storage/' . $document->file_path))) {
+            return response()->download(public_path('storage/' . $document->file_path), $document->file_name);
+        }
+        
+        // Alternative approach - check if file exists in storage
+        if (Storage::disk('public')->exists($document->file_path)) {
+            return Storage::disk('public')->download($document->file_path, $document->file_name);
         }
         
         session()->flash('error', 'File tidak ditemukan.');

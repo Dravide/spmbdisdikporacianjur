@@ -11,23 +11,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{  asset('assets/favicon/apple-icon-57x57.png') }}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/favicon/apple-icon-60x60.png') }}">
-<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/favicon/apple-icon-72x72.png') }}">
-<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/favicon/apple-icon-76x76.png') }}">
-<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/favicon/apple-icon-114x114.png') }}">
-<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/favicon/apple-icon-120x120.png') }}">
-<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/favicon/apple-icon-144x144.png') }}">
-<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/favicon/apple-icon-152x152.png') }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-icon-180x180.png') }}">
-<link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/favicon/android-icon-192x192.png') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-<link rel="manifest" href="{{ asset('assets/favicon/manifest.json') }}">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
-<meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/favicon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('assets/favicon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap Css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
@@ -35,7 +36,24 @@
     <!-- App Css-->
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
     <style>
-    /* Updated header styles to match INAgov */
+    /* Updated styles to match INAgov */
+    :root {
+        --primary-color: #4285F4;
+        --primary-dark: #3367d6;
+        --secondary-color: #112341;
+        --light-bg: #f8f9fa;
+        --text-dark: #333;
+        --text-muted: #6c757d;
+        --border-color: #e9ecef;
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-dark);
+        background-color: #f8f9fa;
+    }
+    
+    /* Header styles */
     #page-topbar {
         background-color: #ffffff;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -101,9 +119,9 @@
 
     .horizontal-menu .nav-link:hover,
     .horizontal-menu .nav-link.active {
-        color:rgb(17, 35, 65);
+        color: var(--secondary-color);
         background-color: transparent;
-        border-bottom: 3px solid rgb(17, 35, 65);
+        border-bottom: 3px solid var(--primary-color);
         border-radius: 0;
     }
     
@@ -124,7 +142,7 @@
     }
     
     .notification-banner i {
-        color: #4285F4;
+        color: var(--primary-color);
         margin-right: 10px;
     }
 
@@ -149,7 +167,7 @@
     }
     
     #mobileNavbar .nav-link.active {
-        color: #4285F4;
+        color: var(--primary-color);
     }
 
     @media (max-width: 991px) {
@@ -166,29 +184,205 @@
             margin-right: auto;
         }
     }
+    
+    /* Card styles */
+    .card {
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-header {
+        background-color: var(--secondary-color);
+        color: white;
+        border-radius: 8px 8px 0 0 !important;
+        padding: 1rem 1.5rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    /* Button styles */
+    .btn {
+        font-weight: 500;
+        padding: 0.5rem 1.25rem;
+        border-radius: 4px;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: translateY(-2px);
+    }
+    
+    .btn-dark {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+    
+    .btn-dark:hover {
+        background-color: #0a1a33;
+        border-color: #0a1a33;
+        transform: translateY(-2px);
+    }
+    
+    /* Stats and icon styles */
     .stats-icon {
         width: 60px;
         height: 60px;
         font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
-    .school-card {
-        transition: all 0.3s ease;
-        border-radius: 8px;
-    }
-
-    .school-card:hover {
-        transform: translateY(-5px);
-        
-    }
-
+    
     .avatar-lg {
         width: 60px;
         height: 60px;
         background-color: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    /* School card styles */
+    .school-card {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
     }
 
+    .school-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Footer styles */
+    .footer-new {
+        margin-top: 3rem;
+    }
+    
+    .footer-main {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 3rem 0;
+    }
+    
+    .footer-bottom {
+        background-color: var(--primary-dark);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 1rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    
+    .footer-links a:hover {
+        color: white;
+        text-decoration: underline;
+    }
+    
+    .footer-new h5 {
+        color: white;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+    }
+    
+    .footer-logo {
+        height: 40px;
+        margin-bottom: 1rem;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .social-link {
+        color: white;
+        font-size: 1.25rem;
+        transition: opacity 0.2s;
+    }
+    
+    .social-link:hover {
+        opacity: 0.8;
+        color: white;
+    }
+    
+    /* Section styles */
+    .section-title {
+        position: relative;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        padding-bottom: 0.5rem;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+    
+    /* Utility classes */
+    .bg-soft-primary {
+        background-color: rgba(66, 133, 244, 0.15) !important;
+    }
+    
+    .bg-soft-success {
+        background-color: rgba(52, 195, 143, 0.15) !important;
+    }
+    
+    .bg-soft-warning {
+        background-color: rgba(241, 180, 76, 0.15) !important;
+    }
+    
+    .bg-soft-info {
+        background-color: rgba(80, 165, 241, 0.15) !important;
+    }
+    
+    .text-primary {
+        color: var(--primary-color) !important;
+    }
+    
+    .bg-primary {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+    }
+    
     .bg-dark {
-        background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+        background: linear-gradient(135deg, var(--secondary-color) 0%, #0a1a33 100%) !important;
     }
     </style>
     @stack('styles')
@@ -240,7 +434,7 @@
                     <!-- Right side with login button -->
                     <div class="d-flex align-items-center">
                         <div class="auth-buttons">
-                            <a href="{{ route('login') }}" class="btn btn-outline-dark">Login Akun</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary">Login Akun</a>
                         </div>
                     </div>
                 </div>
