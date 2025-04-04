@@ -123,15 +123,17 @@ jobs:
           cd deploy_temp && tar -czf ../deployment.tar.gz .
           cd .. && rm -rf deploy_temp
 
-      - name: Install sshpass
-        run: sudo apt-get install sshpass
-
-      - name: Deploy with SSH (Password)
-        env:
-          SSHPASS: ${{ secrets.SSH_PASSWORD }}
+      - name: Set up SSH
         run: |
-          sshpass -e scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
-          sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with SSH
+        run: |
+          scp -i ~/.ssh/id_rsa deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
+          ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ${{ secrets.DEPLOY_PATH }} && 
             tar -xzf ~/deployment.tar.gz -C . && 
             rm ~/deployment.tar.gz && 
