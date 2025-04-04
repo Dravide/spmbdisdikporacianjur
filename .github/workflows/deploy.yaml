@@ -13,25 +13,26 @@ jobs:
       - uses: actions/setup-node@master
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - name: Install Dependencies
-        run: composer update --ignore-platform-reqs
-      - name: Create cache directories
+      - name: Create cache directories first
         run: |
           mkdir -p bootstrap/cache
           mkdir -p storage/framework/sessions
           mkdir -p storage/framework/views
           mkdir -p storage/framework/cache
+          mkdir -p storage/framework/testing
+          chmod -R 777 storage bootstrap/cache
+      - name: Install Dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist
       - name: Generate key
         run: php artisan key:generate
       - name: Generate storage link
         run: php artisan storage:link
-      - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
-      - name: Clear caches
+      - name: Clear and optimize
         run: |
-          php artisan cache:clear
           php artisan config:clear
+          php artisan cache:clear
           php artisan view:clear
+          php artisan route:clear
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
