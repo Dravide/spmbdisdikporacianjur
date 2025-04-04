@@ -91,22 +91,17 @@ jobs:
           mkdir -p storage/framework/cache
           mkdir -p storage/framework/testing
           chmod -R 777 storage bootstrap/cache
-      - name: Remove dev packages from composer.json
+      - name: Update app.php to remove Debugbar
         run: |
-          if [ -f "composer.json" ]; then
-            sed -i 's/"barryvdh\/laravel-debugbar".*//g' composer.json
-            sed -i 's/"barryvdh\/laravel-ide-helper".*//g' composer.json
+          if [ -f "config/app.php" ]; then
+            sed -i "/'aliases' => Facade::defaultAliases()->merge/,/->toArray(),/c\'aliases' => Facade::defaultAliases()->merge([\n        // 'ExampleClass' => App\\Example\\ExampleClass::class,\n        'PDF' => Barryvdh\\DomPDF\\Facade::class,\n        'DataTables' => Yajra\\DataTables\\Facades\\DataTables::class,\n        'Excel' => Maatwebsite\\Excel\\Facades\\Excel::class,\n    ])->toArray()," config/app.php
           fi
       - name: Install Dependencies
-        run: composer install --optimize-autoloader --no-dev --no-scripts
+        run: composer install --optimize-autoloader --no-dev
       - name: Generate key
         run: php artisan key:generate
       - name: Generate storage link
         run: php artisan storage:link
-      - name: Run post-install scripts manually
-        run: |
-          composer dump-autoload
-          php -d memory_limit=-1 artisan package:discover
       - name: Clear and optimize
         run: |
           php artisan config:clear
@@ -114,10 +109,22 @@ jobs:
           php artisan view:clear
           php artisan route:clear
           php artisan optimize
+      - name: Test FTP connection
+        run: |
+          apt-get update && apt-get install -y ftp
+          echo "Checking FTP server connectivity..."
+          ftp -n << EOF
+          open ${{ secrets.FTP_SERVER }}
+          user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
+          pwd
+          quit
+          EOF
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
+          dangerous-clean-slate: false
+          timeout: 60000
