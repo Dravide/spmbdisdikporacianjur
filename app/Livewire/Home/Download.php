@@ -6,10 +6,12 @@ use App\Models\Document;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Title;
 
 class Download extends Component
 {
     #[Layout('components.home.guest')]
+    #[Title('Unduh Berkas')]
     
     public $documents = [];
     public $documentsByType = [];

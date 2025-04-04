@@ -7,7 +7,7 @@
                     <div class="hero-content">
                         <div class="d-flex align-items-center mb-2">
                             <div class="hero-icon me-2">
-                                <i class="mdi mdi-shield-account text-primary" style="font-size: 28px;"></i>
+                                <i class="mdi mdi-star-four-points text-danger" style="font-size: 28px;"></i>
                             </div>
                             <h1 class="mb-0 fw-bold">Selamat Datang</h1>
                         </div>
@@ -28,7 +28,7 @@
                         <img src="{{  asset('images/_image.svg') }}" 
                              alt="Digital Identity" 
                              class="img-fluid hero-main-image" 
-                             style="max-width: 100%; height: 300px;">
+                             style="max-width: 100%; height: 350px;">
                     </div>
                 </div>
             
@@ -159,7 +159,7 @@
                             <i class="mdi mdi-map-marker text-danger me-1"></i>
                             <span class="text-muted">{{ $sekolah->alamat ?? 'Cianjur' }}</span>
                         </div>
-                        <a href="#" class="btn btn-sm btn-dark mt-auto">Detail</a>
+                        <a href="{{ route('live.statistics', $sekolah->ulid) }}" class="btn btn-sm btn-dark mt-auto" target="_blank">Live Stat</a>
                     </div>
                 </div>
             </div>

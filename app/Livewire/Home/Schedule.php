@@ -4,11 +4,13 @@ namespace App\Livewire\Home;
 
 use App\Models\Schedule as ScheduleModel;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class Schedule extends Component
 {
     #[Layout('components.home.guest')]
+    #[Title('Jadwal')]
     
     public $schedules = [];
     

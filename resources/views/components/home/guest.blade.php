@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SPMB SMP DISDIKPORA Cianjur 2025') }}</title>
+    <title>{{ $title }} - {{ config('app.name', 'SPMB SMP DISDIKPORA Cianjur 2025') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -409,26 +409,39 @@
                         </div>
 
                         <!-- Horizontal Menu -->
-                            <div class="horizontal-menu d-none d-lg-block ms-3">
+                            <div class="horizontal-menu d-none d-lg-block ms-4">
                                 <!-- Menu items remain the same -->
                                 <ul class="nav">
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('myhome') ? 'active' : '' }}" href="{{ route('myhome') }}">Beranda</a>
+                                        <a class="nav-link {{ request()->routeIs('myhome') ? 'active' : '' }}" href="{{ route('myhome') }}">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-smart-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 8.71l-5.333 -4.148a2.666 2.666 0 0 0 -3.274 0l-5.334 4.148a2.665 2.665 0 0 0 -1.029 2.105v7.2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-7.2c0 -.823 -.38 -1.6 -1.03 -2.105" /><path d="M16 15c-2.21 1.333 -5.792 1.333 -8 0" /></svg>
+                                            Beranda</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}" href="{{ route('news') }}">Berita</a>
+                                        
+                                        <a class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}" href="{{ route('news') }}">
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
+                                            Berita</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('schedule') ? 'active' : '' }}" href="{{ route('schedule') }}">Jadwal</a>
+                                        <a class="nav-link {{ request()->routeIs('schedule') ? 'active' : '' }}" href="{{ route('schedule') }}">
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
+                                            Jadwal</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('alur.pendaftaran') ? 'active' : '' }}" href="{{ route('alur.pendaftaran') }}">Alur Pendaftaran</a>
+                                        <a class="nav-link {{ request()->routeIs('alur.pendaftaran') ? 'active' : '' }}" href="{{ route('alur.pendaftaran') }}">
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-timeline-event"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M10 20h-6" /><path d="M14 20h6" /><path d="M12 15l-2 -2h-3a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-3l-2 2z" /></svg>
+                                            Alur Pendaftaran</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('data.pendaftar') ? 'active' : '' }}" href="{{ route('data.pendaftar') }}">Data Pendaftar</a>
+                                        <a class="nav-link {{ request()->routeIs('data.pendaftar') ? 'active' : '' }}" href="{{ route('data.pendaftar') }}">
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list-details"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 5h8" /><path d="M13 9h5" /><path d="M13 15h8" /><path d="M13 19h5" /><path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /></svg>
+                                            Data Pendaftar</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">Download</a>
+                                        <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-down-to-arc"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3v12" /><path d="M16 11l-4 4l-4 -4" /><path d="M3 12a9 9 0 0 0 18 0" /></svg>
+                                            Download</a>
                                     </li>
                                 </ul>
                             </div>
@@ -493,56 +506,68 @@
             <div class="footer-main">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 mb-4 mb-md-0">
-                            <h5>SPMB Disdikpora</h5>
+                        <!-- Logo and description column -->
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <img src="{{ asset('assets/images/logoppdb.png') }}" alt="PPDB Logo" class="footer-logo mb-3">
+                            <p class="text-white-50 mb-3">
+                                Sistem Penerimaan Murid Baru Online Kabupaten Cianjur untuk memudahkan proses pendaftaran sekolah secara transparan dan efisien.
+                            </p>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/disdikpora.cianjur/" class="social-link"><i class="mdi mdi-instagram"></i></a>
+                                <a href="https://disdikpora.cianjurkab.go.id/#" class="social-link"><i class="mdi mdi-web"></i></a>
+                                <a href="https://www.facebook.com/disdikporacianjurkab/" class="social-link"><i class="mdi mdi-facebook"></i></a>
+                                <a href="https://www.youtube.com/@disdikpora.cianjur/" class="social-link"><i class="mdi mdi-youtube"></i></a>
+                            </div>
+                        </div>
+                        
+                        <!-- Hot links column -->
+                        <div class="col-md-2 mb-4 mb-md-0">
+                            <h5 class="text-white">Layanan</h5>
                             <ul class="footer-links">
-                                <li><a href="{{ route('myhome') }}">Beranda</a></li>
+                                <li><a href="{{ route('alur.pendaftaran') }}">Alur Pendaftaran</a></li>
+                                <li><a href="{{ route('download') }}">Download</a></li>
                                 <li><a href="{{ route('news') }}">Berita</a></li>
                                 <li><a href="{{ route('schedule') }}">Jadwal</a></li>
-                                <li><a href="{{ route('data.pendaftar') }}">Data Pendaftar</a></li>
-                                <li><a href="{{ route('download') }}">Download</a></li>
+                    
                             </ul>
                         </div>
+                        
+                        <!-- More info column -->
                         <div class="col-md-3 mb-4 mb-md-0">
-                            <h5>Hubungi Kami</h5>
+                            <h5 class="text-white">Informasi</h5>
                             <ul class="footer-links">
-                                <li><a href="#">Kontak</a></li>
-                                <li><a href="#">Bantuan</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Data Pendaftar</a></li>
+                                <li><a href="#">Login Akun</a></li>
+                                <li><a href="#">Registrasi Akun</a></li>
+                                <li><a href="#">Lupa Password</a></li>
                             </ul>
                         </div>
-                        <div class="col-md-3 mb-4 mb-md-0">
-                            <h5>Layanan Pendukung</h5>
-                            <ul class="footer-links">
-                                <li><a href="#">Panduan Pendaftaran</a></li>
-                                <li><a href="#">Alur PPDB</a></li>
-                                <li><a href="#">Syarat & Ketentuan</a></li>
-                            </ul>
-                        </div>
+                        
+                        <!-- Customer care column -->
                         <div class="col-md-3">
-                            <div class="d-flex justify-content-md-end">
-                                <div>
-                                    <img src="{{ asset('assets/images/home/logodisdikporacianjur.png') }}" alt="SPMB Logo" class="footer-logo mb-3">
-                                    <div class="social-links">
-                                        <a href="#" class="social-link"><i class="mdi mdi-instagram"></i></a>
-                                        <a href="#" class="social-link"><i class="mdi mdi-twitter"></i></a>
-                                        <a href="#" class="social-link"><i class="mdi mdi-facebook"></i></a>
-                                        <a href="#" class="social-link"><i class="mdi mdi-youtube"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <h5 class="text-white">Link Terkait</h5>
+                            <ul class="footer-links">
+                                <li><a href="https://cianjurkab.go.id/">PEMKAB Cianjur</a></li>
+                                <li><a href="https://disdikpora.cianjurkab.go.id/welcome">DISDIKPORA Cianjur</a></li>
+                                <li><a href="https://pip.dikdasmen.go.id/home_v1/cek_nisn"></a>Cek Penerima PIP</li>
+                                <li><a href="https://nisn.data.kemdikbud.go.id/">Pencarian NISN</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p class="mb-0">© {{ date('Y') }} SPMB Disdikpora Cianjur. Hak Cipta Dilindungi.</p>
+                            <p class="mb-0">© DINAS PENDIDIKAN PEMUDA DAN OLAHRAGA - All rights reserved</p>
                         </div>
                         <div class="col-md-6 text-md-end">
-                            <p class="mb-0">Sistem Penerimaan Murid Baru Online Kabupaten Cianjur</p>
+                            <div class="d-flex justify-content-md-end">
+                                <a href="#" class="social-link me-3"><i class="mdi mdi-instagram"></i></a>
+                                <a href="#" class="social-link me-3"><i class="mdi mdi-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="mdi mdi-facebook"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

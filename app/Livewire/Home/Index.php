@@ -9,11 +9,13 @@ use App\Models\Berita; // Add this import
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class Index extends Component
 {
     #[Layout('components.home.guest')]
+    #[Title('Beranda')]
     public $totalPendaftar;
     public $totalSekolah;
     public $totalJalur;

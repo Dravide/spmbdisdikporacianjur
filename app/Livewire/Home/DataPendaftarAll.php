@@ -5,6 +5,7 @@ namespace App\Livewire\Home;
 use App\Models\DataPendaftar as ModelsDataPendaftar;
 use App\Models\Sekolah;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -14,6 +15,7 @@ class DataPendaftarAll extends Component
     use WithPagination, WithoutUrlPagination;
     
     #[Layout('components.home.guest')]
+    #[Title('Data Pendaftar')]
     
     protected $paginationTheme = 'bootstrap';
     
