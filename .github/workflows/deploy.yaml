@@ -122,20 +122,16 @@ jobs:
           # Create archive from the clean directory
           cd deploy_temp && tar -czf ../deployment.tar.gz .
           cd .. && rm -rf deploy_temp
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Install sshpass
         run: sudo apt-get install sshpass
 
       - name: Deploy with SSH (Password)
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSWORD }}
         run: |
-          export SSHPASS=${{ secrets.SSH_PASSWORD }}
-          sshpass -e scp -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
-          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          sshpass -e scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
+          sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ${{ secrets.DEPLOY_PATH }} && 
             tar -xzf ~/deployment.tar.gz -C . && 
             rm ~/deployment.tar.gz && 
