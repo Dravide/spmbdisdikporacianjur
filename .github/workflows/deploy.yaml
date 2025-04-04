@@ -91,12 +91,22 @@ jobs:
           mkdir -p storage/framework/cache
           mkdir -p storage/framework/testing
           chmod -R 777 storage bootstrap/cache
+      - name: Remove dev packages from composer.json
+        run: |
+          if [ -f "composer.json" ]; then
+            sed -i 's/"barryvdh\/laravel-debugbar".*//g' composer.json
+            sed -i 's/"barryvdh\/laravel-ide-helper".*//g' composer.json
+          fi
       - name: Install Dependencies
-        run: composer install --optimize-autoloader --no-dev
+        run: composer install --optimize-autoloader --no-dev --no-scripts
       - name: Generate key
         run: php artisan key:generate
       - name: Generate storage link
         run: php artisan storage:link
+      - name: Run post-install scripts manually
+        run: |
+          composer dump-autoload
+          php -d memory_limit=-1 artisan package:discover
       - name: Clear and optimize
         run: |
           php artisan config:clear
