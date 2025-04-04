@@ -109,22 +109,25 @@ jobs:
           php artisan view:clear
           php artisan route:clear
           php artisan optimize
-      - name: Test FTP connection
+      - name: Create deployment archive
         run: |
-          apt-get update && apt-get install -y ftp
-          echo "Checking FTP server connectivity..."
-          ftp -n << EOF
-          open ${{ secrets.FTP_SERVER }}
-          user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
-          pwd
-          quit
-          EOF
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.3
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
-          dangerous-clean-slate: false
-          timeout: 60000
+          tar -czf deployment.tar.gz --exclude=node_modules --exclude=.git --exclude=.github .
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Deploy with SSH
+        run: |
+          scp deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            cd ${{ secrets.DEPLOY_PATH }} && 
+            tar -xzf ~/deployment.tar.gz -C . && 
+            rm ~/deployment.tar.gz && 
+            php artisan migrate --force && 
+            php artisan config:cache && 
+            php artisan route:cache && 
+            php artisan view:cache && 
+            php artisan optimize
+          "
