@@ -111,7 +111,17 @@ jobs:
           php artisan optimize
       - name: Create deployment archive
         run: |
-          tar -czf deployment.tar.gz --exclude=node_modules --exclude=.git --exclude=.github .
+          # Create a clean directory for the archive
+          mkdir deploy_temp
+          # Copy files to temp directory excluding unnecessary ones
+          rsync -av --progress ./ ./deploy_temp/ \
+            --exclude node_modules \
+            --exclude .git \
+            --exclude .github \
+            --exclude deploy_temp
+          # Create archive from the clean directory
+          cd deploy_temp && tar -czf ../deployment.tar.gz .
+          cd .. && rm -rf deploy_temp
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
