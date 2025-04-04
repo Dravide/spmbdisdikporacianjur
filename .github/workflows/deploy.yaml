@@ -128,10 +128,14 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-      - name: Deploy with SSH
+      - name: Install sshpass
+        run: sudo apt-get install sshpass
+
+      - name: Deploy with SSH (Password)
         run: |
-          scp deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          export SSHPASS=${{ secrets.SSH_PASSWORD }}
+          sshpass -e scp -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/deployment.tar.gz
+          sshpass -e ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ${{ secrets.DEPLOY_PATH }} && 
             tar -xzf ~/deployment.tar.gz -C . && 
             rm ~/deployment.tar.gz && 
