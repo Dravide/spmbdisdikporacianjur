@@ -11,10 +11,9 @@ jobs:
       - name: Get the latest code
         uses: actions/checkout@v2.3.2
       - uses: actions/setup-node@master
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - name: Update .env for production
+      - name: Copy .env and update for production
         run: |
+          cp .env.example .env
           sed -i "s/APP_DEBUG=true/APP_DEBUG=false/" .env
           sed -i "s/APP_ENV=local/APP_ENV=production/" .env
       - name: Create cache directories first
