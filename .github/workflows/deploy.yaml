@@ -13,6 +13,10 @@ jobs:
       - uses: actions/setup-node@master
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Update .env for production
+        run: |
+          sed -i "s/APP_DEBUG=true/APP_DEBUG=false/" .env
+          sed -i "s/APP_ENV=local/APP_ENV=production/" .env
       - name: Create cache directories first
         run: |
           mkdir -p bootstrap/cache
@@ -22,7 +26,7 @@ jobs:
           mkdir -p storage/framework/testing
           chmod -R 777 storage bootstrap/cache
       - name: Install Dependencies
-        run: composer install --no-dev --no-interaction --prefer-dist
+        run: composer install --optimize-autoloader --no-dev
       - name: Generate key
         run: php artisan key:generate
       - name: Generate storage link
@@ -33,6 +37,7 @@ jobs:
           php artisan cache:clear
           php artisan view:clear
           php artisan route:clear
+          php artisan optimize
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
