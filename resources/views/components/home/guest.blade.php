@@ -6,7 +6,27 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title }} - {{ config('app.name', 'SPMB SMP DISDIKPORA Cianjur 2025') }}</title>
+    <meta name="title" content="{{ $title }} - {{ config('app.name', 'SPMB SMP DISDIKPORA Cianjur 2025') }}">
+<meta name="description" content="SPMB SMP Disdikpora Cianjur Tahun 2025 memberikan kesempatan bagi calon siswa untuk mendaftar melalui jalur domisili, prestasi, afirmasi, dan mutasi. ">
+<meta name="keywords" content="SPMB SMP Disdikpora Cianjur 2025, pendaftaran SMP Cianjur, penerimaan murid baru Cianjur 2025, jalur prestasi SMP Cianjur, jalur afirmasi SMP Cianjur, pendaftaran SMP jalur domisili Cianjur, SPMB SMP Cianjur 2025.">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="Indonesia">
+<meta name="revisit-after" content="1 days">
+<meta name="author" content="DISDIKPORA CIANJUR">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://spmbsmpdisdikporacianjur.com/" />
+<meta property="og:title" content="Beranda - SPMB SMP DISDIKPORA Cianjur 2025" />
+<meta property="og:description" content="SPMB SMP Disdikpora Cianjur Tahun 2025 memberikan kesempatan bagi calon siswa untuk mendaftar melalui jalur domisili, prestasi, afirmasi, dan mutasi." />
+<meta property="og:image" content="{{ asset('assets-fe/banner/spmb.png') }}" />
 
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://spmbsmpdisdikporacianjur.com/" />
+<meta property="twitter:title" content="Beranda - SPMB SMP DISDIKPORA Cianjur 2025" />
+<meta property="twitter:description" content="SPMB SMP Disdikpora Cianjur Tahun 2025 memberikan kesempatan bagi calon siswa untuk mendaftar melalui jalur domisili, prestasi, afirmasi, dan mutasi." />
+<meta property="twitter:image" content="{{ asset('assets-fe/banner/spmb.png') }}" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
