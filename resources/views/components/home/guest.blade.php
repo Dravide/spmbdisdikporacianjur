@@ -569,7 +569,7 @@
                             <ul class="footer-links">
                                 <li><a href="https://cianjurkab.go.id/">PEMKAB Cianjur</a></li>
                                 <li><a href="https://disdikpora.cianjurkab.go.id/welcome">DISDIKPORA Cianjur</a></li>
-                                <li><a href="https://pip.dikdasmen.go.id/home_v1/cek_nisn"></a>Cek Penerima PIP</li>
+                                <li><a href="https://pip.dikdasmen.go.id/home_v1/cek_nisn">Cek Penerima PIP</a></li>
                                 <li><a href="https://nisn.data.kemdikbud.go.id/">Pencarian NISN</a></li>
                             </ul>
                         </div>

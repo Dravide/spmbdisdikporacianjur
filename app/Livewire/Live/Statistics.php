@@ -14,7 +14,6 @@ use Livewire\Component;
 class Statistics extends Component
 {
     #[Layout('components.home.guest')]
-    #[Title('Live Statistik')]
     
     public $ulid;
     public $sekolah;
@@ -166,6 +165,7 @@ class Statistics extends Component
     
     public function render()
     {
-        return view('livewire.live.statistics');
+        return view('livewire.live.statistics')
+        ->title('Live Statistik '.$this->sekolah->nama_sekolah);
     }
 }
