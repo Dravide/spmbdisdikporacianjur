@@ -508,7 +508,7 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <i class="mdi mdi-information-outline"></i>
-                    <span>SPMB SMP DISDIKPORA Cianjur dalam proses perilisan terbatas. Kami sedang mengumpulkan umpan balik untuk memberikan kualitas terbaik saat dirilis resmi.</span>
+                    <span>SPMB SMP DISDIKPORA Cianjur dalam proses perilisan terbatas. Data yang kami tampilkan adalah <strong>Data Pendaftar Tahun 2024/2025</strong>.</span>
                 </div>
             </div>
         </div>
