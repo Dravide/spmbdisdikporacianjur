@@ -5,8 +5,8 @@
             <div class="col-lg-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h2 class="mb-1">Jadwal PPDB</h2>
-                        <p class="text-muted">Jadwal pelaksanaan PPDB Disdikpora Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
+                        <h2 class="mb-1">Jadwal SPMB</h2>
+                        <p class="text-muted">Jadwal pelaksanaan SPMB SMP DISDIKPORA Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
             <div class="col-lg-12">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-dark">
-                        <h5 class="mb-0  text-white">Kalender PPDB</h5>
+                        <h5 class="mb-0  text-white">Kalender SPMB</h5>
                     </div>
                     <div class="card-body p-4">
                         <div class="table-responsive">

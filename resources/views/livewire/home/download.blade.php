@@ -6,7 +6,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h2 class="mb-1">Unduh Berkas</h2>
-                        <p class="text-muted">Kumpulan dokumen penting untuk kebutuhan calon peserta didik PPDB Disdikpora Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
+                        <p class="text-muted">Kumpulan dokumen penting untuk kebutuhan calon peserta didik SPMB SMP DISDIKPORA Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
                     </div>
                 </div>
             </div>

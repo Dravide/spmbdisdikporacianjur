@@ -5,8 +5,8 @@
             <div class="col-lg-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h2 class="mb-1">Alur Pendaftaran PPDB</h2>
-                        <p class="text-muted">Panduan langkah-langkah pendaftaran PPDB Disdikpora Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
+                        <h2 class="mb-1">Alur Pendaftaran SPMB</h2>
+                        <p class="text-muted">Panduan langkah-langkah pendaftaran SPMB SMP DISDIKPORA Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
                     </div>
                 </div>
             </div>

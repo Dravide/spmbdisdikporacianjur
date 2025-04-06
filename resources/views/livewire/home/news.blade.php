@@ -6,7 +6,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h2 class="mb-1">Berita & Informasi</h2>
-                        <p class="text-muted">Informasi terbaru seputar PPDB Disdikpora Cianjur</p>
+                        <p class="text-muted">Informasi terbaru seputar SPMB SMP DISDIKPORA Cianjur Tahun {{ date('Y') }}/{{ date('Y')+1 }}</p>
                     </div>
                 </div>
             </div>

@@ -89,7 +89,7 @@
                                 </div>
                                 
                                 <p class="mb-4">
-                                    *Data PPDB per {{ now()->format('d/m/Y') }}
+                                    *Data SPMB per {{ now()->format('d/m/Y') }}
                                 </p>
                                 
                                 <a href="{{ route('data.pendaftar') }}" class="btn btn-light">Lihat Data Pendaftar</a>
