@@ -46,7 +46,7 @@ Route::group(['domain' => 'auth' . config('app.session_domain'), 'middleware' =>
     Route::get('lupapassword', [LoginController::class, 'lupapassword'])->name('lupapassword');
     Route::post('lupapassword', [LoginController::class, 'lupapasswordstore'])->name('lupapassword.store');
 });
-Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redirect']], function () {
+Route::group(['domain' => config('app.url'), 'middleware' => ['redirect']], function () {
 //    Route::get('/home2', [HomeController::class, 'index'])->name('myhome2');
     // Route::get('/', [HomeController::class, 'index'])->name('myhome');
     Route::get('/',Index::class)->name('myhome');
