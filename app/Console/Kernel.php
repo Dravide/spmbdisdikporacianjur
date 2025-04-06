@@ -14,12 +14,14 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         DeleteTemporaryCommand::class,
+        Commands\GenerateSitemapCommand::class,
     ];
 
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('delete:temporary')->everyMinute();
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**

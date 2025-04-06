@@ -50,16 +50,16 @@ Route::group(['domain' => 'spmbdisdikporacianjur.local', 'middleware' => ['redir
 //    Route::get('/home2', [HomeController::class, 'index'])->name('myhome2');
     // Route::get('/', [HomeController::class, 'index'])->name('myhome');
     Route::get('/',Index::class)->name('myhome');
-    Route::get('/cek', [HomeController::class, 'cek'])->name('cek');
-    Route::get('/cek2', [HomeController::class, 'cek2'])->name('cek2');
-    Route::get('datasekolah', [HomeController::class, 'datasekolah'])->name('datasekolah');
-    Route::get('datasekolah/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolah');
-    // Route::get('datasekolahh/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolahh');
-    Route::get('unduh', [HomeController::class, 'unduh'])->name('unduh');
-    Route::get('d/{kode}', [HomeController::class, 'validasi'])->name('validasiQR');
-    Route::post('getRekapSekolah', [HomeController::class, 'getRekapSekolah'])->name("getRekapSekolah");
-    Route::post('hasil', [HasilController::class, 'index'])->name('indexHasil');
-    Route::post('hasil2', [HasilController::class, 'index2'])->name('indexHasil2');
+    // Route::get('/cek', [HomeController::class, 'cek'])->name('cek');
+    // Route::get('/cek2', [HomeController::class, 'cek2'])->name('cek2');
+    // Route::get('datasekolah', [HomeController::class, 'datasekolah'])->name('datasekolah');
+    // Route::get('datasekolah/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolah');
+    // // Route::get('datasekolahh/{id}', [HomeController::class, 'detailSekolah'])->name('detailsekolahh');
+    // Route::get('unduh', [HomeController::class, 'unduh'])->name('unduh');
+    // Route::get('d/{kode}', [HomeController::class, 'validasi'])->name('validasiQR');
+    // Route::post('getRekapSekolah', [HomeController::class, 'getRekapSekolah'])->name("getRekapSekolah");
+    // Route::post('hasil', [HasilController::class, 'index'])->name('indexHasil');
+    // Route::post('hasil2', [HasilController::class, 'index2'])->name('indexHasil2');
     Route::get('/download', App\Livewire\Home\Download::class)->name('download');
     // Add these routes with your other web routes
     Route::get('/berita', \App\Livewire\Home\News::class)->name('news');
