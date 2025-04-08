@@ -67,17 +67,38 @@
         --border-color: #e9ecef;
     }
     
+    /* Header styles - Updated for transparency and blur */
+    #page-topbar {
+        background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+        backdrop-filter: blur(5px); /* Blur effect */
+        -webkit-backdrop-filter: blur(10px); /* For Safari support */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        padding: 0;
+        position: fixed; /* Make header fixed */
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Ensure header stays on top */
+    }
+    
+    /* Adjust main content to account for fixed header */
+    .main-content {
+        padding-top: 70px; /* Adjust this value based on your header height */
+    }
+    
+    /* Notification banner - Updated for transparency */
+    .notification-banner {
+        background-color: rgba(232, 240, 254, 0.9); /* Semi-transparent background */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        padding: 0.75rem 0;
+        color: #333;
+    }
+
     body {
         font-family: 'Inter', sans-serif;
         color: var(--text-dark);
         background-color: #f8f9fa;
-    }
-    
-    /* Header styles */
-    #page-topbar {
-        background-color: #ffffff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        padding: 0;
     }
     
     .navbar-header {
@@ -533,7 +554,7 @@
     </header>
 
     <div class="main-content">
-        <div class="page-content" style="margin-top:40px; padding-bottom:10px">
+        <div class="page-content" style="margin-top:40px;padding-bottom:10px;padding-top: 10px;">
             <div class="container">
                 {{ $slot }}
             </div>
@@ -683,7 +704,6 @@
     .footer-logo {
         height: 40px;
         margin-bottom: 1rem;
-    
     }
     
     .social-links {
