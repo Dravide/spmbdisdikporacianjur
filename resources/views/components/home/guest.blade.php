@@ -461,7 +461,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">
                                             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-down-to-arc"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3v12" /><path d="M16 11l-4 4l-4 -4" /><path d="M3 12a9 9 0 0 0 18 0" /></svg>
-                                            Download</a>
+                                            Unduh Berkas</a>
                                     </li>
                                 </ul>
                             </div>
@@ -497,7 +497,7 @@
                                 <a class="nav-link {{ request()->routeIs('data.pendaftar') ? 'active' : '' }}" href="{{ route('data.pendaftar') }}">Data Pendaftar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">Download</a>
+                                <a class="nav-link {{ request()->routeIs('download') ? 'active' : '' }}" href="{{ route('download') }}">Unduh Berkas</a>
                             </li>
                         </ul>
                     </div>
@@ -545,7 +545,7 @@
                             <h5 class="text-white">Layanan</h5>
                             <ul class="footer-links">
                                 <li><a href="{{ route('alur.pendaftaran') }}">Alur Pendaftaran</a></li>
-                                <li><a href="{{ route('download') }}">Download</a></li>
+                                <li><a href="{{ route('download') }}">Unduh Berkas</a></li>
                                 <li><a href="{{ route('news') }}">Berita</a></li>
                                 <li><a href="{{ route('schedule') }}">Jadwal</a></li>
                     
@@ -603,7 +603,15 @@
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4SSZSVW1RD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-4SSZSVW1RD');
+</script>
     @livewireScripts
     @stack('scripts')
 </body>
