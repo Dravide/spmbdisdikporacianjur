@@ -23,10 +23,18 @@ class Index extends Component
     public $jalurPendaftaran;
     public $chartData;
     public $berita; // Add this property
+
+    public $activeSchedule;
     
+    // In your mount() or render() method
     public function mount()
     {
         $this->loadHomeData();
+    
+        // Get active schedule
+        $this->activeSchedule = \App\Models\Schedule::where('start_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->first();
     }
     
     public function loadHomeData()

@@ -14,11 +14,43 @@
                         <h2 class="text-primary fw-bold mb-3">SPMB SMP DISDIKPORA</h2>
                         <h3 class="mb-4">Kabupaten Cianjur Tahun 2025</h3>
                         
-                        <p class="mb-4">Masukkan email Anda untuk lebih dulu mencoba aplikasi SPMB.</p>
+                        <p class="mb-4">Jadwal pendaftaran yang sedang berlangsung saat ini:</p>
                         
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control form-control-lg" placeholder="Tulis Email Anda" aria-label="Email">
-                            <button class="btn btn-primary btn-lg" type="button">Dapatkan Informasi</button>
+                        <div class="card border-0 shadow-sm mb-3">
+                            <div class="card-body p-3">
+                                @if(isset($activeSchedule) && $activeSchedule)
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="schedule-icon me-3 bg-soft-primary rounded-circle p-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M11 15h1" /><path d="M12 15v3" /></svg>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1 fw-bold">{{ $activeSchedule->title ?? $activeSchedule->name ?? 'Pendaftaran Aktif' }}</h5>
+                                                <div class="d-flex align-items-center text-muted small">
+                                                    <i class="mdi mdi-calendar-range me-1"></i>
+                                                    <span>{{ \Carbon\Carbon::parse($activeSchedule->start_date)->format('d M Y') }} - {{ \Carbon\Carbon::parse($activeSchedule->end_date)->format('d M Y') }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="auth-buttons">
+                                            <a href="{{ route('schedule') }}" class="btn btn-sm btn-primary">Lihat Detail Jadwal</a>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="py-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted me-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M10 16h4" /></svg>
+                                                <div>
+                                                    <h5 class="text-muted mb-1">Tidak ada Jadwal</h5>
+                                                    <p class="text-muted small mb-0">Saat ini tidak ada jadwal pendaftaran yang sedang berlangsung</p>
+                                                </div>
+                                            </div>
+                                            <a href="{{ route('schedule') }}" class="btn btn-sm btn-outline-secondary">Lihat Semua Jadwal</a>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -689,3 +721,5 @@
         </style>
         @endpush
     @endpush
+
+
