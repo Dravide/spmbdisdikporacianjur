@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8"/>
     <title>{{ $title }} - {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +25,119 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css"/>
-
-
+    
+    <!-- Custom CSS for modern UI -->
+    <style>
+        :root {
+            --primary-color: #4285F4;
+            --secondary-color: #34A853;
+            --accent-color: #EA4335;
+            --light-bg: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+        
+        /* Sidebar styling */
+        .vertical-menu {
+            background-color: #fff;
+        }
+        
+        #sidebar-menu ul li a {
+            padding: 12px 20px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        #sidebar-menu ul li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(66, 133, 244, 0.05);
+        }
+        
+        #sidebar-menu ul li a i {
+            font-size: 18px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        #sidebar-menu ul li.menu-title {
+            padding: 16px 20px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+        }
+        
+        /* Card styling */
+        .card {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Button styling */
+        .btn {
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #3367d6;
+            border-color: #3367d6;
+            transform: translateY(-2px);
+        }
+        
+        /* Table styling */
+        .table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .table th {
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .table td, .table th {
+            padding: 12px 16px;
+            vertical-align: middle;
+        }
+        
+        /* Badge styling */
+        .badge {
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        /* Footer styling */
+        .footer {
+            background-color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 16px 0;
+        }
+    </style>
 </head>
 <body data-sidebar="light" data-topbar="light">
-{{--<body data-layout="horizontal" data-topbar="dark">--}}
 <!-- Begin page -->
 <div id="layout-wrapper">
 

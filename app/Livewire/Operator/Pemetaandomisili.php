@@ -69,7 +69,9 @@ class Pemetaandomisili extends Component
     public function refreshData()
     {
         // Mengambil data pemetaan domisili yang sudah ada
-        $this->pemetaanDomisili = \App\Models\PemetaanDomisili::latest()->get();
+        $this->pemetaanDomisili = \App\Models\PemetaanDomisili::where('npsn', auth()->user()->sekolah->npsn)
+            ->latest()
+            ->get();
     }
 
     public function updatedSelectedKecamatanCode($value)
