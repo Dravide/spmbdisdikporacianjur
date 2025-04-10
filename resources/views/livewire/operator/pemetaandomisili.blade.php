@@ -21,8 +21,43 @@
                 <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#formModal">
                     <i class="mdi mdi-plus"></i> Tambah Data Domisili
                 </button>
+                <button type="button" class="btn btn-success btn-sm ms-2" wire:click="toggleImportForm">
+                    <i class="mdi mdi-file-excel"></i> Import Excel
+                </button>
             </div>
         </div>
+
+        <!-- Import Form -->
+        @if($isImporting)
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card border">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Import Data Domisili</h5>
+                    </div>
+                    <div class="card-body">
+                        <form wire:submit.prevent="importExcel">
+                            <div class="mb-3">
+                                <label for="importFile" class="form-label">File Excel</label>
+                                <input type="file" class="form-control" wire:model="importFile" accept=".xlsx, .xls">
+                                <div class="form-text">Format: .xlsx, .xls (max 2MB)</div>
+                                @error('importFile') <div class="text-danger">{{ $message }}</div> @enderror
+                            </div>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" wire:click="downloadTemplate">
+                                    <i class="mdi mdi-download"></i> Download Template
+                                </button>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Import</button>
+                                <button type="button" class="btn btn-secondary" wire:click="toggleImportForm">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -92,7 +127,7 @@
                     
                     <div class="mb-3">
                         <label for="desa" class="form-label">Desa / Kelurahan</label>
-                        <select class="form-select" wire:model="desa" {{ count($listDesa) == 0 ? 'disabled' : '' }}>
+                        <select class="form-select" wire:model.live="desa" id="desa" name="desa" {{ count($listDesa) == 0 ? 'disabled' : '' }}>
                             <option value="">Pilih Desa / Kelurahan</option>
                             @foreach($listDesa as $des)
                                 <option value="{{ $des['name'] }}">{{ $des['name'] }}</option>
@@ -149,24 +184,68 @@
         Livewire.on('showFormModal', () => {
             const modal = new bootstrap.Modal(document.getElementById('formModal'));
             modal.show();
+            
+            // After modal is shown, update the desa select
+            setTimeout(() => {
+                updateDesaSelect();
+            }, 300);
         });
         
         // Add event listener for desaSelected
         Livewire.on('desaSelected', (data) => {
-            // Set the desa dropdown value
-            const desaSelect = document.querySelector('select[wire\\:model="desa"]');
-            if (desaSelect) {
-                // Force update the select element
-                setTimeout(() => {
-                    // This timeout ensures the DOM has been updated with the new options
-                    const options = Array.from(desaSelect.options);
-                    const option = options.find(opt => opt.value === data.value);
-                    if (option) {
-                        option.selected = true;
-                    }
-                }, 100);
+            updateDesaSelect();
+        });
+        
+        // Hide modal event
+        Livewire.on('hideFormModal', () => {
+            const modalElement = document.getElementById('formModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
             }
         });
+        
+        // Function to update desa select
+        function updateDesaSelect() {
+            setTimeout(() => {
+                // Try multiple selectors to find the desa select element
+                const desaSelect = document.querySelector('select[wire\\:model="desa"]') || 
+                                  document.querySelector('select[wire\\:model\\.live="desa"]') ||
+                                  document.querySelector('select[name="desa"]');
+                
+                if (desaSelect && @this.selectedDesaName) {
+                    console.log('Updating desa select to:', @this.selectedDesaName);
+                    console.log('Available options:', Array.from(desaSelect.options).map(o => o.value));
+                    
+                    // First try to find an exact match
+                    let found = false;
+                    for (let i = 0; i < desaSelect.options.length; i++) {
+                        if (desaSelect.options[i].value === @this.selectedDesaName) {
+                            desaSelect.selectedIndex = i;
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    // If no exact match, try case-insensitive match
+                    if (!found) {
+                        const lowerValue = @this.selectedDesaName.toLowerCase();
+                        for (let i = 0; i < desaSelect.options.length; i++) {
+                            if (desaSelect.options[i].value.toLowerCase() === lowerValue) {
+                                desaSelect.selectedIndex = i;
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // Dispatch change event to update Livewire
+                    if (found) {
+                        desaSelect.dispatchEvent(new Event('change'));
+                    }
+                }
+            }, 300);
+        }
     });
 </script>
 @endpush

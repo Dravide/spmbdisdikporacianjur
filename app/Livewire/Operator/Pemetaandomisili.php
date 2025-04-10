@@ -5,9 +5,14 @@ namespace App\Livewire\Operator;
 use Exception;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use App\Imports\PemetaanDomisiliImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Pemetaandomisili extends Component
 {
+    use WithFileUploads;
+
     #[Rule('required', message: 'Kecamatan Tidak Boleh Kosong')]
     public $kecamatan;
 
@@ -19,6 +24,10 @@ class Pemetaandomisili extends Component
 
     #[Rule('required', message: 'RW Tidak Boleh Kosong')]
     public $rw;
+
+    // Add file upload property
+    #[Rule('required|mimes:xlsx,xls|max:2048', message: 'File harus berupa excel dan maksimal 2MB')]
+    public $importFile;
 
     public $listKecamatan = [];
     public $listDesa = [];
@@ -32,6 +41,7 @@ class Pemetaandomisili extends Component
     public $isEditing = false;
     public $editId = null;
     public $deleteId = null;
+    public $isImporting = false;
 
     public function mount()
     {
@@ -44,8 +54,9 @@ class Pemetaandomisili extends Component
 
     public function getKecamatan()
     {
-        // Mengambil data kecamatan dari database lokal
-        $kecamatans = \App\Models\Kecamatan::all();
+        // Mengambil data kecamatan dari database lokal khusus Kabupaten Cianjur
+        // Kode untuk Kabupaten Cianjur adalah '32.03'
+        $kecamatans = \App\Models\Kecamatan::where('code', 'like', '32.03.%')->get();
         $this->listKecamatan = $kecamatans->map(function($kecamatan) {
             return [
                 'code' => $kecamatan->code,
@@ -53,6 +64,7 @@ class Pemetaandomisili extends Component
             ];
         })->toArray();
     }
+
 
     public function refreshData()
     {
@@ -162,12 +174,18 @@ class Pemetaandomisili extends Component
                 // Force update the selectedDesaName
                 $this->selectedDesaName = $kelurahanValue;
                 
-                // Dispatch an event to ensure the UI updates correctly
+                // Dispatch events to ensure the UI updates correctly
                 $this->dispatch('desaSelected', ['value' => $kelurahanValue]);
+                
+                // Add this line to force the select element to update with the correct value
+                $this->dispatch('updateDesaSelect', ['value' => $kelurahanValue]);
             }
             
             // Show the modal
             $this->dispatch('showFormModal');
+            
+            // Add a small delay to ensure the DOM is ready before updating the select
+            $this->dispatch('initializeSelects');
         }
     }
     
@@ -181,6 +199,20 @@ class Pemetaandomisili extends Component
     public function cancelEdit()
     {
         $this->resetForm();
+    }
+    
+    // Add the missing resetForm method
+    private function resetForm()
+    {
+        $this->isEditing = false;
+        $this->editId = null;
+        $this->reset(['rt', 'rw', 'desa']);
+        $this->selectedKecamatanCode = '';
+        $this->kecamatan = '';
+        $this->selectedDesaName = '';
+        $this->selectedKecamatanName = '';
+        $this->listDesa = [];
+        $this->isImporting = false;
     }
     
     public function update()
@@ -206,6 +238,96 @@ class Pemetaandomisili extends Component
         }
     }
     
+    // Fix the save method to handle possible errors
+    public function save()
+    {
+        try {
+            // Only validate the form fields needed for saving, not importFile
+            $this->validate([
+                'kecamatan' => 'required',
+                'desa' => 'required',
+                'rt' => 'required',
+                'rw' => 'required',
+            ], [
+                'kecamatan.required' => 'Kecamatan Tidak Boleh Kosong',
+                'desa.required' => 'Desa Tidak Boleh Kosong',
+                'rt.required' => 'RT Tidak Boleh Kosong',
+                'rw.required' => 'RW Tidak Boleh Kosong',
+            ]);
+            
+            // Debug information
+            $userData = auth()->user() ? 'User authenticated' : 'User not authenticated';
+            $sekolahData = auth()->user() && auth()->user()->sekolah ? 'Sekolah found' : 'Sekolah not found';
+            
+            // Log debug information
+            \Illuminate\Support\Facades\Log::info("Save attempt: $userData, $sekolahData");
+            \Illuminate\Support\Facades\Log::info("Form data: " . json_encode([
+                'kecamatan' => $this->kecamatan,
+                'desa' => $this->desa,
+                'rt' => $this->rt,
+                'rw' => $this->rw
+            ]));
+            
+            // Check if auth()->user()->sekolah exists
+            if (!auth()->user()) {
+                throw new Exception('User tidak terautentikasi');
+            }
+            
+            if (!auth()->user()->sekolah) {
+                throw new Exception('Data sekolah tidak ditemukan untuk user ini');
+            }
+            
+            // Create the record with detailed error handling
+            $pemetaan = \App\Models\PemetaanDomisili::create([
+                'npsn' => auth()->user()->sekolah->npsn,
+                'kecamatan' => $this->kecamatan,
+                'kelurahan' => $this->desa,
+                'rt' => $this->rt,
+                'rw' => $this->rw
+            ]);
+            
+            if (!$pemetaan) {
+                throw new Exception('Gagal membuat record baru');
+            }
+
+            session()->flash('success', 'Data berhasil disimpan');
+            $this->resetForm();
+            $this->refreshData();
+            
+            // Close the modal after successful save
+            $this->dispatch('hideFormModal');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            $errorMessages = [];
+            foreach ($e->errors() as $field => $messages) {
+                // Map field names to more readable names
+                $fieldName = match($field) {
+                    'kecamatan' => 'Kecamatan',
+                    'desa' => 'Desa/Kelurahan',
+                    'rt' => 'RT',
+                    'rw' => 'RW',
+                    default => ucfirst($field)
+                };
+                
+                // Replace generic validation messages with more specific ones
+                $formattedMessages = array_map(function($message) use ($fieldName) {
+                    if ($message === 'validation.required') {
+                        return "$fieldName tidak boleh kosong";
+                    }
+                    return $message;
+                }, $messages);
+                
+                $errorMessages[] = implode(', ', $formattedMessages);
+            }
+            session()->flash('error', 'Validasi gagal: ' . implode('; ', $errorMessages));
+            \Illuminate\Support\Facades\Log::error('Validation error: ' . json_encode($e->errors()));
+        } catch (Exception $e) {
+            // Handle other exceptions
+            session()->flash('error', 'Gagal menyimpan data: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Save error: ' . $e->getMessage());
+        }
+    }
+    
 
     
     // Add a new listener method for when delete is confirmed
@@ -226,44 +348,38 @@ class Pemetaandomisili extends Component
     
     // You can remove the original delete method if you're not using it anymore
     
-    private function resetForm()
+    // Add this method to handle file import
+    public function importExcel()
     {
-        $this->isEditing = false;
-        $this->editId = null;
-        $this->reset(['rt', 'rw']);
-        $this->selectedKecamatanCode = '';
-        $this->desa = '';
-        $this->kecamatan = '';
-        $this->selectedDesaName = '';
-        $this->selectedKecamatanName = '';
-        $this->listDesa = [];
-    }
-
-    public function save()
-    {
-        $this->validate();
+        $this->validate([
+            'importFile' => 'required|mimes:xlsx,xls|max:2048'
+        ]);
 
         try {
-            \App\Models\PemetaanDomisili::create([
-                'npsn' => auth()->user()->sekolah->npsn,
-                'kecamatan' => $this->kecamatan,
-                'kelurahan' => $this->desa,
-                'rt' => $this->rt,
-                'rw' => $this->rw
-            ]);
-
-            session()->flash('success', 'Data berhasil disimpan');
-
-            // Reset form setelah berhasil disimpan
-            $this->resetForm();
-
-            // Refresh data setelah penyimpanan
+            Excel::import(new PemetaanDomisiliImport, $this->importFile);
+            
+            session()->flash('success', 'Data berhasil diimpor');
+            $this->reset('importFile');
+            $this->isImporting = false;
             $this->refreshData();
         } catch (Exception $e) {
-            session()->flash('error', 'Gagal menyimpan data: ' . $e->getMessage());
+            session()->flash('error', 'Gagal mengimpor data: ' . $e->getMessage());
         }
     }
-    
+
+    // Add this method to toggle import form
+    public function toggleImportForm()
+    {
+        $this->isImporting = !$this->isImporting;
+        $this->reset('importFile');
+    }
+
+    // Add this method to download template
+    public function downloadTemplate()
+    {
+        return response()->download(public_path('templates/pemetaan_domisili_template.xlsx'));
+    }
+
     // Remove this dispatch from render method as it's not needed with SweetAlert2
     public function render()
     {

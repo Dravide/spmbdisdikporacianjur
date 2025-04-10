@@ -12,9 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            CianjurWilayahSeeder::class,
-            ScheduleSeeder::class,
-            DocumentSeeder::class,
+            WilayahSeeder::class,
         ]);
     }
 }
