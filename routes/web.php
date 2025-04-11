@@ -50,6 +50,13 @@ Route::group(['domain' => config('app.url'), 'middleware' => ['redirect']], func
 //    Route::get('/home2', [HomeController::class, 'index'])->name('myhome2');
     // Route::get('/', [HomeController::class, 'index'])->name('myhome');
     Route::get('/',Index::class)->name('myhome');
+    // Add this line with your other public routes
+// Add this with your other public routes
+Route::get('/pengaduan', App\Livewire\Home\Pengaduan::class)->name('pengaduan');
+// Add this route for captcha refresh
+Route::get('/reload-captcha', function() {
+    return response()->json(['captcha' => captcha_img('math')]);
+});
     // Route::get('/cek', [HomeController::class, 'cek'])->name('cek');
     // Route::get('/cek2', [HomeController::class, 'cek2'])->name('cek2');
     // Route::get('datasekolah', [HomeController::class, 'datasekolah'])->name('datasekolah');
