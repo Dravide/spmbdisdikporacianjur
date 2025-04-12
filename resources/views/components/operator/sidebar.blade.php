@@ -78,6 +78,35 @@
 
                 <li class="menu-title">Pengaturan</li>
                 <li>
+                    <a href="{{ route('operator.tiket') }}" class="waves-effect">
+                        <i class="mdi mdi-ticket-outline"></i>
+                        <span>Tiket</span>
+                        @php
+                            $pendingCount = \App\Models\Tiket::where('sekolah_id', Auth::user()->sekolah->id)
+                                ->where('status', 'pending')
+                                ->count();
+                        @endphp
+                        @if($pendingCount > 0)
+                            <span class="badge rounded-pill bg-danger float-end">{{ $pendingCount }}</span>
+                        @endif
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('operator.pengaduan') }}" class="waves-effect">
+                        <i class="mdi mdi-message-text-outline"></i>
+                        <span>Pengaduan</span>
+                        @php
+                            $pendingCount = \App\Models\Pengaduan::where('tujuan_id', Auth::user()->sekolah->id)
+                                ->where('tujuan_dinas', false)
+                                ->where('status', 'pending')
+                                ->count();
+                        @endphp
+                        @if($pendingCount > 0)
+                            <span class="badge rounded-pill bg-danger float-end">{{ $pendingCount }}</span>
+                        @endif
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('operator.pengaturan') }}" class="waves-effect">
                         <i class="mdi mdi-cog-outline"></i>
                         <span>Pengaturan Akun</span>

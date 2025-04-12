@@ -26,13 +26,18 @@ use App\Http\Controllers\nara\SekolahController;
 use App\Http\Controllers\Nara\SekolahDasar;
 use App\Livewire\Nara\BeritaManager;
 use App\Livewire\Nara\DocumentManager;
+use App\Livewire\Nara\PengaduanManager;
 use App\Livewire\Nara\ScheduleManager;
+use App\Livewire\Nara\TiketManager; // Add this line
 
 Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:nara']], function () {
     Route::get('/', fn() => redirect()->route('nara.home'));
     Route::get('home', HomeController::class)->name('nara.home');
     Route::get('berita', [BeritaController::class, 'berita'])->name('nara.berita');
     Route::get('add-berita', [BeritaController::class, 'add_berita'])->name('nara.add-berita');
+    
+    // Add this new route for Tiket Manager
+    Route::get('tiket-manager', TiketManager::class)->name('nara.tiket-manager');
     
     // New Livewire Berita Manager route
     Route::get('berita-manager', BeritaManager::class)->name('nara.berita-manager');
@@ -42,6 +47,9 @@ Route::group(['domain' => 'nara' . config('app.session_domain'), 'middleware' =>
     
     // New Livewire Document Manager route
     Route::get('document-manager', DocumentManager::class)->name('nara.document-manager');
+    
+    // New Livewire Pengaduan Manager route
+    Route::get('pengaduan-manager', PengaduanManager::class)->name('nara.pengaduan-manager');
     
     Route::resource('jalur', JalurController::class);
     Route::resource('sekolah', SekolahController::class);

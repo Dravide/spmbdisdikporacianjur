@@ -25,6 +25,10 @@ use App\Http\Controllers\operator\PemetaanDomisiliController;
 use App\Http\Controllers\operator\PengumumanController;
 use App\Http\Controllers\operator\RekapVervalController;
 use App\Http\Controllers\operator\Verval;
+use App\Livewire\Operator\Pengaduan; // Add this line
+
+// Add this line in the use statements section at the top
+use App\Livewire\Operator\Tiket;
 
 Route::group(['domain' => 'app' . config('app.session_domain'), 'middleware' => ['auth', 'CekRole:operator']], function () {
     Route::get('/', function () {
@@ -82,5 +86,10 @@ Route::group(['domain' => 'app' . config('app.session_domain'), 'middleware' => 
     //Pemetaan Domisili
     Route::get('pemetaandomisili', [PemetaanDomisiliController::class, 'index'])->name('operator.pemetaandomisili');
     Route::get('maps', [Maps::class, 'index'])->name('operator.maps');
+    
+    // Add this new route for pengaduan
+    Route::get('/pengaduan', Pengaduan::class)->name('operator.pengaduan');
+    // Add this line inside the Route::group
+    Route::get('/tiket', Tiket::class)->name('operator.tiket');
 });
 # END OPERATOR PPDB SMP DISDIKPORA CIANJUR

@@ -83,6 +83,39 @@
                         <span>Dokumen</span>
                     </a>
                 </li>
+                
+                <!-- Add this new menu item for Pengaduan Manager -->
+                <li class="{{ request()->routeIs(['nara.pengaduan-manager']) ? 'mm-active':'' }}">
+                    <a href="{{ route('nara.pengaduan-manager') }}"
+                       class="waves-effect">
+                        <i class="mdi mdi-message-text-outline"></i>
+                        <span>Pengaduan</span>
+                        @php
+                            $pendingCount = \App\Models\Pengaduan::where('tujuan_dinas', true)
+                                ->where('status', 'pending')
+                                ->count();
+                        @endphp
+                        @if($pendingCount > 0)
+                            <span class="badge rounded-pill bg-danger float-end">{{ $pendingCount }}</span>
+                        @endif
+                    </a>
+                </li>
+                
+                <!-- Add this new menu item for Tiket Manager after the Pengaduan Manager item -->
+                <li class="{{ request()->routeIs(['nara.tiket-manager']) ? 'mm-active':'' }}">
+                    <a href="{{ route('nara.tiket-manager') }}"
+                       class="waves-effect">
+                        <i class="mdi mdi-ticket-outline"></i>
+                        <span>Tiket</span>
+                        @php
+                            $pendingCount = \App\Models\Tiket::where('status', 'pending')
+                                ->count();
+                        @endphp
+                        @if($pendingCount > 0)
+                            <span class="badge rounded-pill bg-danger float-end">{{ $pendingCount }}</span>
+                        @endif
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('log-viewer.index') }}" class="waves-effect" target="_blank">
                         <i class="mdi mdi-console-network"></i>

@@ -9,6 +9,8 @@ class Pengaduan extends Model
 {
     use HasFactory;
 
+    protected $table = 'pengaduans';
+
     protected $fillable = [
         'nama',
         'email',
@@ -19,32 +21,34 @@ class Pengaduan extends Model
         'tujuan_dinas',
         'user_id',
         'status',
-        'response',
-        'responded_by',
-        'responded_at'
+        'tanggapan',
+        'tanggal_tanggapan',
+        'operator_id',
+        'admin_id'
     ];
 
-    /**
-     * Get the school this complaint is directed to.
-     */
-    public function tujuanSekolah()
-    {
-        return $this->belongsTo(Sekolah::class, 'tujuan_id');
-    }
+    protected $casts = [
+        'tujuan_dinas' => 'boolean',
+        'tanggal_tanggapan' => 'datetime',
+    ];
 
-    /**
-     * Get the user who submitted this complaint.
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the admin who responded to this complaint.
-     */
-    public function responder()
+    public function sekolah()
     {
-        return $this->belongsTo(User::class, 'responded_by');
+        return $this->belongsTo(Sekolah::class, 'tujuan_id');
+    }
+
+    public function operator()
+    {
+        return $this->belongsTo(User::class, 'operator_id');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
     }
 }
