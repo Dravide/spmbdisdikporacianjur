@@ -34,6 +34,11 @@ Route::group(['domain' => 'auth' . config('app.session_domain'), 'middleware' =>
     Route::get('/', function () {
         return redirect()->route('login');
     });
+    
+    // Add this route for captcha refresh
+    Route::get('/reload-captcha', function() {
+        return response()->json(['captcha' => captcha_img('math')]);
+    });
 
 //Route::get('maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
 //    Route::get('register', [RegisterController::class, 'index'])->name('register');

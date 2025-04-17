@@ -23,12 +23,17 @@ class Register extends Component
     #[Rule('required', message: 'Konfirmasi Password Tidak Boleh Kosong')]
     #[Rule('same:password', message: 'Konfirmasi Password Tidak Sama Dengan Password')]
     public $confirm_password;
+    
+    #[Rule('required', message: 'Captcha Tidak Boleh Kosong')]
+    public $captcha;
 
     public ?string $captchaToken = null;
 
     public function mount()
     {
         $this->username = 'SPMB25' . Str::upper(Str::random(6));
+        // Generate a fresh captcha on initial load
+        captcha('math');
     }
 
     public function render()
@@ -36,22 +41,22 @@ class Register extends Component
         return view('livewire.auth.register');
     }
 
+    public function refreshCaptcha()
+    {
+        $this->captcha = '';
+        $this->dispatch('refreshCaptcha');
+    }
+
     public function submit()
     {
-        
-        $this->validate();
-
-//        $query = http_build_query([
-//            'secret' => config('services.google_captcha.secret_key'),
-//            'response' => $this->captchaToken,
-//        ]);
-//
-//        $response = Http::post('https://www.google.com/recaptcha/api/siteverify?' . $query);
-//        $captchaLevel = $response->json('score');
-//
-//        throw_if($captchaLevel <= 0.5, ValidationException::withMessages([
-//            'captchaToken' => __('Kesalahan pada verifikasi captcha. Silakan muat ulang halaman dan coba lagi.')
-//        ]));
+        $this->validate([
+            'username' => 'required',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
+            'captcha' => 'required|captcha'
+        ], [
+            'captcha.captcha' => 'Captcha tidak valid, silakan coba lagi.'
+        ]);
 
         User::create([
             'username' => $this->username,
@@ -63,7 +68,5 @@ class Register extends Component
         Auth::attempt($this->only('username', 'password'));
 
         return redirect()->route('pendaftaran.beranda')->with('sukses', 'Selamat Datang di PPDB SMP DISDIKPORA Cianjur 2023');
-
-
     }
 }

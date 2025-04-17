@@ -109,6 +109,7 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-4 align-content-center">
                                         <div id="captcha" class="mt-4" wire:ignore></div>

@@ -31,21 +31,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            {{--                                    <div class="mb-4">--}}
-                            {{--                                        <label class="form-label" for="useremail">Email <span--}}
-                            {{--                                                class="text-danger">*</span></label>--}}
-                            {{--                                        <input type="email"--}}
-                            {{--                                               class="form-control @error('email') is-invalid @enderror"--}}
-                            {{--                                               id="useremail"--}}
-                            {{--                                               placeholder="Masukan Email"--}}
-                            {{--                                               name="email"--}}
-                            {{--                                               value="{{ old('email')  }}">--}}
-                            {{--                                        @error('email')--}}
-                            {{--                                        <div class="invalid-feedback">--}}
-                            {{--                                            {{ $message }}--}}
-                            {{--                                        </div>--}}
-                            {{--                                        @enderror--}}
-                            {{--                                    </div>--}}
+                            
                             <div class="mb-4">
                                 <label class="form-label" for="userpassword"><i
                                         class="mdi mdi-form-textbox-password"></i> PASSWORD <span
@@ -54,7 +40,7 @@
                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
                                        id="userpassword"
                                        placeholder="Password"
-                                       wire:model.live.debounce="password">
+                                       wire:model.defer="password">
                                 @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -70,20 +56,39 @@
                                        class="form-control form-control-lg @error('confirm_password') is-invalid @enderror"
                                        id="confirm_userpassword"
                                        placeholder="Konfirmasi Password"
-                                       wire:model.live.debounce="confirm_password">
+                                       wire:model.defer="confirm_password">
                                 @error('confirm_password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-
-                            @error('captchaToken')
-                            {{-- Error capture if captcha is invalid --}}
-                            <div class="mb-4 align-content-center">
-                                {{ $message }}
+                            
+                            <!-- Captcha Field -->
+                            <div class="mb-4" wire:key="captcha-container">
+                                <label class="form-label" for="captcha"><i class="mdi mdi-shield-check"></i> CAPTCHA <span class="text-danger">*</span></label>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="captcha">
+                                            <span id="captcha-img" wire:ignore>{!! captcha_img('math') !!}</span>
+                                            <button type="button" class="btn btn-sm btn-dark" id="reload-captcha" wire:click.prevent="refreshCaptcha">
+                                                <i class="mdi mdi-refresh"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" id="captcha" 
+                                               class="form-control form-control-lg @error('captcha') is-invalid @enderror" 
+                                               placeholder="Masukkan Captcha" 
+                                               wire:model.defer="captcha">
+                                        @error('captcha')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            @enderror
 
                             <div class="d-grid mt-4">
                                 <button
@@ -93,12 +98,10 @@
                                         class="mdi mdi-account-plus"></i>
                                     Registrasi Akun
                                 </button>
-
                             </div>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
         <div class="mt-2 text-center">
@@ -112,26 +115,18 @@
             </p>
         </div>
     </div>
-
 </div>
-{{--@push('script')--}}
-{{--    <script--}}
-{{--        src="https://www.google.com/recaptcha/api.js?render={{ config('services.google_captcha.site_key') }}"--}}
-{{--        data-navigate-once></script>--}}
-{{--    <script data-navigate-once>--}}
-{{--        document.addEventListener('livewire:navigated', () => {--}}
-{{--            function handle(e) {--}}
-{{--                grecaptcha.ready(function () {--}}
-{{--                    grecaptcha.execute('{{ config('services.google_captcha.site_key') }}', {action: 'submit'})--}}
-{{--                        .then(function (token) {--}}
-{{--                            @this.--}}
-{{--                            set('captchaToken', token);--}}
-{{--                            @this.--}}
-{{--                            submit()--}}
-{{--                        });--}}
-{{--                })--}}
-{{--            }--}}
-{{--        })--}}
 
-{{--    </script>--}}
-{{--@endpush--}}
+@push('script')
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        @this.on('refreshCaptcha', () => {
+            fetch('/auth/reload-captcha')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('captcha-img').innerHTML = data.captcha;
+                });
+        });
+    });
+</script>
+@endpush
