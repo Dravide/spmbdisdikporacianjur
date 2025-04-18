@@ -154,18 +154,17 @@ https://ppdbsmpdisdikporacianjur.com";
     {
         if ($request->ajax()) {
             $data = OperatorVerval::where('id', $request->id)->first();
-//            if($data->id_berkas == 8) {
-//                $d = DataPrestasi::where('verval_id', $data->id)->get();
-//                dd($d);
-//            }
+            
+            if (!$data) {
+                return response()->json(['error' => 'Data tidak ditemukan'], 404);
+            }
 
             $isiData = $data;
-//            dd($isiData);
-
 
             return view('components.operator.offcanvas', compact(['data', 'isiData']));
         }
-
+        
+        return response()->json(['error' => 'Invalid request'], 400);
     }
 
     public function whatsapp(Request $request)

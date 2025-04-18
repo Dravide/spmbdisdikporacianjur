@@ -135,6 +135,96 @@
             border-top: 1px solid var(--border-color);
             padding: 16px 0;
         }
+        
+        /* Floating Menu */
+        .floating-menu {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        
+        .floating-menu-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .floating-menu-toggle:hover {
+            transform: scale(1.1);
+            background-color: #3367d6;
+        }
+        
+        .floating-menu-items {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            display: none;
+        }
+        
+        .floating-menu-items.open {
+            display: block;
+        }
+        
+        .floating-menu-item {
+            background-color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .floating-menu-item:hover {
+            transform: scale(1.1);
+            background-color: #f8f9fa;
+        }
+        
+        .floating-menu-item a {
+            color: #555;
+            font-size: 20px;
+        }
+        
+        .floating-menu-item .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            padding: 4px 6px;
+            font-size: 10px;
+        }
+        
+        .floating-menu-tooltip {
+            position: absolute;
+            right: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .floating-menu-item:hover .floating-menu-tooltip {
+            opacity: 1;
+            right: 65px;
+        }
     </style>
 </head>
 <body data-sidebar="light" data-topbar="light">
@@ -179,6 +269,45 @@
     </div>
     <!-- end main content-->
 </div>
+
+<!-- Floating Menu -->
+<div class="floating-menu">
+    <div class="floating-menu-items">
+        <div class="floating-menu-item">
+            <a href="{{ route('operator.tiket') }}">
+                <i class="mdi mdi-ticket-outline"></i>
+                @php
+                    $pendingTickets = \App\Models\Tiket::where('sekolah_id', Auth::user()->sekolah->id)
+                        ->where('status', 'pending')
+                        ->count();
+                @endphp
+                @if($pendingTickets > 0)
+                    <span class="badge bg-danger rounded-pill">{{ $pendingTickets }}</span>
+                @endif
+            </a>
+            <div class="floating-menu-tooltip">Tiket</div>
+        </div>
+        <div class="floating-menu-item">
+            <a href="{{ route('operator.pengaduan') }}">
+                <i class="mdi mdi-message-text-outline"></i>
+                @php
+                    $pendingComplaints = \App\Models\Pengaduan::where('tujuan_id', Auth::user()->sekolah->id)
+                        ->where('tujuan_dinas', false)
+                        ->where('status', 'pending')
+                        ->count();
+                @endphp
+                @if($pendingComplaints > 0)
+                    <span class="badge bg-danger rounded-pill">{{ $pendingComplaints }}</span>
+                @endif
+            </a>
+            <div class="floating-menu-tooltip">Pengaduan</div>
+        </div>
+    </div>
+    <div class="floating-menu-toggle">
+        <i class="mdi mdi-plus"></i>
+    </div>
+</div>
+
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
      style="width: 100%; height: 100%;">
     <div class="offcanvas-header">
@@ -199,6 +328,22 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Floating Menu Script -->
+<script>
+    $(document).ready(function() {
+        $('.floating-menu-toggle').click(function() {
+            $('.floating-menu-items').toggleClass('open');
+            
+            if ($('.floating-menu-items').hasClass('open')) {
+                $(this).html('<i class="mdi mdi-close"></i>');
+            } else {
+                $(this).html('<i class="mdi mdi-plus"></i>');
+            }
+        });
+    });
+</script>
+
 @stack('scripts')
 </body>
 </html>

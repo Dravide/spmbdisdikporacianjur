@@ -63,12 +63,11 @@ Route::group(['domain' => 'app' . config('app.session_domain'), 'middleware' => 
     Route::get('datapendaftar', [DataPendaftar::class, 'index'])->name('operator.datapendaftar');
     Route::get('verval/{kode}', [Verval::class, 'index'])->name('operator.verval');
     Route::get('verval/rekap/{kode}', [Verval::class, 'rekapjalur'])->name('operator.verval.rekap.jalur');
-    Route::get('verval/id/{kode}', [Verval::class, 'show'])->name('operator.verval.pendaftar');
-    Route::get('verval', [Verval::class, 'getBerkas'])->name('operator.verval.getBerkas');
+    Route::get('verval/id/{kode}', App\Livewire\Operator\VervalPendaftar::class)->name('operator.verval.pendaftar');
+    Route::get('verval/berkas', [Verval::class, 'getBerkas'])->name('operator.verval.getBerkas');
     Route::put('verval', [Verval::class, 'update'])->name('operator.verval.update');
-    Route::get('verval', [Verval::class, 'getBerkas'])->name('operator.verval.getBerkas');
-    Route::post('whatsapp', [Verval::class, 'whatsapp'])->name('operator.verval.whatsapp');
-    Route::post('verval/reset', [Verval::class, 'reset'])->name('operator.verval.reset');
+    // Route::post('whatsapp', [Verval::class, 'whatsapp'])->name('operator.verval.whatsapp'); // Diganti dengan Livewire
+    // Route::post('verval/reset', [Verval::class, 'reset'])->name('operator.verval.reset'); // Diganti dengan Livewire
     Route::get('rekapverval', [RekapVervalController::class, 'index'])->name('operator.rekapverval');
 
     Route::get('pengumuman', [PengumumanController::class, 'index'])->name('operator.pengumuman');

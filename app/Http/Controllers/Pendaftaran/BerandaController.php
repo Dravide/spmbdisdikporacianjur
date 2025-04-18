@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Pendaftaran;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\KirimWhatsApp;
 use App\Jobs\SendWhatsApp;
 use App\Models\DataPendaftar;
 use App\Models\PesertaDidik;

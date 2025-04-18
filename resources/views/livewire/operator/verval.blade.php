@@ -208,9 +208,9 @@
                                 {!! $this->getStatusHtml($pendaftar) !!}
                             </td>
                             <td class="align-middle">
-                                <button class="btn btn-sm btn-dark">
+                                <a class="btn btn-sm btn-dark" href="{{ route('operator.verval.pendaftar', $pendaftar->nisn) }}">
                                     <i class="fas fa-check-circle"></i> Verifikasi
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     @empty
