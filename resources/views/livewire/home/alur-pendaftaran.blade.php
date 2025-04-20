@@ -32,10 +32,7 @@
                                             <i class="mdi mdi-file-document-outline text-primary me-3"></i>
                                             <span>Kartu Keluarga (KK)</span>
                                         </li>
-                                        <li class="list-group-item d-flex align-items-center">
-                                            <i class="mdi mdi-file-document-outline text-primary me-3"></i>
-                                            <span>Akta Kelahiran</span>
-                                        </li>
+                                
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-file-document-outline text-primary me-3"></i>
                                             <span>Ijazah/Surat Keterangan Lulus SD/MI</span>
@@ -46,7 +43,11 @@
                                         </li>
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-file-document-outline text-primary me-3"></i>
-                                            <span>Dokumen pendukung sesuai jalur pendaftaran</span>
+                                            <span>Ijazah Diniyah</span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="mdi mdi-file-document-outline text-primary me-3"></i>
+                                            <span>Dokumen pendukung sesuai Jalur Pendaftaran</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -57,16 +58,15 @@
                                 <div class="timeline-marker">2</div>
                                 <div class="timeline-content">
                                     <h4>Registrasi Akun</h4>
-                                    <p>Buat akun PPDB dengan mengikuti langkah-langkah berikut:</p>
+                                    <p>Buat akun SPMB dengan mengikuti langkah-langkah berikut:</p>
                                     <ol class="mb-3">
-                                        <li>Kunjungi halaman <a href="{{ route('login') }}">Login</a> dan klik tombol "Daftar"</li>
+                                        <li>Kunjungi halaman <a class="text-primary" href="{{ route('login') }}">Login Akun</a> dan klik tombol "Registrasi Akun"</li>
                                         <li>Isi formulir pendaftaran dengan data yang valid</li>
-                                        <li>Verifikasi akun melalui email yang didaftarkan</li>
                                         <li>Login menggunakan username dan password yang telah dibuat</li>
                                     </ol>
                                     <div class="alert alert-info d-flex align-items-center">
                                         <i class="mdi mdi-information-outline me-2 font-size-20"></i>
-                                        <div>Pastikan menggunakan alamat email aktif untuk menerima notifikasi penting</div>
+                                        <div>Pastikan menyimpan username dan password yang telah dibuat</div>
                                     </div>
                                 </div>
                             </div>
@@ -81,9 +81,9 @@
                                         <div class="col-md-6 mb-3">
                                             <div class="card h-100">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Jalur Zonasi</h5>
+                                                    <h5 class="card-title">Jalur Domisili</h5>
                                                     <p class="card-text">Berdasarkan jarak tempat tinggal ke sekolah tujuan</p>
-                                                    <div class="badge bg-light text-dark">Kuota: 50%</div>
+                                                    <div class="badge bg-light text-dark">Kuota: 40%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title">Jalur Prestasi</h5>
                                                     <p class="card-text">Berdasarkan prestasi akademik dan non-akademik</p>
-                                                    <div class="badge bg-light text-dark">Kuota: 15%</div>
+                                                    <div class="badge bg-light text-dark">Kuota: 25%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,14 +101,14 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title">Jalur Afirmasi</h5>
                                                     <p class="card-text">Untuk siswa dari keluarga tidak mampu</p>
-                                                    <div class="badge bg-light text-dark">Kuota: 15%</div>
+                                                    <div class="badge bg-light text-dark">Kuota: 20%</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <div class="card h-100">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Jalur Perpindahan Orang Tua</h5>
+                                                    <h5 class="card-title">Jalur Mutasi</h5>
                                                     <p class="card-text">Untuk siswa yang orang tuanya dipindahtugaskan</p>
                                                     <div class="badge bg-light text-dark">Kuota: 5%</div>
                                                 </div>

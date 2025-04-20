@@ -104,18 +104,16 @@
                 <div class="card bg-dark text-white border-0">
                     <div class="card-body p-4">
                         <h4 class="text-white mb-4">Butuh Bantuan?</h4>
-                        <p>Jika Anda memiliki pertanyaan seputar jadwal PPDB, silakan hubungi kami melalui:</p>
+                        <p>Jika Anda memiliki pertanyaan seputar SPMB, silakan hubungi kami melalui:</p>
+                
                         <div class="mb-3">
-                            <i class="mdi mdi-phone me-2"></i> (0263) 123456
-                        </div>
-                        <div class="mb-3">
-                            <i class="mdi mdi-email-outline me-2"></i> ppdb@disdikporacijr.go.id
+                            <i class="mdi mdi-email-outline me-2"></i> disdikpora@cianjurkab.go.id
                         </div>
                         <div>
-                            <i class="mdi mdi-whatsapp me-2"></i> 0812-3456-7890
+                            <i class="mdi mdi-whatsapp me-2"></i> +62-822-1869-7174 (Hanya Chat)
                         </div>
                         <div class="mt-4">
-                            <a href="#" class="btn btn-light">Hubungi Kami</a>
+                            <a href="{{  route('pengaduan') }}" class="btn btn-light">Hubungi Kami</a>
                         </div>
                     </div>
                 </div>
