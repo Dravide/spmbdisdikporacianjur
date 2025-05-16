@@ -83,7 +83,7 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title">Jalur Domisili</h5>
                                                     <p class="card-text">Berdasarkan jarak tempat tinggal ke sekolah tujuan</p>
-                                                    <div class="badge bg-light text-dark">Kuota: 40%</div>
+                                                    <div class="badge bg-light text-dark">Kuota: 45%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title">Jalur Prestasi</h5>
                                                     <p class="card-text">Berdasarkan prestasi akademik dan non-akademik</p>
-                                                    <div class="badge bg-light text-dark">Kuota: 25%</div>
+                                                    <div class="badge bg-light text-dark">Kuota: 30%</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <div class="card h-100">
+                                            <div class="card h-100">{{--  --}}
                                                 <div class="card-body">
                                                     <h5 class="card-title">Jalur Mutasi</h5>
                                                     <p class="card-text">Untuk siswa yang orang tuanya dipindahtugaskan</p>
@@ -122,12 +122,12 @@
                             <div class="timeline-item">
                                 <div class="timeline-marker">4</div>
                                 <div class="timeline-content">
-                                    <h4>Pengisian Formulir</h4>
+                                    <h4>Pengisian Formulir Utama</h4>
                                     <p>Isi formulir pendaftaran dengan data yang benar dan lengkap:</p>
                                     <ul class="list-group list-group-flush mb-3">
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-account-outline text-primary me-3"></i>
-                                            <span>Data Pribadi Siswa</span>
+                                            <span>Identitas Calon Murid Baru</span>
                                         </li>
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-account-group-outline text-primary me-3"></i>
@@ -135,15 +135,15 @@
                                         </li>
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-school-outline text-primary me-3"></i>
-                                            <span>Data Sekolah Asal</span>
+                                            <span>Sekolah Asal</span>
                                         </li>
                                         <li class="list-group-item d-flex align-items-center">
                                             <i class="mdi mdi-map-marker-outline text-primary me-3"></i>
-                                            <span>Data Alamat</span>
+                                            <span>Jalur Pendaftaran</span>
                                         </li>
                                         <li class="list-group-item d-flex align-items-center">
-                                            <i class="mdi mdi-trophy-outline text-primary me-3"></i>
-                                            <span>Data Prestasi (jika ada)</span>
+                                            <i class="mdi mdi-school-outline text-primary me-3"></i>
+                                            <span>Sekolahh Tujuan</span>
                                         </li>
                                     </ul>
                                     <div class="alert alert-warning d-flex align-items-center">
@@ -163,6 +163,9 @@
                                         <table class="table table-bordered">
                                             <thead class="table-light">
                                                 <tr>
+                                                    <th colspan="3">Berkas Umum</th>
+                                                </tr>
+                                                <tr>
                                                     <th>Dokumen</th>
                                                     <th>Format</th>
                                                     <th>Ukuran Maks.</th>
@@ -175,12 +178,7 @@
                                                     <td>2MB</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Akta Kelahiran</td>
-                                                    <td>JPG/PDF</td>
-                                                    <td>2MB</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Ijazah/SKL</td>
+                                                    <td>Surat Kelulusan SD/MI</td>
                                                     <td>JPG/PDF</td>
                                                     <td>2MB</td>
                                                 </tr>
@@ -188,6 +186,31 @@
                                                     <td>Pas Foto</td>
                                                     <td>JPG</td>
                                                     <td>1MB</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ijazah Diniyah</td>
+                                                    <td>JPG/PDF</td>
+                                                    <td>2MB</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered mt-3">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th colspan="3">Berkas Khusus</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Dokumen</th>
+                                                    <th>Format</th>
+                                                    <th>Ukuran Maks.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Ijazah/SKL</td>
+                                                    <td>JPG/PDF</td>
+                                                    <td>2MB</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Dokumen Pendukung</td>

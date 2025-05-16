@@ -492,7 +492,7 @@
                     <!-- Right side with login button -->
                     <div class="d-flex align-items-center">
                         <div class="auth-buttons">
-                            <a href="#" class="btn btn-primary">Login Akun</a>
+                            <a href="{{  route('login') }}" class="btn btn-primary">Login Akun</a>
                         </div>
                     </div>
                 </div>
